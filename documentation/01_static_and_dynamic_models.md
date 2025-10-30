@@ -47,18 +47,18 @@ class Image {
     + static load_from(string path): Image
 }
 
-class PredictionResult {
+class Prediction {
     + float confidence
     + int class_nr
     + string class_name
 }
 
 class NeuralNetwork {
-    + classify(Image image): PredictionResult
+    + classify(Image image): Prediction
 }
 
 class ExplainableAITechnique {
-    + explain(PredictionResult result, NeuralNetwork model): Explanation
+    + explain(Prediction prediction, NeuralNetwork for_model): Explanation
 }
 
 class Explanation {
@@ -72,12 +72,12 @@ class ImagePresenter {
     + render(Image image)
 }
 
-class PredictionResultPresenter {
-    + render(PredictionResult result, Image image)
+class PredictionPresenter {
+    + render(Prediction prediction, Image image)
 }
 
 class ExplanationPresenter {
-    + render(Explanation explanation, PredictionResult result, Image image)
+    + render(Explanation explanation, Prediction prediction, Image image)
 }
 
 %% --------------------
@@ -97,16 +97,16 @@ class MainController {
 MainController --> Image
 MainController --> NeuralNetwork
 MainController --> ExplainableAITechnique
-MainController --> PredictionResult
+MainController --> Prediction
 MainController --> Explanation
 
 MainController --> ImagePresenter
-MainController --> PredictionResultPresenter
+MainController --> PredictionPresenter
 MainController --> ExplanationPresenter
 
 ```
 
-#### Class Diagram: Relationship between Model and Views
+#### Class Diagram: Relationship between Models and Views
 
 ```mermaid
 classDiagram
@@ -118,17 +118,17 @@ class Image {
 }
 
 class NeuralNetwork {
-    + classify(Image image): PredictionResult
+    + classify(Image image): Prediction
 }
 
-class PredictionResult {
+class Prediction {
     + float confidence
     + int class_nr
     + string class_name
 }
 
 class ExplainableAITechnique {
-    + explain(PredictionResult result, NeuralNetwork model): Explanation
+    + explain(Prediction prediction, NeuralNetwork model): Explanation
 }
 
 class Explanation {
@@ -142,22 +142,22 @@ class ImagePresenter {
     + render(Image image)
 }
 
-class PredictionResultPresenter {
-    + render(PredictionResult result, Image? image)
+class PredictionPresenter {
+    + render(Prediction prediction, Image? image)
 }
 
 class ExplanationPresenter {
-    + render(Explanation explanation, PredictionResult result, Image image)
+    + render(Explanation explanation, Prediction prediction, Image image)
 }
 
 %% --------------------
 %% Relationships (Models)
 %% --------------------
 NeuralNetwork --> Image : "classifies"
-NeuralNetwork --> PredictionResult : "produces"
+NeuralNetwork --> Prediction : "produces"
 
 ExplainableAITechnique --> NeuralNetwork : "uses"
-ExplainableAITechnique --> PredictionResult : "uses"
+ExplainableAITechnique --> Prediction : "uses"
 ExplainableAITechnique --> Explanation : "produces"
 
 Explanation --> ExplainableAITechnique : "derived from"
@@ -167,12 +167,12 @@ Explanation --> ExplainableAITechnique : "derived from"
 %% --------------------
 ImagePresenter --> Image : "renders"
 
-PredictionResultPresenter --> PredictionResult : "renders"
-PredictionResultPresenter --> Image : "optional thumbnail"
+PredictionPresenter --> Prediction : "renders"
+PredictionPresenter --> Image : "renders"
 
-ExplanationPresenter --> Explanation : "renders overlay"
-ExplanationPresenter --> PredictionResult : "uses metadata"
-ExplanationPresenter --> Image : "renders base image"
+ExplanationPresenter --> Explanation : "renders"
+ExplanationPresenter --> Prediction : "renders"
+ExplanationPresenter --> Image : "renders"
 
 ```
 
@@ -189,7 +189,7 @@ sequenceDiagram
     participant NeuralNetwork
     participant ExplainableAITechnique
     participant ImagePresenter
-    participant PredictionResultPresenter
+    participant PredictionPresenter
     participant ExplanationPresenter
 
     User->>MainController: select_model(NeuralNetwork model)
@@ -205,11 +205,11 @@ sequenceDiagram
 
     User->>MainController: classify_image()
     MainController->>NeuralNetwork: classify(current_image)
-    NeuralNetwork-->>MainController: PredictionResult
-    MainController->>PredictionResultPresenter: render(result, current_image)
+    NeuralNetwork-->>MainController: Prediction
+    MainController->>PredictionPresenter: render(prediction, current_image)
 
     User->>MainController: explain_classification()
-    MainController->>ExplainableAITechnique: explain(result, current_model)
+    MainController->>ExplainableAITechnique: explain(prediction, current_model)
     ExplainableAITechnique-->>MainController: Explanation
-    MainController->>ExplanationPresenter: render(explanation, result, current_image)
+    MainController->>ExplanationPresenter: render(explanation, prediction, current_image)
 ```
