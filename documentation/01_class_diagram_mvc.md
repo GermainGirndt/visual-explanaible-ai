@@ -20,12 +20,12 @@ class NeuralNetwork {
     + classify(Image image): PredictionResult
 }
 
-class ExplainableAIProcess {
+class ExplainableAITechnique {
     + explain(PredictionResult result, NeuralNetwork model): Explanation
 }
 
 class Explanation {
-    - ExplainableAIProcess from_process
+    - ExplainableAITechnique from_technique
 }
 
 %% --------------------
@@ -51,7 +51,7 @@ class MainController {
     + classify_image()
     + explain_classification()
     + select_model(NeuralNetwork model)
-    + select_explainable_ai_process(ExplainableAIProcess process)
+    + select_explainable_ai_technique(ExplainableAITechnique technique)
 }
 
 %% --------------------
@@ -59,7 +59,7 @@ class MainController {
 %% --------------------
 MainController --> Image
 MainController --> NeuralNetwork
-MainController --> ExplainableAIProcess
+MainController --> ExplainableAITechnique
 MainController --> PredictionResult
 MainController --> Explanation
 

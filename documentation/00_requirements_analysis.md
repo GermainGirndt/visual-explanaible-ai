@@ -63,7 +63,7 @@
 
 - The app should be **easily extensible** to support different models and xAI methods.
 - **Acceptance Criteria:**
-  1. The user can select among multiple image classification models and explanation processes.
+  1. The user can select among multiple image classification models and explanation techniques.
   2. Once a model is chosen, only compatible explanation methods are selectable.
 
 > 💬 _Why?_ Extensibility supports future research or student projects by allowing new models or xAI methods to be plugged in easily.

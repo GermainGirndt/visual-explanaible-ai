@@ -7,7 +7,7 @@ sequenceDiagram
     participant MainController
     participant Image
     participant NeuralNetwork
-    participant ExplainableAIProcess
+    participant ExplainableAITechnique
     participant ImagePresenter
     participant PredictionResultPresenter
     participant ExplanationPresenter
@@ -15,8 +15,8 @@ sequenceDiagram
     User->>MainController: select_model(NeuralNetwork model)
     MainController->>MainController: store model as current_model
 
-    User->>MainController: select_explainable_ai_process(ExplainableAIProcess process)
-    MainController->>MainController: store process as current_process
+    User->>MainController: select_explainable_ai_technique(ExplainableAITechnique technique)
+    MainController->>MainController: store technique as current_technique
 
     User->>MainController: load_image(path)
     MainController->>Image: load_from(path)
@@ -29,7 +29,7 @@ sequenceDiagram
     MainController->>PredictionResultPresenter: render(result, current_image)
 
     User->>MainController: explain_classification()
-    MainController->>ExplainableAIProcess: explain(result, current_model)
-    ExplainableAIProcess-->>MainController: Explanation
+    MainController->>ExplainableAITechnique: explain(result, current_model)
+    ExplainableAITechnique-->>MainController: Explanation
     MainController->>ExplanationPresenter: render(explanation, result, current_image)
 ```

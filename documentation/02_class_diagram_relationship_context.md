@@ -2,7 +2,6 @@
 
 ```mermaid
 classDiagram
-
 %% --------------------
 %% Model Layer
 %% --------------------
@@ -20,12 +19,12 @@ class PredictionResult {
     + string class_name
 }
 
-class ExplainableAIProcess {
+class ExplainableAITechnique {
     + explain(PredictionResult result, NeuralNetwork model): Explanation
 }
 
 class Explanation {
-    - ExplainableAIProcess from_process
+    - ExplainableAITechnique from_technique
 }
 
 %% --------------------
@@ -49,11 +48,11 @@ class ExplanationPresenter {
 NeuralNetwork --> Image : "classifies"
 NeuralNetwork --> PredictionResult : "produces"
 
-ExplainableAIProcess --> NeuralNetwork : "uses"
-ExplainableAIProcess --> PredictionResult : "uses"
-ExplainableAIProcess --> Explanation : "produces"
+ExplainableAITechnique --> NeuralNetwork : "uses"
+ExplainableAITechnique --> PredictionResult : "uses"
+ExplainableAITechnique --> Explanation : "produces"
 
-Explanation --> ExplainableAIProcess : "derived from"
+Explanation --> ExplainableAITechnique : "derived from"
 
 %% --------------------
 %% Relationships (Views)
