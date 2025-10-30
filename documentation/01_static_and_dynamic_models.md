@@ -40,7 +40,7 @@ MVC could be an easier and lightweight alternative to MVP with less code and les
 Still, the advantages of the MVP overweight the drawbacks, specially regarding the non-functional requirements of manutenability and specially extensibility:
 
 - views renders component only and do not depends on the model (no data-binding/observers)
-- presenter (which controls the data flow) do not depend on the view
+- presenter (which controls the data flow) does not depend directly on an implemention of a views and do not manipulate view directly (instead, they just depend on an abstraction for listening to user inputs and passing model information to them)
 - models do not notifies views for changes
 
 For this reason, new functionalities (for instance for new neural-network models or new explainability techniques) in MVP could be inserted by subclassing/inheriting the existing classes. The same wouldn't be so easy in MVC, since model, view and controllers are more coupled.
@@ -119,6 +119,11 @@ MainPresenter --> PredictionView : "renders via"
 MainPresenter --> ExplanationView : "renders via"
 
 ```
+
+Notes:
+
+- 1: The main presenter could be in the future broken down into smaller presents
+- 2: Specific views like "buttons" are accessory and therefore not shown in the class diagram modelling.
 
 #### Class Diagram: Relationship between Models and Views
 
