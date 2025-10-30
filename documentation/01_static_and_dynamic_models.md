@@ -94,15 +94,15 @@ class MainController {
 %% --------------------
 %% Relationships
 %% --------------------
-MainController --> Image
-MainController --> NeuralNetwork
-MainController --> ExplainableAITechnique
-MainController --> Prediction
-MainController --> Explanation
+MainController --> Image : "loads"
+MainController --> NeuralNetwork : "calls for classification"
+MainController --> ExplainableAITechnique : "calls for explanation"
+MainController --> Prediction : "stores and manages"
+MainController --> Explanation : "stores and manages"
 
-MainController --> ImagePresenter
-MainController --> PredictionPresenter
-MainController --> ExplanationPresenter
+MainController --> ImagePresenter : "renders via"
+MainController --> PredictionPresenter : "renders via"
+MainController --> ExplanationPresenter : "renders via"
 
 ```
 
