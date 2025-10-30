@@ -1,6 +1,6 @@
 # Static and Dynamic Models
 
-## Architectural Decision: Model-View-Controller (MVC)
+## Architectural Decision: Model-View-Presenter (MVP)
 
 ### Context
 
@@ -11,33 +11,45 @@ The Explainable AI (xAI) Teaching App must:
 3. Generate an explanation utilizing a xAI technique.
 4. Be maintainable, extensible, and easy to demonstrate live in a classroom.
 
-### Why MVC
+### Why MVP
 
-The MVC Architecture fulfill these requirements by providing a clear separation between:
+The MVP Architecture fulfill these requirements by providing a clear separation between:
 
 - AI + Computation logic (Model)
-- Graphic Visualization/Presentation logic (View)
-- User Interaction (Controller)
+- Graphic Visualization/Viewtion logic (View)
+- User Interaction (Presenter)
 
-Here is important to highlight that MVC architecture was mainly chosen to fulfill the maintainability and extensibility criteria, while maintaining a flexible and lightweight architecture.
+Here is important to highlight that MVP architecture was mainly chosen to fulfill the maintainability and extensibility criteria, while maintaining a flexible and lightweight architecture.
 
-#### ✅ Advantages of MVC
+#### ✅ Advantages of MVP
 
 - Separation of concerns: Isolates computation, logic, and UI for easier maintenance.
 - Extensibility: New models or xAI methods can be added by extending the model layer.
-- Testability: Model and controller can be unit-tested independently from the view.
+- Testability: Model and presenter can be unit-tested independently from the view.
 - Pedagogical clarity: Mirrors conceptual separation between data, processing, and presentation, useful in an educational setting.
 
-#### ⚠️ Disadvantages of MVC
+#### ⚠️ Disadvantages of MVP
 
-- Slightly more boilerplate code (e.g., additional classes for presenters and controllers).
-- Requires disciplined coordination between components to avoid “fat controllers.”
+- Slightly more boilerplate code (e.g., additional classes for views and presenters).
+- Requires disciplined coordination between components to avoid “fat presenters.”
+
+#### Why not Model-View-Controller (MVC)
+
+MVC could be an easier and lightweight alternative to MVP with less code and less component layers to implement.
+
+Still, the advantages of the MVP overweight the drawbacks, specially regarding the non-functional requirements of manutenability and specially extensibility:
+
+- views renders component only and do not depends on the model (no data-binding/observers)
+- presenter (which controls the data flow) do not depend on the view
+- models do not notifies views for changes
+
+For this reason, new functionalities (for instance for new neural-network models or new explainability techniques) in MVP could be inserted by subclassing/inheriting the existing classes. The same wouldn't be so easy in MVC, since model, view and controllers are more coupled.
 
 ### Static Model
 
-#### Class Diagram: Coordination through the Controller Class
+#### Class Diagram: Coordination through the Presenter Class
 
-The user interacts with the Controller, which coordinates the other system classes.
+The user interacts with the Presenter, which coordinates the other system classes.
 
 ```mermaid
 classDiagram
@@ -70,22 +82,22 @@ class Explanation {
 %% --------------------
 %% View Layer
 %% --------------------
-class ImagePresenter {
+class ImageView {
     + render(Image image)
 }
 
-class PredictionPresenter {
+class PredictionView {
     + render(Prediction prediction, Image image)
 }
 
-class ExplanationPresenter {
+class ExplanationView {
     + render(Explanation explanation, Prediction prediction, Image image)
 }
 
 %% --------------------
-%% Controller Layer
+%% Presenter Layer
 %% --------------------
-class MainController {
+class MainPresenter {
     + load_image(string path)
     + classify_image()
     + explain_classification()
@@ -96,25 +108,25 @@ class MainController {
 %% --------------------
 %% Relationships
 %% --------------------
-MainController --> Image : "loads"
-MainController --> NeuralNetwork : "calls for classification"
-MainController --> ExplainableAITechnique : "calls for explanation"
-MainController --> Prediction : "stores and manages"
-MainController --> Explanation : "stores and manages"
+MainPresenter --> Image : "loads"
+MainPresenter --> NeuralNetwork : "calls for classification"
+MainPresenter --> ExplainableAITechnique : "calls for explanation"
+MainPresenter --> Prediction : "stores and manages"
+MainPresenter --> Explanation : "stores and manages"
 
-MainController --> ImagePresenter : "renders via"
-MainController --> PredictionPresenter : "renders via"
-MainController --> ExplanationPresenter : "renders via"
+MainPresenter --> ImageView : "renders via"
+MainPresenter --> PredictionView : "renders via"
+MainPresenter --> ExplanationView : "renders via"
 
 ```
 
 #### Class Diagram: Relationship between Models and Views
 
-##### Presenters:
+##### Views:
 
-1. **ImagePresenter:** renders the image
-2. **PredictionPresenter:** renders the image and the prediction
-3. **ExplanationPresenter:** renders the image, the prediction and the explanation
+1. **ImageView:** renders the image
+2. **PredictionView:** renders the image and the prediction
+3. **ExplanationView:** renders the image, the prediction and the explanation
 
 ##### Models:
 
@@ -154,15 +166,15 @@ class Explanation {
 %% --------------------
 %% View Layer (Separate Web Pages)
 %% --------------------
-class ImagePresenter {
+class ImageView {
     + render(Image image)
 }
 
-class PredictionPresenter {
+class PredictionView {
     + render(Prediction prediction, Image image)
 }
 
-class ExplanationPresenter {
+class ExplanationView {
     + render(Explanation explanation, Prediction prediction, Image image)
 }
 
@@ -181,14 +193,14 @@ Explanation --> ExplainableAITechnique : "derived from"
 %% --------------------
 %% Relationships (Views)
 %% --------------------
-ImagePresenter --> Image : "renders"
+ImageView --> Image : "renders"
 
-PredictionPresenter --> Prediction : "renders"
-PredictionPresenter --> Image : "renders"
+PredictionView --> Prediction : "renders"
+PredictionView --> Image : "renders"
 
-ExplanationPresenter --> Explanation : "renders"
-ExplanationPresenter --> Prediction : "renders"
-ExplanationPresenter --> Image : "renders"
+ExplanationView --> Explanation : "renders"
+ExplanationView --> Prediction : "renders"
+ExplanationView --> Image : "renders"
 
 ```
 
@@ -200,32 +212,32 @@ ExplanationPresenter --> Image : "renders"
 
 sequenceDiagram
     participant User
-    participant MainController
+    participant MainPresenter
     participant Image
     participant NeuralNetwork
     participant ExplainableAITechnique
-    participant ImagePresenter
-    participant PredictionPresenter
-    participant ExplanationPresenter
+    participant ImageView
+    participant PredictionView
+    participant ExplanationView
 
-    User->>MainController: select_model(NeuralNetwork model)
-    MainController->>MainController: store model as current_model
+    User->>MainPresenter: select_model(NeuralNetwork model)
+    MainPresenter->>MainPresenter: store model as current_model
 
-    User->>MainController: select_explainable_ai_technique(ExplainableAITechnique technique)
-    MainController->>MainController: store technique as current_technique
+    User->>MainPresenter: select_explainable_ai_technique(ExplainableAITechnique technique)
+    MainPresenter->>MainPresenter: store technique as current_technique
 
-    User->>MainController: load_image(path)
-    MainController->>Image: load_from(path)
-    Image-->>MainController: image instance
-    MainController->>ImagePresenter: render(image)
+    User->>MainPresenter: load_image(path)
+    MainPresenter->>Image: load_from(path)
+    Image-->>MainPresenter: image instance
+    MainPresenter->>ImageView: render(image)
 
-    User->>MainController: classify_image()
-    MainController->>NeuralNetwork: classify(current_image)
-    NeuralNetwork-->>MainController: Prediction
-    MainController->>PredictionPresenter: render(prediction, current_image)
+    User->>MainPresenter: classify_image()
+    MainPresenter->>NeuralNetwork: classify(current_image)
+    NeuralNetwork-->>MainPresenter: Prediction
+    MainPresenter->>PredictionView: render(prediction, current_image)
 
-    User->>MainController: explain_classification()
-    MainController->>ExplainableAITechnique: explain(prediction, current_model)
-    ExplainableAITechnique-->>MainController: Explanation
-    MainController->>ExplanationPresenter: render(explanation, prediction, current_image)
+    User->>MainPresenter: explain_classification()
+    MainPresenter->>ExplainableAITechnique: explain(prediction, current_model)
+    ExplainableAITechnique-->>MainPresenter: Explanation
+    MainPresenter->>ExplanationView: render(explanation, prediction, current_image)
 ```
