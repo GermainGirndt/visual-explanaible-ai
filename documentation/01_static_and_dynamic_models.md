@@ -37,6 +37,8 @@ Here is important to highlight that MVC architecture was mainly chosen to fulfil
 
 #### Class Diagram: Coordination through the Controller Class
 
+The user interacts with the Controller, which coordinates the other system classes.
+
 ```mermaid
 classDiagram
 
@@ -44,7 +46,7 @@ classDiagram
 %% Model Layer
 %% --------------------
 class Image {
-    + static load_from(string path): Image
+    + static load_from(string path) Image
 }
 
 class Prediction {
@@ -54,11 +56,11 @@ class Prediction {
 }
 
 class NeuralNetwork {
-    + classify(Image image): Prediction
+    + classify(Image image) Prediction
 }
 
 class ExplainableAITechnique {
-    + explain(Prediction prediction, NeuralNetwork for_model): Explanation
+    + explain(Prediction prediction, NeuralNetwork for_model) Explanation
 }
 
 class Explanation {
@@ -108,17 +110,31 @@ MainController --> ExplanationPresenter : "renders via"
 
 #### Class Diagram: Relationship between Models and Views
 
+##### Presenters:
+
+1. **ImagePresenter:** renders the image
+2. **PredictionPresenter:** renders the image and the prediction
+3. **ExplanationPresenter:** renders the image, the prediction and the explanation
+
+##### Models:
+
+1. **Image:** Represents the input image loaded from disk; provides static method `load_from(path)` to import it.
+2. **NeuralNetwork:** Performs the classification of an `Image`, producing a `Prediction`.
+3. **Prediction:** Holds the classification output (class name, class number, and confidence score).
+4. **ExplainableAITechnique:** Uses a `NeuralNetwork` and its `Prediction` to generate an `Explanation` (e.g., via Grad-CAM).
+5. **Explanation:** Represents the result of the xAI process, typically (but not only) a visual heatmap derived from the model and prediction.
+
 ```mermaid
 classDiagram
 %% --------------------
 %% Model Layer
 %% --------------------
 class Image {
-    + static load_from(string path): Image
+    + static load_from(string path) Image
 }
 
 class NeuralNetwork {
-    + classify(Image image): Prediction
+    + classify(Image image) Prediction
 }
 
 class Prediction {
@@ -128,7 +144,7 @@ class Prediction {
 }
 
 class ExplainableAITechnique {
-    + explain(Prediction prediction, NeuralNetwork model): Explanation
+    + explain(Prediction prediction, NeuralNetwork model) Explanation
 }
 
 class Explanation {
@@ -143,7 +159,7 @@ class ImagePresenter {
 }
 
 class PredictionPresenter {
-    + render(Prediction prediction, Image? image)
+    + render(Prediction prediction, Image image)
 }
 
 class ExplanationPresenter {
