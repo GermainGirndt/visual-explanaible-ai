@@ -102,9 +102,9 @@
    - No responsive web UI.
      > 💬 _Why?_ The tool is meant for classroom or desktop use, not for general public deployment.
 
-4. **App Deployment**
+4. **Native App Deployment**
 
-   - No app deployment.
+   - No native app deployment for Desktop/Mobile.
      > 💬 _Why?_ The deployment of a (desktop/mobile) app unnecessarily increases the complexity of the project, which should focus on AI explainability. Also, since the user is a technical person, he is capable of executing the start scripts.
 
 5. **Multi-Language Interface**
