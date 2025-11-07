@@ -18,6 +18,13 @@ source venv/bin/activate # Example for MacOS/Linux
 python install -r requirements.txt
 ```
 
+### Notes
+
+#### Pytorch
+
+- The install command for Pytorch may be different depending on the user machine. If there's any incompatibility, check the following website:
+  https://pytorch.org/get-started/locally/
+
 ### VSCODE Setup for Documentation
 
 If you're using VSCode, it is recommend to use following Markdown plugins:
