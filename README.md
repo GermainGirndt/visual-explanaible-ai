@@ -18,9 +18,6 @@ source venv/bin/activate # Example for MacOS/Linux
 python install -r requirements.txt
 ```
 
-- Install Python version Python 3.10.14
-- Create a virtual environment `python -m venv venv`
-
 ### VSCODE Setup for Documentation
 
 If you're using VSCode, it is recommend to use following Markdown plugins:
