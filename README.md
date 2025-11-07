@@ -16,7 +16,20 @@ source venv/bin/activate # Example for MacOS/Linux
 
 # Install the required libraries
 python install -r requirements.txt
+
+# Create a new .env file according to the template
+cp .env.example .env
 ```
+
+### Project Executing
+
+After configuring your `.env` file according to your system specs, run:
+
+```
+python src/01_image_classification_pipeline.py
+```
+
+### Project
 
 ### Notes
 
