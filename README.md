@@ -33,8 +33,6 @@ pwd
 python src/01_image_classification_pipeline.py
 ```
 
-### Project
-
 ### Notes
 
 #### Pytorch
