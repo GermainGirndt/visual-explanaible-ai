@@ -1,6 +1,6 @@
 # visual-explanaible-ai
 
-### VSCODE
+### VSCODE Setup for Documentation
 
 If you're using VSCode, it is recommend to use following Markdown plugins:
 
