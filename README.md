@@ -1,5 +1,26 @@
 # visual-explanaible-ai
 
+### Project Setup
+
+For setting up the project on your machine, execute the following steps:
+
+```
+# Ensure Python version is 3.10.14
+python --version
+
+# Create a Virtual Environment
+python -m venv venv
+
+# Execute the Virtual Environment
+source venv/bin/activate # Example for MacOS/Linux
+
+# Install the required libraries
+python install -r requirements.txt
+```
+
+- Install Python version Python 3.10.14
+- Create a virtual environment `python -m venv venv`
+
 ### VSCODE Setup for Documentation
 
 If you're using VSCode, it is recommend to use following Markdown plugins:
