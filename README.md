@@ -13,6 +13,7 @@ python -m venv venv
 
 # Execute the Virtual Environment
 source venv/bin/activate # Example for MacOS/Linux
+venv\Scripts\activate # Windows
 
 # Install the required libraries
 pip install -r requirements.txt
