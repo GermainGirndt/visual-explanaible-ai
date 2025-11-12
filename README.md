@@ -61,5 +61,5 @@ bierner.markdown-mermaid
 
 ### Project Management Trello-Board
 
-The Trello-Board for the project with the Trello Cards can be found in:
+The Trello-Board for the project with the Trello Cards can be found in (access required):
 https://trello.com/b/51PYbgcp/xai-projektarbeit-master
