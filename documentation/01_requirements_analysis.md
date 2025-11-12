@@ -12,7 +12,7 @@
 
 ## ✅ Must-Have Features
 
-### 1. Image Loading & Display
+### MH-1 – Image Loading & Display
 
 - The app must **load** and **display images**.
 - **Acceptance Criteria:**
@@ -23,29 +23,30 @@
 
 ---
 
-### 2. Image Classification
+### MH-2 – Image Classification
 
 - The app must **classify an image** using a neural network model.
 - **Acceptance Criteria:**
   1. The app uses an **EfficientNetV2** model for classification.
-  2. The classification results are rendered to the frontend.
+  2. The top-5 classification results are rendered to the frontend.
 
 > 💬 _Why?_ EfficientNetV2 provides a strong balance between accuracy and performance. Since the EfficientNetV2 models are generally smaller (some dozents to a few hundreds MBs size), they are appropriate for real-time demos running locally during class.
 
 ---
 
-### 3. Explainable AI (xAI) Heatmap
+### MH-3 – Explainable AI (xAI) Heatmap
 
 - The app must **generate an explanation heatmap** for classified images.
 - **Acceptance Criteria:**
   - The app uses the **Grad-CAM** method for generating explanations.
+  - The user can choose which of the top-5 classification results should be used for generating the Heatmap.
   - The generated headmap is going to be visually rendered over the image layer with some opacity.
 
 > 💬 _Why?_ Grad-CAM is widely recognized, visually intuitive, and easy to demonstrate during lectures. Also, there's a good amont of learning resources on Grad-CAM available (e.g. articles, Youtube videos, etc...), which makes it a good initial step for introducing explainability visually.
 
 ---
 
-### 4. Maintainability
+### MH-4 – Maintainability
 
 - The app should be **easy to maintain**.
 - **Acceptance Criteria:**
@@ -59,7 +60,7 @@
 
 ## 💡 Should-Have Features
 
-### Extensibility
+### SH-1 – Extensibility
 
 - The app should be **easily extensible** to support different models and xAI methods.
 - **Acceptance Criteria:**
@@ -72,7 +73,7 @@
 
 ## 💭 Could-Have Features
 
-### Support for Other Explanation Types
+### CH-1 – Support for Other Explanation Types
 
 - The app could support **additional explanation formats**.
 - **Acceptance Criteria:**
