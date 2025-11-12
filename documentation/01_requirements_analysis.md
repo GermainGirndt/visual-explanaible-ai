@@ -26,6 +26,7 @@
 - **Acceptance Criteria:**
   1. The app can load image files stored locally on the computer.
   2. The app can display loaded images directly in the browser.
+  3. The app should support following formats: jpeg, png, jpg.
 
 > 💬 _Why?_ Loading local images allows the professor to use classroom or student-provided examples easily without extra setup.
 
