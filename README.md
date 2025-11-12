@@ -58,3 +58,8 @@ yzhang.markdown-all-in-one
 # Mermaid for Markdown (for generating the Mermaid Diagrams)
 bierner.markdown-mermaid
 ```
+
+### Project Management Trello-Board
+
+The Trello-Board for the project with the Trello Cards can be found in:
+https://trello.com/b/51PYbgcp/xai-projektarbeit-master
