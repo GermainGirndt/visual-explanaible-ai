@@ -2,10 +2,10 @@
 
 ### PyTorch as Python Library
 
-PyTorch was choosen for implementing our use case, since it seems to be more adequate than TensorFlow/Kera for our requirements:
+PyTorch was choosen for implementing our use case, since it seems to be more adequate than TensorFlow/Keras for our requirements:
 
 - it is more flexible (the developer can define exactly what the model does)
-- it is more used on research and experimenting (on the flip-side, TensorFlow/Kera seems better for production pipelines)
+- it is more used on research and experimenting (on the flip-side, TensorFlow/Keras seems better for production pipelines)
 - it has more tools for xAI
 
 ### EfficientNetV2 Abstraction – PyTorch Documentation
