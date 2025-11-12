@@ -12,7 +12,15 @@
 
 ## ✅ Must-Have Features
 
-### MH-1 – Image Loading & Display
+### MH-1 – Graphic User Interface (GUI)
+
+- The app must provide an **graphic user interface** for user interaction.
+- **Acceptance Criteria:**
+  1. The GUI can be executed in traditional browsers (e.g. Google Chrome, Firefox, Safari).
+
+> 💬 _Why?_ The GUI provides an convenient form of interacting with the app and abstracts the underlying code complexity, making it easy to use in the class. A GUI running on browser easens the development.
+
+### MH-2 – Image Loading & Display
 
 - The app must **load** and **display images**.
 - **Acceptance Criteria:**
@@ -23,7 +31,7 @@
 
 ---
 
-### MH-2 – Image Classification
+### MH-3 – Image Classification
 
 - The app must **classify an image** using a neural network model.
 - **Acceptance Criteria:**
@@ -34,7 +42,7 @@
 
 ---
 
-### MH-3 – Explainable AI (xAI) Heatmap
+### MH-4 – Explainable AI (xAI) Heatmap
 
 - The app must **generate an explanation heatmap** for classified images.
 - **Acceptance Criteria:**
@@ -46,7 +54,7 @@
 
 ---
 
-### MH-4 – Maintainability
+### MH-5 – Maintainability
 
 - The app should be **easy to maintain**.
 - **Acceptance Criteria:**
