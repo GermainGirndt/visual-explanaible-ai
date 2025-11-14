@@ -11,7 +11,7 @@ The Explainable AI (xAI) Teaching App must:
 3. Generate an explanation utilizing a xAI technique.
 4. Be maintainable, extensible, and easy to demonstrate live in a classroom.
 
-### Why MVP
+### Why MVP with Supervising Presenter/Controller
 
 The MVP Architecture fulfill these requirements by providing a clear separation between:
 
