@@ -22,7 +22,16 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-### Project Executing
+### Running the App
+
+For running the App, we call the fastapi CLI, passing in our root file:
+
+```
+# Make sure you're in the project root folder ('visual_explainable_ai')
+fastapi dev main.py
+```
+
+### Running the Experiments
 
 After configuring your `.env` file according to your system specs:
 
