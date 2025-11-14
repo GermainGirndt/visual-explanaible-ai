@@ -28,7 +28,7 @@ For running the App, we call the fastapi CLI, passing in our root file:
 
 ```
 # Make sure you're in the project root folder ('visual_explainable_ai')
-fastapi dev main.py
+fastapi dev src/app/main.py
 ```
 
 ### Running the Experiments
