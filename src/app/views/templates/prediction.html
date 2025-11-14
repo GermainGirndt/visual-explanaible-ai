@@ -1,0 +1,25 @@
+{% extends "layout.html" %} {% block content %}
+
+<h2>Classification Results</h2>
+
+<img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
+
+<h3>Top 5 Predictions:</h3>
+<ol>
+  {% for pred in predictions %}
+  <li>
+    <strong>{{ pred.class_name }}</strong> — {{ "%.2f"|format(pred.confidence *
+    100) }}%
+
+    <!-- Explain button for each top-k class -->
+    <form action="/explain" method="post" style="display: inline">
+      <input type="hidden" name="image_url" value="{{ image_url }}" />
+      <input type="hidden" name="class_nr" value="{{ pred.class_nr }}" />
+      <input type="hidden" name="class_name" value="{{ pred.class_name }}" />
+      <button type="submit">Explain</button>
+    </form>
+  </li>
+  {% endfor %}
+</ol>
+
+{% endblock %}

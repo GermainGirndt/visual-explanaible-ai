@@ -1,0 +1,20 @@
+{% extends "layout.html" %} {% block content %}
+
+<h2>Upload an Image</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept="image/png, image/jpeg" required />
+  <button type="submit">Upload</button>
+</form>
+
+{% if image_url %}
+<h3>Preview:</h3>
+<img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
+
+<form action="/classify" method="post">
+  <input type="hidden" name="image_url" value="{{ image_url }}" />
+  <button type="submit">Classify Image</button>
+</form>
+{% endif %}
+<br />
+{% endblock %}

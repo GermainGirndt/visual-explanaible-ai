@@ -1,0 +1,17 @@
+{% extends "layout.html" %} {% block content %}
+
+<h2>Explanation: {{ selected_class }}</h2>
+
+<div style="position: relative; display: inline-block">
+  <!-- Base image -->
+  <img src="{{ image_url }}" alt="Original Image" style="max-width: 400px" />
+
+  <!-- Heatmap overlay -->
+  <img
+    src="{{ heatmap_url }}"
+    alt="Explanation Heatmap"
+    style="max-width: 400px; position: absolute; top: 0; left: 0; opacity: 0.5"
+  />
+</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+[project]
+name = "visual_explainable_ai"
+
+[tool.setuptools]
+packages = ["app", "experiments"]
+
+[tool.setuptools.package-dir]
+"" = "src"
