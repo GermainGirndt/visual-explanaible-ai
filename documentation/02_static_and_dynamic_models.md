@@ -16,7 +16,7 @@ The Explainable AI (xAI) Teaching App must:
 The MVP Architecture fulfill these requirements by providing a clear separation between:
 
 - AI + Computation logic (Model)
-- Graphic Visualization/Viewtion logic (View)
+- Graphic Visualization logic (View)
 - User Interaction (Presenter)
 
 Here is important to highlight that MVP architecture was mainly chosen to fulfill the maintainability and extensibility criteria, while maintaining a flexible and lightweight architecture.
