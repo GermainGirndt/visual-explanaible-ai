@@ -75,3 +75,8 @@ bierner.markdown-mermaid
 
 The Trello-Board for the project with the Trello Cards can be found in (access required):
 https://trello.com/b/51PYbgcp/xai-projektarbeit-master
+
+### Figma Prototype
+
+The Figma-Prototype can be found in (access required):
+https://www.figma.com/design/9V11JkjmbXjMg4URsNOcdb/Explainable-AI-App?node-id=0-1&t=65zz7mwVtSEh9lhl-1
