@@ -48,8 +48,6 @@ class MainPresenter:
             return image_view.render_image_page(request, image_url=image_url)
             """
 
-        prediction_view = PredictionView()
-
         @app.post("/classify")
         async def classify(request: Request, image_url: str = Form(...)):
             # fake model here for demo
