@@ -24,7 +24,7 @@ cp .env.example .env
 
 ### Running the App
 
-For running the App, we call the fastapi CLI, passing in our root file:
+For running the App at http://127.0.0.1:8000, we call the fastapi CLI, passing in our root file:
 
 ```
 # Make sure you're in the project root folder ('visual_explainable_ai')
