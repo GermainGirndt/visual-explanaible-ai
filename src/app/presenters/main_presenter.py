@@ -10,6 +10,9 @@ from app.models.explanation import Explanation
 from app.models.explainable_ai_technique import ExplainableAITechnique
 from fastapi import FastAPI, Request, UploadFile, Form
 
+from app.config import STATIC_DIR
+
+
 class MainPresenter:
      def __init__(self, app: FastAPI):
         image_view = ImageView()
@@ -28,9 +31,7 @@ class MainPresenter:
         async def upload_image(request: Request, file: UploadFile):
 
             """Handle image upload and render preview page."""
-            pass
 
-            """ 
             UPLOAD_DIR = STATIC_DIR / "uploads"
             UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -46,7 +47,7 @@ class MainPresenter:
 
             # Render image preview page again
             return image_view.render_image_page(request, image_url=image_url)
-            """
+
 
         @app.post("/classify")
         async def classify(request: Request, image_url: str = Form(...)):

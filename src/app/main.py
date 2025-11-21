@@ -12,6 +12,7 @@ from app.views.explanation_view import ExplanationView
 
 from app.presenters.main_presenter import MainPresenter
 
+from app.config import STATIC_DIR
 
 # ---------------------------------------------------
 # Initialize FastAPI app
@@ -23,8 +24,6 @@ app = FastAPI()
 # ---------------------------------------------------
 # Mount STATIC FILES (CSS, JS, images, uploads, etc.)
 # ---------------------------------------------------
-
-STATIC_DIR = Path(__file__).parent / "views" / "static"
 
 app.mount(
     "/static",
