@@ -68,3 +68,10 @@ class MainPresenter:
                 predictions=predictions
             )
 
+
+
+        @app.post("/explain")
+        async def explain(request: Request, image_url: str = Form(...), class_name:str = Form(...)):
+
+           return explanation_view.render_explanation(request, image_url=image_url, heatmap_url=image_url, selected_class=class_name)
+
