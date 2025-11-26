@@ -7,7 +7,7 @@ from app.models.image import Image
 from app.models.neural_network import NeuralNetwork
 from app.models.prediction import Prediction
 from app.models.explanation import Explanation
-from app.models.explainable_ai_technique import ExplainableAITechnique
+from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam
 from fastapi import FastAPI, Request, UploadFile, Form
 
 from app.config import STATIC_DIR
@@ -30,38 +30,17 @@ class MainPresenter:
         @app.post("/upload")
         async def upload_image(request: Request, file: UploadFile):
 
-            """Handle image upload and render preview page."""
-
-            UPLOAD_DIR = STATIC_DIR / "uploads"
-            UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-
-            if file is None:
-                return image_view.render_image_page(request, image_url=None)
-            
-            # Save file to disk
-            file_location = f"{UPLOAD_DIR}/{file.filename}"
-            with open(file_location, "wb") as f:
-                f.write(await file.read())
-
-            image_url = f"/static/uploads/{file.filename}"
+            image = await Image.load_from(file)
 
             # Render image preview page again
-            return image_view.render_image_page(request, image_url=image_url)
+            return image_view.render_image_page(request, image_url=image.image_url)
 
 
         @app.post("/classify")
         async def classify(request: Request, image_url: str = Form(...)):
             # fake model here for demo
-            def mock_top5():
-                return [
-                    {"class_name": "Golden Retriever", "confidence": 0.82, "class_nr": 207},
-                    {"class_name": "Labrador", "confidence": 0.10, "class_nr": 208},
-                    {"class_name": "Beagle", "confidence": 0.03, "class_nr": 209},
-                    {"class_name": "Bulldog", "confidence": 0.025, "class_nr": 210},
-                    {"class_name": "Poodle", "confidence": 0.015, "class_nr": 211},
-                ]
-                
-            predictions = mock_top5()  # replace with your real model
+  
+            predictions = model.classify(image_url)
             return prediction_view.render_predictions(
                 request=request,
                 image_url=image_url,
@@ -72,6 +51,7 @@ class MainPresenter:
 
         @app.post("/explain")
         async def explain(request: Request, image_url: str = Form(...), class_name:str = Form(...)):
-
-           return explanation_view.render_explanation(request, image_url=image_url, heatmap_url=image_url, selected_class=class_name)
+           gradcam = GradCam()
+           heatmap_url = gradcam.explain(model, image_url, class_name)
+           return explanation_view.render_explanation(request, image_url=image_url, heatmap_url=heatmap_url, selected_class=class_name)
 
