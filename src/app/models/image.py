@@ -1,9 +1,9 @@
 from app.config import STATIC_DIR
 
 class Image:
-    image_url = ""
+    image_url: str = ""
     
-    def __init__(self, image_url):
+    def __init__(self, image_url: str):
         self.image_url=image_url
         
     @staticmethod
@@ -15,7 +15,7 @@ class Image:
         UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
         if file is None:
-            return image_view.render_image_page(request, image_url=None)
+            return image_view.render_image_page(request, image_url="")
             
         # Save file to disk
         file_location = f"{UPLOAD_DIR}/{file.filename}"

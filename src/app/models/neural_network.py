@@ -1,17 +1,25 @@
 from dotenv import load_dotenv
 import os
 
+from pyparsing import ABC, abstractmethod
 import torch
 from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
-from PIL import Image
+from PIL import Image as PIL_Image
 
 from app.models.predictions import Predictions
+from app.models.image import Image 
 
 from app.config import STATIC_DIR
 
+class NeuralNetwork(ABC):
+    
+    @abstractmethod
+    def classify(self, image: Image) -> Predictions:
+        pass
+
 # TODO: TEST for CUDA if available
 # TODO:  Consider deleting 'with torch.no_grad()' if using model for later explainability methods that require gradients
-class NeuralNetwork:
+class EfficientNet(NeuralNetwork):
     img_tensor = []
     
     def __init__(self):        
@@ -20,7 +28,14 @@ class NeuralNetwork:
         self.model = efficientnet_v2_l(weights=self.weights)
 
     
-    def classify(self, image_url:str) -> Predictions:
+    def classify(self, image: Image) -> Predictions:
+        
+        if not image:
+            raise ValueError("No image provided for classification.")
+        
+        if not image.image_url:
+            raise ValueError("Image URL is empty.")
+        
         load_dotenv()
         DEVICE = os.getenv("DEVICE")
         print(f"Using device: {DEVICE}")
@@ -41,7 +56,7 @@ class NeuralNetwork:
         self.model.eval()
         
         preprocess = self.weights.transforms()
-        img = Image.open("src/app/views" + image_url).convert("RGB")
+        img = PIL_Image.open("src/app/views" + image.image_url).convert("RGB")
         
         # Unsqueeze to add a new single-item batch dimension
         # Before: [channels, height, width] = (3, H, W)

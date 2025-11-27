@@ -4,7 +4,7 @@ from app.views.prediction_view import PredictionView
 from app.views.explanation_view import ExplanationView
 
 from app.models.image import Image
-from app.models.neural_network import NeuralNetwork
+from app.models.neural_network import NeuralNetwork, EfficientNet
 from app.models.predictions import Prediction
 from app.models.explanation import Explanation
 from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam
@@ -19,7 +19,7 @@ class MainPresenter:
         prediction_view = PredictionView()
         explanation_view = ExplanationView()
 
-        model = NeuralNetwork()
+        model: NeuralNetwork = EfficientNet()
         explainable_ai_technique = ExplainableAITechnique()
     
         @app.get("/")
@@ -38,14 +38,13 @@ class MainPresenter:
 
         @app.post("/classify")
         async def classify(request: Request, image_url: str = Form(...)):
-            # fake model here for demo
-  
-            predictions = model.classify(image_url)
+            image = Image(image_url=image_url)
+            predictions = model.classify(image)
             top_five_class_predictions = predictions.top_k(5)
             
             return prediction_view.render_predictions(
                 request=request,
-                image_url=image_url,
+                image=image,
                 class_predictions=top_five_class_predictions
             )
 
