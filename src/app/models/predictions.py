@@ -6,27 +6,28 @@ from app.models.prediction import Prediction
 
 class Predictions:
 
-    def __init__(self, class_names: Any, probabilities: Tensor):
-        self.class_names = class_names
-        self.probabilities = probabilities
+    def __init__(self, class_names: list[str], probabilities: list[float]):
+        self.predictions = []
+        
+        for index, probability in enumerate(probabilities):
+            prediction = Prediction(
+                confidence=probability,
+                class_id=index,
+                class_name=class_names[index]
+            )
+            self.predictions.append(prediction)
+        
+        self.sorted_predictions = sorted(self.predictions, key=lambda p: p.confidence, reverse=True)
+        
+
     
     def top_k(self, k:int) -> list[Prediction]:
-        """Returns the top-k predictions as a list of tuples (class_name, probability)."""
+        print(self)
+        return self.sorted_predictions[:k]
+    
+    def __repr__(self):
+        return f"Predictions({self.sorted_predictions[:5]}...)"
         
-        topk_prob, topk_catid = torch.topk(self.probabilities, k)
-        
-        top_k_predictions = []
-        
-        for top_class_index in range(k):
-            
-            prediction = Prediction(
-                confidence=topk_prob[top_class_index].item(),
-                class_id=int(topk_catid[top_class_index]),
-                class_name=self.class_names[topk_catid[top_class_index]]
-            )
-            top_k_predictions.append(prediction)
-            
-        return top_k_predictions
         
         
     

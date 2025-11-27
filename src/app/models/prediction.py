@@ -7,3 +7,7 @@ class Prediction:
         self.class_name = class_name
         
     
+    def __repr__(self):
+        return f"Prediction(class_id={self.class_id}, class_name='{self.class_name}', confidence={self.confidence})"
+        
+    

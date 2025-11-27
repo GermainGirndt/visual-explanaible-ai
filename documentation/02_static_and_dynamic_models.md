@@ -156,6 +156,7 @@ class NeuralNetwork {
 
 class Predictions {
     + list[Prediction] predictions
+    + top_k(int k) list[Predictions]
 }
 
 class Prediction {

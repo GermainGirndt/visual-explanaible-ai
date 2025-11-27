@@ -85,8 +85,11 @@ class NeuralNetwork:
             outputs = self.model(self.img_tensor)
             probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
         
+        probabilities_list = [prob.item() for prob in probabilities]
+        class_names = self.weights.meta["categories"]
+             
+        predictions = Predictions(class_names=class_names, probabilities=probabilities_list)
         
-        predictions = Predictions(class_names=self.weights.meta["categories"], probabilities=probabilities)
         return predictions
     
 
