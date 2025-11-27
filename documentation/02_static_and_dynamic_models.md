@@ -154,6 +154,10 @@ class NeuralNetwork {
     + classify(Image image) Prediction
 }
 
+class Predictions {
+    + list[Prediction] predictions
+}
+
 class Prediction {
     + float confidence
     + int class_nr
@@ -187,10 +191,11 @@ class ExplanationView {
 %% Relationships (Models)
 %% --------------------
 NeuralNetwork --> Image : "classifies"
-NeuralNetwork --> Prediction : "produces"
+NeuralNetwork --> Predictions : "produces"
+Predictions --> Prediction : "has"
 
 ExplainableAITechnique --> NeuralNetwork : "uses"
-ExplainableAITechnique --> Prediction : "uses"
+ExplainableAITechnique --> Predictions : "uses"
 ExplainableAITechnique --> Explanation : "produces"
 
 Explanation --> ExplainableAITechnique : "derived from"
@@ -200,11 +205,11 @@ Explanation --> ExplainableAITechnique : "derived from"
 %% --------------------
 ImageView --> Image : "renders"
 
-PredictionView --> Prediction : "renders"
+PredictionView --> Predictions : "renders"
 PredictionView --> Image : "renders"
 
 ExplanationView --> Explanation : "renders"
-ExplanationView --> Prediction : "renders"
+ExplanationView --> Predictions : "renders"
 ExplanationView --> Image : "renders"
 
 ```

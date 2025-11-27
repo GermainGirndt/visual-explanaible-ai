@@ -4,6 +4,9 @@ import os
 import torch
 from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
 from PIL import Image
+
+from app.models.predictions import Predictions
+
 from app.config import STATIC_DIR
 
 class NeuralNetwork:
@@ -37,8 +40,8 @@ class NeuralNetwork:
             raise ValueError(f"MODEL_SIZE environment variable must be either 'small' or 'large'. Found: {MODEL_SIZE}")
 
     
-    def classify(self, image_url:str):
-
+    def classify(self, image_url:str) -> Predictions:
+    
         # -------------------------------------------------------------------
         # 3. Set the model to evaluation mode and move to device
         # -------------------------------------------------------------------
@@ -81,17 +84,9 @@ class NeuralNetwork:
         with torch.no_grad():
             outputs = self.model(self.img_tensor)
             probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
+        
+        
+        predictions = Predictions(class_names=self.weights.meta["categories"], probabilities=probabilities)
+        return predictions
+    
 
-
-        # -------------------------------------------------------------------
-        # 6. Get top-5 predictions
-        # -------------------------------------------------------------------
-        top5_prob, top5_catid = torch.topk(probabilities, 5)
-        categories = self.weights.meta["categories"]
-
-        return  [ {"class_name": categories[top5_catid[0]], "confidence":  top5_prob[0].item(), "class_nr":top5_catid[0]},
-                    {"class_name":categories[top5_catid[1]], "confidence": top5_prob[1].item(), "class_nr":top5_catid[1]},
-                    {"class_name": categories[top5_catid[2]], "confidence": top5_prob[2].item(), "class_nr":top5_catid[2]},
-                    {"class_name": categories[top5_catid[3]], "confidence": top5_prob[3].item(), "class_nr":top5_catid[3]},
-                    {"class_name": categories[top5_catid[4]], "confidence": top5_prob[4].item(), "class_nr":top5_catid[4]},
-                ]

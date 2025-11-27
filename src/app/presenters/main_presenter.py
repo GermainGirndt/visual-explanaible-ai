@@ -5,7 +5,7 @@ from app.views.explanation_view import ExplanationView
 
 from app.models.image import Image
 from app.models.neural_network import NeuralNetwork
-from app.models.prediction import Prediction
+from app.models.predictions import Prediction
 from app.models.explanation import Explanation
 from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam
 from fastapi import FastAPI, Request, UploadFile, Form
@@ -41,10 +41,12 @@ class MainPresenter:
             # fake model here for demo
   
             predictions = model.classify(image_url)
+            top_five_class_predictions = predictions.top_k(5)
+            
             return prediction_view.render_predictions(
                 request=request,
                 image_url=image_url,
-                predictions=predictions
+                class_predictions=top_five_class_predictions
             )
 
 
