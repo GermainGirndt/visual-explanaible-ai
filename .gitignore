@@ -5,4 +5,6 @@ __pycache__/
 *.pyc
 .idea/
 .vscode/
-**/views/static/**/*
+**/views/static/**/*.jpg
+**/views/static/**/*.jpeg
+**/views/static/**/*.png
