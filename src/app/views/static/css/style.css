@@ -7,3 +7,34 @@ h6,
 p {
   font-family: Roboto, sans-serif;
 }
+
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+header {
+  > nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+    height: 100vh;
+    min-width: 72px;
+
+    > section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: space-around;
+      margin-bottom: 80px;
+
+      > a {
+        max-width: 60px;
+        max-height: 76px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
