@@ -1,7 +1,7 @@
 
 from dotenv import load_dotenv
 import os
-
+import uuid
 import torch
 from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
 from PIL import Image
@@ -10,16 +10,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 import matplotlib.cm as cm
+from app.models.prediction import Prediction
+from app.models.neural_network import NeuralNetwork
+from app.models.explanation import Explanation
 from app.config import STATIC_DIR
 
 class ExplainableAITechnique:
     
-    def explain(self, model, image_url, class_name):
+    #def explain(self, model, image_url, class_name):
+    def explain(self, prediction:Prediction, model:NeuralNetwork):
         pass
     
 
 class GradCam(ExplainableAITechnique):
-     def explain(self, model, image_url, class_name):
+     def explain(self, prediction:Prediction, model:NeuralNetwork):
 
         # ------------------------
         # Utility: overlay heatmap
@@ -114,23 +118,20 @@ class GradCam(ExplainableAITechnique):
         # ------------------------------
         #  usage and saving file
         # ------------------------------
-        img = Image.open("src/app/views" + image_url).convert("RGB")
-        categories = model.weights.meta["categories"]
-        #  Grad-CAM
-        # Create reverse lookup: classname → index
-        classname_to_idx = {name: i for i, name in enumerate(categories)}
-
+        img = Image.open("src/app/views" + model.currentImage.image_url).convert("RGB")
+      
         # Grad-CAM
-        class_idx = classname_to_idx[class_name]  
+        class_idx = prediction.class_id
 
         gradcam_map = compute_gradcam(model.model, model.img_tensor, target_class=class_idx)
 
         # Resize and overlay
         gradcam_resized = Image.fromarray((gradcam_map * 255).astype("uint8")).resize(img.size, resample=Image.BILINEAR)
         gradcam_np = np.array(gradcam_resized) / 255.0
-
+        
+        image_uuid = uuid.uuid4()  
         overlay = overlay_heatmap_on_pil(img, gradcam_np, alpha=0.5)
-        filename = f"src/app/views/static/gradcam_{class_name.replace(' ', '_')}.png"
+        filename = f"src/app/views/static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
         overlay.save(filename)
-        name = f"static/gradcam_{class_name.replace(' ', '_')}.png"
-        return name
+        explanation = Explanation(f"static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
+        return explanation

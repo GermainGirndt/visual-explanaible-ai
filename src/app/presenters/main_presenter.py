@@ -51,8 +51,9 @@ class MainPresenter:
 
 
         @app.post("/explain")
-        async def explain(request: Request, image_url: str = Form(...), class_name:str = Form(...)):
+        async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...) ):
+           prediction = Prediction(confidence, class_id, class_name)
            gradcam = GradCam()
-           heatmap_url = gradcam.explain(model, image_url, class_name)
-           return explanation_view.render_explanation(request, image_url=image_url, heatmap_url=heatmap_url, selected_class=class_name)
+           explanation = gradcam.explain(prediction, model)
+           return explanation_view.render_explanation(request, image_url= model.currentImage.image_url, heatmap_url=explanation.heatmap_url, selected_class=class_name)
 

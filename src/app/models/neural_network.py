@@ -21,7 +21,7 @@ class NeuralNetwork(ABC):
 # TODO:  Consider deleting 'with torch.no_grad()' if using model for later explainability methods that require gradients
 class EfficientNet(NeuralNetwork):
     img_tensor = []
-    
+    currentImage = []
     def __init__(self):        
         # using large model
         self.weights = EfficientNet_V2_L_Weights.IMAGENET1K_V1
@@ -36,6 +36,7 @@ class EfficientNet(NeuralNetwork):
         if not image.image_url:
             raise ValueError("Image URL is empty.")
         
+        self.currentImage = image
         load_dotenv()
         DEVICE = os.getenv("DEVICE")
         print(f"Using device: {DEVICE}")
@@ -67,9 +68,6 @@ class EfficientNet(NeuralNetwork):
         self.img_tensor.requires_grad_()
 
 
-        # TODO:  Consider deleting 'with torch.no_grad()' if using model for later explainability methods that require gradients
-        # Normally, PyTorch automatically tracks every operation on tensors so it can later compute gradients for training (via backpropagation).
-        # That tracking uses extra memory and slows things down — but it’s only needed during training.
         with torch.enable_grad():
             outputs = self.model(self.img_tensor)
             probabilities = torch.nn.functional.softmax(outputs[0], dim=0)

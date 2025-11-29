@@ -13,11 +13,15 @@
 
     <!-- Explain button for each top-k class -->
     <form action="/explain" method="post" style="display: inline">
-      <input type="hidden" name="image_url" value="{{ image_url }}" />
       <input
         type="hidden"
-        name="class_nr"
-        value="{{ class_prediction.class_nr }}"
+        name="confidence"
+        value="{{ class_prediction.confidence}}"
+      />
+        <input
+        type="hidden"
+        name="class_id"
+        value="{{ class_prediction.class_id}}"
       />
       <input
         type="hidden"
