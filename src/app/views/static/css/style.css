@@ -95,3 +95,15 @@ body > main {
     margin-bottom: 16px;
   }
 }
+
+#share-2 {
+    position: relative;
+    top: -4px;
+    left: -7px;
+}
+
+#share-3 {
+    position: relative;
+    top: 4px;
+    left: -22px;
+}
