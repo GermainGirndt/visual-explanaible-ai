@@ -9,14 +9,31 @@
     <header>
       <nav>
         <section class="togglers-container">
-          <a href="/"><img src="../static/assets/icons/image_icon.svg"></a>
-          <a href="/"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg" id="share-3"></a>
+          <form id="upload" action="/upload" method="post" enctype="multipart/form-data">
+  <label for="file-input" class="file-label">
+    <img src="../static/assets/icons/image_icon.svg">
+  </label>
+
+  <input
+    id="file-input"
+    type="file"
+    name="file"
+    accept="image/png, image/jpeg"
+    style="display:none;"
+    required
+    onchange="document.getElementById('upload').submit();"
+  />
+</form>
+          <form action="/classify" method="post">
+  <input type="hidden" name="image_url" value="{{ image_url }}" />
+  <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg" id="share-3"></button>
+</form>
           <a href="/"><img src="../static/assets/icons/comment_icon.svg"></a>
         </section>
 
         <section class="selectors-container">
-          <a href="/"><img src="../static/assets/icons/state_icon.svg"></a>
-          <a href="/"><img src="../static/assets/icons/state_icon.svg"></a>
+          <a href="/"><img src="../static/assets/icons/state_icon.svg">Model</a>
+          <a href="/"><img src="../static/assets/icons/state_icon.svg">Process</a>
         </section>
       </nav>
     </header>

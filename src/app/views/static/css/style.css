@@ -96,14 +96,28 @@ body > main {
   }
 }
 
+#share-1 {
+    position: relative;
+    left: 10px;
+}
+
 #share-2 {
     position: relative;
     top: -4px;
-    left: -7px;
+    left: 3px;
 }
 
 #share-3 {
     position: relative;
     top: 4px;
-    left: -22px;
+    left: -12px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#classify-button {
+    background: none;
+    border: none;
 }
