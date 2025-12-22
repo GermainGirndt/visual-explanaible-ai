@@ -23,6 +23,6 @@ class Image:
         file_location = f"{UPLOAD_DIR}/{image_uuid}{file.filename}"
         with open(file_location, "wb") as f:
             f.write(await file.read())
-        image = Image(f"/static/uploads/{file.filename}")
+        image = Image(f"/static/uploads/{image_uuid}{file.filename}")
         return image
        
