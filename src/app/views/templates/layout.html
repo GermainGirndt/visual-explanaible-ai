@@ -27,11 +27,11 @@
             <input type="hidden" name="image_url" value="{{ image_url }}" />
             <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg" id="share-3"></button>
           </form>
-          <a href="/"><img src="../static/assets/icons/comment_icon.svg"></a>
+          <a class="fabbutton" href="/"><img src="../static/assets/icons/comment_icon.svg"></a>
         </section>
         <section class="selectors-container">
-          <a href="/"><img src="../static/assets/icons/state_icon.svg">Model</a>
-          <a href="/"><img src="../static/assets/icons/state_icon.svg">Process</a>
+          <a href="/"><img src="../static/assets/icons/state_icon.svg"></a> Model
+          <a href="/"><img src="../static/assets/icons/state_icon.svg"></a> Process
         </section>
       </nav>
     </header>
@@ -39,7 +39,7 @@
       <header>
         <h1>Explainable AI</h1>
       </header>
-      <main class="content">
+      <section class="content">
         {% block content %}
         <br />
         {% endblock %}
