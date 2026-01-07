@@ -8,9 +8,9 @@ from .base_view import BaseView
 class ImageView(BaseView):
     template_name = "index.html"
 
-    def render_image_page(self, request: Request, image_url: str | None = None):
-        print(f"Template: {self.template_name}")
-        print(f"Request received: {request}")
-        print(f"Rendering image page with image_url: {image_url}")
-        return self.render(request, {"image_url": image_url})
+    def render_nav_page(self, request: Request, model_size:str| None = None):
+        return self.render(request, { "model_size": model_size})
+    
+    def render_image_page(self, request: Request, image_url: str, model_size:str| None = None):
+        return self.render(request, {"image_url": image_url, "model_size": model_size})
 

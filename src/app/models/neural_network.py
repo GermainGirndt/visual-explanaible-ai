@@ -22,10 +22,15 @@ class NeuralNetwork(ABC):
 class EfficientNet(NeuralNetwork):
     img_tensor = []
     currentImage = []
-    def __init__(self):        
-        # using large model
-        self.weights = EfficientNet_V2_L_Weights.IMAGENET1K_V1
-        self.model = efficientnet_v2_l(weights=self.weights)
+    def __init__(self, MODEL_SIZE):        
+        if MODEL_SIZE == "small":
+            self.weights = EfficientNet_V2_S_Weights.IMAGENET1K_V1
+            self.model = efficientnet_v2_s(weights=self.weights)
+        elif MODEL_SIZE == "large":
+            self.weights = EfficientNet_V2_L_Weights.IMAGENET1K_V1
+            self.model = efficientnet_v2_l(weights=self.weights)
+        else:
+            raise ValueError(f"MODEL_SIZE variable must be either 'small' or 'large'. Found: {MODEL_SIZE}")
 
     
     def classify(self, image: Image) -> Predictions:

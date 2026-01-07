@@ -2,7 +2,20 @@
 
 
 {% if image_url %}
-<img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
+<div>
+    <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
+    <form action="/" method="post" class="model-size-form">
+        <label for="model_size">Model Size:</label>
+        <select name="model_size" id="model_size" onchange="this.form.submit()">
+            <option value="large" {% if model_size=="large" %}selected{% endif %}>
+                large
+            </option>
+            <option value="small" {% if model_size=="small" %}selected{% endif %}>
+                small
+            </option>
+        </select>
+    </form>
+</div>
 {% else %}
 <img src="../static/assets/Frame.png" alt="Uploaded Image" style="max-width: 400px" />
 {% endif %}
