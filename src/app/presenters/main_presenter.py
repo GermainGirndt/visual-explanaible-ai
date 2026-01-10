@@ -14,9 +14,9 @@ from app.config import STATIC_DIR
 
 
 class MainPresenter:
-     size = "large"
+     type = "EfficientNet"
      image = []
-     model: NeuralNetwork = EfficientNet("large")
+     model: NeuralNetwork = EfficientNet("EfficientNet")
      def __init__(self, app: FastAPI):
         image_view = ImageView()
         prediction_view = PredictionView()
@@ -28,20 +28,20 @@ class MainPresenter:
         @app.get("/")
         def home(request: Request):
             """Render the upload page."""
-            return image_view.render_nav_page(request, model_size=self.size)
+            return image_view.render_nav_page(request, model_type=self.type)
         
         @app.get("/resize")
         def resize(request:Request):
             if self.image != []:
-                return image_view.render_image_page(request, self.image.image_url, self.size)
+                return image_view.render_image_page(request, self.image.image_url, self.type)
             else:
-                return image_view.render_nav_page(request, model_size=self.size)
+                return image_view.render_nav_page(request, model_type=self.type)
                 
         
         @app.post("/")
-        def changeModelsize(request: Request, model_size: str = Form(...)):
-             self.model = EfficientNet(model_size)
-             self.size = model_size
+        def changeModelsize(request: Request, model_type: str = Form(...)):
+             self.model = EfficientNet(model_type)
+             self.type = model_type
              return RedirectResponse("/resize", status_code=303)
             
         @app.post("/upload")
@@ -50,7 +50,7 @@ class MainPresenter:
             self.image = await Image.load_from(file)
 
             # Render image preview page again
-            return image_view.render_image_page(request, self.image.image_url, self.size)
+            return image_view.render_image_page(request, self.image.image_url, self.type)
 
 
         @app.post("/classify")

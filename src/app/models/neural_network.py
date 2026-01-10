@@ -4,6 +4,7 @@ import os
 from pyparsing import ABC, abstractmethod
 import torch
 from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
+from torchvision.models import mobilenet_v3_large, MobileNet_V3_Large_Weights
 from PIL import Image as PIL_Image
 
 from app.models.predictions import Predictions
@@ -22,15 +23,15 @@ class NeuralNetwork(ABC):
 class EfficientNet(NeuralNetwork):
     img_tensor = []
     currentImage = []
-    def __init__(self, MODEL_SIZE):        
-        if MODEL_SIZE == "small":
-            self.weights = EfficientNet_V2_S_Weights.IMAGENET1K_V1
-            self.model = efficientnet_v2_s(weights=self.weights)
-        elif MODEL_SIZE == "large":
+    def __init__(self, MODEL_TYPE):        
+        if MODEL_TYPE == "MobileNet":
+            self.weights = MobileNet_V3_Large_Weights.DEFAULT
+            self.model = mobilenet_v3_large(weights=self.weights)
+        elif MODEL_TYPE == "EfficientNet":
             self.weights = EfficientNet_V2_L_Weights.IMAGENET1K_V1
             self.model = efficientnet_v2_l(weights=self.weights)
         else:
-            raise ValueError(f"MODEL_SIZE variable must be either 'small' or 'large'. Found: {MODEL_SIZE}")
+            raise ValueError(f"MODEL_TYPE variable must be either 'EfficientNet' or 'MobileNet'. Found: {MODEL_TYPE}")
 
     
     def classify(self, image: Image) -> Predictions:

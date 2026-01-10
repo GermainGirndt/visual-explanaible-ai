@@ -5,13 +5,13 @@
 <div>
     <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
     <form action="/" method="post" class="model-size-form">
-        <label for="model_size">Model Size:</label>
-        <select name="model_size" id="model_size" onchange="this.form.submit()">
-            <option value="large" {% if model_size=="large" %}selected{% endif %}>
-                large
+        <label for="model_type">Model Type:</label>
+        <select name="model_type" id="model_type" onchange="this.form.submit()">
+            <option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
+                EfficientNet
             </option>
-            <option value="small" {% if model_size=="small" %}selected{% endif %}>
-                small
+            <option value="MobileNet" {% if model_type=="MobileNet" %}selected{% endif %}>
+                MobileNet
             </option>
         </select>
     </form>
