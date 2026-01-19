@@ -71,11 +71,11 @@ class MainPresenter:
         async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...), expanation_type:str = Form(...) ):
            prediction = Prediction(confidence, class_id, class_name)
            if(expanation_type=="Gradcam"):
-                gradcam = GradCam()
-                explanation = gradcam.explain(prediction, self.model)
+                explainable_ai_technique = GradCam()
+                explanation = explainable_ai_technique.explain(prediction, self.model)
            else:
-                lime = LIME()
-                explanation = lime.explain(prediction, self.model)
+                explainable_ai_technique = LIME()
+                explanation = explainable_ai_technique.explain(prediction, self.model)
            
            return explanation_view.render_explanation(request, image_url= self.model.currentImage.image_url, heatmap_url=explanation.heatmap_url, selected_class=class_name)
 
