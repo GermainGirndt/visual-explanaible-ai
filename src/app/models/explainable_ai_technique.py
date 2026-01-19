@@ -14,6 +14,9 @@ from app.models.prediction import Prediction
 from app.models.neural_network import NeuralNetwork
 from app.models.explanation import Explanation
 from app.config import STATIC_DIR
+from lime import lime_image
+from skimage.segmentation import mark_boundaries, slic
+
 
 class ExplainableAITechnique:
     
@@ -134,4 +137,95 @@ class GradCam(ExplainableAITechnique):
         filename = f"src/app/views/static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
         overlay.save(filename)
         explanation = Explanation(f"static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
+        return explanation
+    
+    
+    
+
+class LIME(ExplainableAITechnique):
+    
+    
+    def explain(self, prediction:Prediction, model:NeuralNetwork):
+        def lime_predict(images: np.ndarray):
+
+            model.model.eval()
+            batch = []
+            DEVICE = os.getenv("DEVICE")
+            
+            for img_np in images:
+                img_pil = Image.fromarray(img_np.astype("uint8"), mode="RGB")
+                preprocess = model.weights.transforms() 
+                tensor = preprocess(img_pil).unsqueeze(0)
+                batch.append(tensor)
+                
+            torch_device = torch.device(device=DEVICE)
+            
+            batch = torch.cat(batch, dim=0).to(torch_device)
+
+            with torch.no_grad():
+                outputs = model.model(batch)
+                probs = F.softmax(outputs, dim=1)
+
+            return probs.cpu().numpy()
+        
+        def color_lime_regions(img_np, mask, color=(255, 0, 0), alpha=0.6):
+
+            overlay = img_np.copy()
+            color_layer = np.zeros_like(img_np)
+            color_layer[:] = color
+
+            overlay[mask == 1] = (
+                (1 - alpha) * overlay[mask == 1] +
+                alpha * color_layer[mask == 1]
+            )
+
+            return Image.fromarray(overlay.astype("uint8"))
+
+    
+        img = Image.open("src/app/views" + model.currentImage.image_url).convert("RGB")
+        img_np = np.array(img)
+        class_idx = prediction.class_id
+
+        explainer = lime_image.LimeImageExplainer()
+
+
+
+
+        explanation = explainer.explain_instance(
+            img_np,
+            lime_predict,
+            labels=[class_idx],     
+            hide_color=0,
+            num_samples=100 ,       # increase for better quality
+            segmentation_fn=lambda img: slic(
+             img,
+             n_segments=30,
+             compactness=10,
+             start_label=0
+            )
+            )
+        
+        
+       
+        # Resize and overlay
+        lime_img, lime_mask = explanation.get_image_and_mask(
+            label=class_idx,
+             positive_only=True,
+             num_features=3,
+             hide_rest=True
+            )
+
+        lime_overlay = Image.fromarray(
+            (mark_boundaries(lime_img / 255.0, lime_mask) * 255).astype("uint8")
+            )
+        colored = color_lime_regions(
+        img_np=lime_img,
+        mask=lime_mask,
+        color=(255, 0, 0), #red
+        alpha=0.7
+        )
+        image_uuid = uuid.uuid4()
+        filename = f"src/app/views/static/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
+        colored.save(filename)
+        explanation = Explanation(f"static/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
         return explanation

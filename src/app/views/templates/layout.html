@@ -16,19 +16,15 @@
             <img src="../static/assets/icons/image_icon.svg">
           </label>
           <input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
-            onchange="document.getElementById('upload').submit();" />
+            onchange="document.getElementById('upload').submit();" /> Upload
         </form>
         <form action="/classify" method="post">
           <input type="hidden" name="image_url" value="{{ image_url }}" />
           <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img
               src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg"
-              id="share-3"></button>
+              id="share-3"></button> Classify
         </form>
-        <a class="fabbutton" href="/"><img src="../static/assets/icons/comment_icon.svg"></a>
       </section>
-      <section class="selectors-container">
-       
-        <a href="/"><img src="../static/assets/icons/state_icon.svg"></a> Process
       </section>
     </nav>
   </header>
