@@ -19,8 +19,8 @@
   <input type="hidden" name="class_name" id="class_name" />
   <input type="hidden" name="confidence" id="confidence" />
 
-  <select name="expanation_type" id="explanation_type" onchange="updateMethod(this)">
-    <option disabled selected>Select a explanation type</option>
+  <select name="expanation_type" id="expanation_type" onchange="updateMethod(value)">
+    <option disabled selected>Select an explanation type</option>
     <option value="Gradcam">
       Gradcam
     </option>
@@ -28,7 +28,7 @@
       LIME
     </option>
   </select>
-  <button type="submit">Explain</button>
+  <button id="submit_button" type="submit">Explain</button>
 </form>
 
 
@@ -43,13 +43,13 @@
   }
 
   function updateMethod(select) {
-    const option = select.options[select.selectedIndex];
 
-    document.getElementById("expanation_type").value = option.dataset.classId;
+    document.getElementById("expanation_type").value = select;
   }
 
   function validateSelection() {
-    if (!document.getElementById("class_id").value || !document.getElementById("expanation_type").value) {
+    console.log( document.getElementById("expanation_type"))
+    if (!document.getElementById("class_id").value || document.getElementById("expanation_type").value =="Select an explanation type") {
       alert("Please select a class and explanation type first.");
       return false;
     }
