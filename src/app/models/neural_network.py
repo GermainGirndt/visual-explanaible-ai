@@ -23,6 +23,7 @@ class NeuralNetwork(ABC):
 class EfficientNet(NeuralNetwork):
     img_tensor = []
     currentImage = []
+    weights = []
     def __init__(self, MODEL_TYPE):        
         if MODEL_TYPE == "MobileNet":
             self.weights = MobileNet_V3_Large_Weights.DEFAULT

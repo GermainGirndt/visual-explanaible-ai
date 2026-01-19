@@ -3,35 +3,61 @@
 <h2>Classification Results</h2>
 
 <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
-
 <h3>Top {{ class_predictions|length }} Predictions:</h3>
-<ol>
-  {% for class_prediction in class_predictions %}
-  <li>
-    <strong>{{ class_prediction.class_name }}</strong> — {{
-    "%.2f"|format(class_prediction.confidence * 100) }}%
 
-    <!-- Explain button for each top-k class -->
-    <form action="/explain" method="post" style="display: inline">
-      <input
-        type="hidden"
-        name="confidence"
-        value="{{ class_prediction.confidence}}"
-      />
-        <input
-        type="hidden"
-        name="class_id"
-        value="{{ class_prediction.class_id}}"
-      />
-      <input
-        type="hidden"
-        name="class_name"
-        value="{{ class_prediction.class_name }}"
-      />
-      <button type="submit">Explain</button>
-    </form>
-  </li>
-  {% endfor %}
-</ol>
+<form action="/explain" method="post" id="explain-form" onsubmit="return validateSelection()">
+  <select id="prediction-select" onchange="updateValues(this)">
+    <option disabled selected>Select a class to explain</option>
+    {% for p in class_predictions %}
+    <option data-class-id="{{ p.class_id }}" data-class-name="{{ p.class_name }}" data-confidence="{{ p.confidence }}">
+      {{ p.class_name }} — {{ "%.2f"|format(p.confidence * 100) }}%
+    </option>
+    {% endfor %}
+  </select>
+
+  <input type="hidden" name="class_id" id="class_id" />
+  <input type="hidden" name="class_name" id="class_name" />
+  <input type="hidden" name="confidence" id="confidence" />
+
+  <select name="expanation_type" id="explanation_type" onchange="updateMethod(this)">
+    <option disabled selected>Select a explanation type</option>
+    <option value="Gradcam">
+      Gradcam
+    </option>
+    <option value="LIME">
+      LIME
+    </option>
+  </select>
+  <button type="submit">Explain</button>
+</form>
+
+
+<script>
+  function updateValues(select) {
+    const option = select.options[select.selectedIndex];
+
+    document.getElementById("class_id").value = option.dataset.classId;
+    document.getElementById("class_name").value = option.dataset.className;
+    document.getElementById("confidence").value = option.dataset.confidence;
+
+  }
+
+  function updateMethod(select) {
+    const option = select.options[select.selectedIndex];
+
+    document.getElementById("expanation_type").value = option.dataset.classId;
+  }
+
+  function validateSelection() {
+    if (!document.getElementById("class_id").value || !document.getElementById("expanation_type").value) {
+      alert("Please select a class and explanation type first.");
+      return false;
+    }
+    else {
+      return true
+    }
+  }
+</script>
+
 
 {% endblock %}

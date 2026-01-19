@@ -7,7 +7,7 @@ from app.models.image import Image
 from app.models.neural_network import NeuralNetwork, EfficientNet
 from app.models.predictions import Prediction
 from app.models.explanation import Explanation
-from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam
+from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam, LIME
 from fastapi import FastAPI, Request, UploadFile, Form
 
 from app.config import STATIC_DIR
@@ -68,9 +68,14 @@ class MainPresenter:
 
 
         @app.post("/explain")
-        async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...) ):
+        async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...), expanation_type:str = Form(...) ):
            prediction = Prediction(confidence, class_id, class_name)
-           gradcam = GradCam()
-           explanation = gradcam.explain(prediction, self.model)
+           if(expanation_type=="Gradcam"):
+                gradcam = GradCam()
+                explanation = gradcam.explain(prediction, self.model)
+           else:
+                lime = LIME()
+                explanation = lime.explain(prediction, self.model)
+           
            return explanation_view.render_explanation(request, image_url= self.model.currentImage.image_url, heatmap_url=explanation.heatmap_url, selected_class=class_name)
 
