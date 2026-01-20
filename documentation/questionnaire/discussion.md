@@ -11,9 +11,12 @@ Erste Punkte zur Auswertung der Umfrage:
 
 - Neutral oder negativ zu "15) Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe."
 
+- Generell waren die Antworten ziemlich homogen (kaum Außreißer, außer Herrn Tholen)
+
 ---
 
 Anmerkungen:
 
 - Herr Tholens Antwort vielleicht wegfiltern (Experte, Studiengang n.a.)
+- der Student, der zu spät gekommen ist (Studiengang "praktische Informatik\*") wegfiltern
 - Bessere ML-Modelle mit höher Qualität hätten vielleicht bessere Ergebnisse in der Umfrage hervorgebracht
