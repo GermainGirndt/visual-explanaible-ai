@@ -11,7 +11,7 @@ Erste Punkte zur Auswertung der Umfrage:
 
 - Neutral oder negativ zu "15) Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe."
 
-- Generell waren die Antworten ziemlich homogen (kaum Außreißer, außer Herrn Tholen)
+- Die Antworten waren ziemlich homogen!!! Wahrscheinlich weil die Zielgruppe auch homogen war (kaum Außreißer, außer Herrn Tholen). Also PI-Studis, die einen ähnlichen Hintergrund haben.
 
 ---
 
