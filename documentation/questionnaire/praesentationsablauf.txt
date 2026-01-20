@@ -1,0 +1,9 @@
+15 Fragen, bei den meisten muss man einfach markieren
+
+-> Beispiel Bildklassifizierung
+-> Fragen 1-8 ausfüllen
+-> Demo: App xAI
+	-> Schiff und Leopard (funktionieren)
+	-> deer, sunflower (funktionieren nicht)
+-> Fragen 9-15 ausfüllen
+-> anderweitige Fragen beantworten
