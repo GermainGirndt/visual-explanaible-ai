@@ -58,7 +58,7 @@ classDiagram
 %% Model Layer
 %% --------------------
 class Image {
-    + static load_from(string path) Image
+    + static load_from(string file) Image
 }
 
 class Prediction {
@@ -68,41 +68,43 @@ class Prediction {
 }
 
 class NeuralNetwork {
-    + classify(Image image) Prediction
+    + classify(Image image) Predictions
 }
 
 class ExplainableAITechnique {
-    + explain(Prediction prediction, NeuralNetwork for_model) Explanation
+    + explain(Prediction prediction, NeuralNetwork model) Explanation
 }
 
 class Explanation {
-    - ExplainableAITechnique from_technique
+    - string heatmap_url
 }
 
 %% --------------------
 %% View Layer
 %% --------------------
 class ImageView {
-    + render(Image image)
+    + render_nav_page(string model_type)
+    + render_image_page(string image_url, string model_type)
 }
 
 class PredictionView {
-    + render(Prediction prediction, Image image)
+    + render_predictions(list[Prediction] class_predictions, Image image)
 }
 
 class ExplanationView {
-    + render(Explanation explanation, Prediction prediction, Image image)
+    + render_explanation(string image_url, string heatmap_url, string selected_class)
 }
 
 %% --------------------
 %% Presenter Layer
 %% --------------------
 class MainPresenter {
-    + load_image(string path)
-    + classify_image()
-    + explain_classification()
-    + select_model(NeuralNetwork model)
-    + select_explainable_ai_technique(ExplainableAITechnique technique)
+    + upload_image(UploadFile file)
+    + classify(string image_url)
+    + explain(float confidence, int class_id, string class_name)
+    + change_model_size(string model_type)
+    + home()
+    + resize()
 }
 
 %% --------------------
@@ -135,7 +137,7 @@ Notes:
 
 ##### Models:
 
-1. **Image:** Represents the input image loaded from disk; provides static method `load_from(path)` to import it.
+1. **Image:** Represents the input image loaded from disk; provides static method `load_from(file)` to import it.
 2. **NeuralNetwork:** Performs the classification of an `Image`, producing a `Prediction`.
 3. **Prediction:** Holds the classification output (class name, class number, and confidence score).
 4. **ExplainableAITechnique:** Uses a `NeuralNetwork` and its `Prediction` to generate an `Explanation` (e.g., via Grad-CAM).
@@ -147,16 +149,16 @@ classDiagram
 %% Model Layer
 %% --------------------
 class Image {
-    + static load_from(string path) Image
+    + static load_from(string file) Image
 }
 
 class NeuralNetwork {
-    + classify(Image image) Prediction
+    + classify(Image image) Predictions
 }
 
 class Predictions {
     + list[Prediction] predictions
-    + top_k(int k) list[Predictions]
+    + top_k(int k) list[Prediction]
 }
 
 class Prediction {
@@ -170,22 +172,23 @@ class ExplainableAITechnique {
 }
 
 class Explanation {
-    - ExplainableAITechnique from_technique
+    - string heatmap_url
 }
 
 %% --------------------
 %% View Layer (Separate Web Pages)
 %% --------------------
 class ImageView {
-    + render(Image image)
+    + render_nav_page(string model_type)
+    + render_image_page(string image_url, string model_type)
 }
 
 class PredictionView {
-    + render(Prediction prediction, Image image)
+    + render_predictions(list[Prediction] class_predictions, Image image)
 }
 
 class ExplanationView {
-    + render(Explanation explanation, Prediction prediction, Image image)
+    + render_explanation(string image_url, string heatmap_url, string selected_class)
 }
 
 %% --------------------
@@ -231,24 +234,24 @@ sequenceDiagram
     participant PredictionView
     participant ExplanationView
 
-    User->>MainPresenter: select_model(NeuralNetwork model)
+    User->>MainPresenter: change_model_size(string model_type)
     MainPresenter->>MainPresenter: store model as current_model
 
-    User->>MainPresenter: select_explainable_ai_technique(ExplainableAITechnique technique)
-    MainPresenter->>MainPresenter: store technique as current_technique
+    #User->>MainPresenter: select_explainable_ai_technique(ExplainableAITechnique technique)
+    #MainPresenter->>MainPresenter: store technique as current_technique
 
-    User->>MainPresenter: load_image(path)
-    MainPresenter->>Image: load_from(path)
+    User->>MainPresenter: upload_image(file)
+    MainPresenter->>Image: load_from(file)
     Image-->>MainPresenter: image instance
-    MainPresenter->>ImageView: render(image)
+    MainPresenter->>ImageView: render_image_page(image_url, model_type)
 
-    User->>MainPresenter: classify_image()
-    MainPresenter->>NeuralNetwork: classify(current_image)
+    User->>MainPresenter: classify(image_url)
+    MainPresenter->>NeuralNetwork: classify(image)
     NeuralNetwork-->>MainPresenter: Prediction
-    MainPresenter->>PredictionView: render(prediction, current_image)
+    MainPresenter->>PredictionView: render(class_predictions, image)
 
-    User->>MainPresenter: explain_classification()
-    MainPresenter->>ExplainableAITechnique: explain(prediction, current_model)
+    User->>MainPresenter: explain(confidence, class_id, class_name)
+    MainPresenter->>ExplainableAITechnique: explain(prediction, model)
     ExplainableAITechnique-->>MainPresenter: Explanation
-    MainPresenter->>ExplanationView: render(explanation, prediction, current_image)
+    MainPresenter->>ExplanationView: render(image_url, heatmap_url, selected_class)
 ```

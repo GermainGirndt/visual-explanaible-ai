@@ -2,21 +2,56 @@
 
 \section{Model-View-Presenter (MVP) mit Supervising Presenter}
 
-\todox[]{Kurze Einleitung in das MVP-Architekturmuster und die Rolle des Supervising Presenters}
-\todox[]{Begründung der Wahl der Architektur anhand der Requirements (Erweiterbarkeit, Wartbarkeit, Separation of Concerns etc.)}
-\todox[]{Beschreibung der drei Hauptkomponenten:}
+\subsection{Einleitung in das MVP-Architekturmuster}
+Die Explainable-AI-Anwendung muss folgendes können:
+\begin{enumerate}
+    \item Bilder laden und anzeigen
+    \item Bilder mit einem Neural-Network-Modell klassifizieren
+    \item Erklärungen mit einer xAI-Methode generieren
+    \item wartbar, erweiterbar und einfach in einer Vorlesung zu zeigen sein
+\end{enumerate}
+Die MVP-Architektur erfüllt diese Anforderungen durch eine klare Trennung zwischen:
 \begin{itemize}
-    \item Models: ... 
-    \item Presenters: ...
-    \item Views: ...
+    \item AI und Berechnungslogik (Model)
+    \item Visualisierungslogik (View)
+    \item Nutzerinteraktion (Presenter)
 \end{itemize}
 
+\subsection{Wahl der Architektur}
+Die MVP-Architektur wurde hauptsächlich gewählt, um die Kriterien zur Wartbarkeit und Erweiterbarkeit mit einer flexiblen und leichtgewichtigen Architektur zu erfüllen.
+\subsubsection*{Vorteile von MVP:}
+\begin{itemize}
+    \item Separation of Concerns: Isoliert Berechnungen, Logik und UI für einfache Wartung
+    \item Erweiterbarkeit: Neue Modelle oder xAI-Methoden können durch Erweiterung der Model-Schicht hinzugefügt werden.
+    \item Testbarkeit: Model und Presenter können mit Unit Tests unabhängig vom View getestet werden.
+    \item Pädagogische Klarheit: Spiegelt konzeptuelle Trennung zwischen Daten, Verarbeitung und Präsentation wider, was nützlich zur Lehre ist
+\end{itemize}
+\subsubsection*{Nachteile von MVP:}
+\begin{itemize}
+    \item etwas mehr Boilerplate-Code (z. B. zusätzliche Klassen für Views und Presenter)
+    \item benötigt disziplinierte Koordination zwischen Komponenten, um \("\)Fat Presenters\("\) zu vermeiden.
+\end{itemize}
+\subsubsection*{Vergleich mit Model View Controller (MVC)}
+MVC ist eine einfachere und leichtgewichtige Alternative zu MVP mit weniger Code und weniger Schichten zum Implementieren.
+Die Vorteile von MVP überwiegen jedoch, vor allem aufgrund der funktionalen Anforderungen der Wartbarkeit und besonders Erweiterbarkeit.
+\begin{itemize}
+    \item Views rendern nur die Komponente und sind unabhängig vom Model (kein Data-Binding/Observer)
+    \item Presenter (die den Datenfluss kontrollieren) sind nicht direkt von der Implementierung der Views abhängig und manipulieren Views nicht direkt (hängen stattdessen von einer Abstraktion ab, die auf Nutzereingaben reagiert und Informationen weitergibt)
+    \item Models benachrichtigen Views nicht bei Veränderungen
+\end{itemize}
+Deshalb können neue Funktionalitäten (z. B. neue Neural-Network-Modelle oder Erklärungsmethoden) bei MVP durch Vererbung hinzugefügt werden.
+Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controllern nicht so einfach.
 
+\subsection{Hauptkomponenten}
+\begin{itemize}
+    \item Models: beinhalten die Logik der einzelnen Komponenten wie die Klassifizierung mit einem Neural-Network-Modell und Generierung der Erklärung
+    \item Presenters: bieten Schnittstellen zum Aufruf der Funktionen durch den Nutzer an
+    \item Views: rendern die Anwendung im Browser
+\end{itemize}
 
 \section{Statisches Modell}
-\todox[]{statisches Modell in der Dokumentation anpassen}
-\todox[]{statisches Modell einfügen}
+\includegraphics[width=\linewidth]{Graphics/static_model_presenter}
+\includegraphics[width=\linewidth]{Graphics/static_model_models_views}
 
 \section{Dynamisches Modell}
-\todox[]{dynamisches Modell in der Dokumentation anpassen}
-\todox[]{dynamisches Modell einfügen}
+\includegraphics[width=\linewidth]{Graphics/dynamic_model}
