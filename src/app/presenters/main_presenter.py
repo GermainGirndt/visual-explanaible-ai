@@ -39,7 +39,7 @@ class MainPresenter:
                 
         
         @app.post("/")
-        def changeModelsize(request: Request, model_type: str = Form(...)):
+        def change_model_size(request: Request, model_type: str = Form(...)):
              self.model = EfficientNet(model_type)
              self.type = model_type
              return RedirectResponse("/resize", status_code=303)

@@ -1,15 +1,76 @@
 \chapter{Fallstudie}
-
+Im Rahmen der Projektarbeit wird eine Fallstudie durchgeführt, um die Auswirkungen von XAI zu untersuchen.
 \section{Aufbau}
 \todox[]{Ziel der Fallstudie erläutern – Webanwendung zur Bildklassifikation mit Erklärungen durch XAI-Verfahren und ihre Auswirkungen auf Studierende (Zielgruppe/Stakeholder für die User Story) bewerten}
 \todox[]{Beschreibung des Aufbaus der Fallstudie (Umfrage, Präsentationseinteilung, Methodik)}
+Das Ziel der Fallstudie ist es die Auswirkung unser Webanwendung, die die Erklärungsarten GradCam und LIME implementiert, zu untersuchen. 
 
-\todo[]{Fehlt hier etwas?}
+Die Studie wird in der Vorlesung Einführung in die Grundlagen der Künstlichen Intelligenz durchgeführt. 
+Teilnehmer sind also Studierende des Studiengangs Praktische Informatik und Kommunikationsinformatik, was der Zielgruppe oder den Stakeholdern dieser Anwendung entspricht.
 
-\section{Ergebnisse}
+Die Umfrage wurde mit Hilfe der Webseite UmfrageOnline erstellt. 
+\subsection{Fragen}
+Die Fragen lassen sich in folgende Kategorien unterteilen
+\begin{enumerate}
+    \item demografische Fragen
+    \item Vorkenntnisse allgemein und KI
+    \item Verständnis von Gründen der KI für Bildqulifikation vor der Demonstration
+    \item Verständnis von Gründen der KI für Bildqulifikation nach der Demonstration
+    \item Bemerkungen
+\end{enumerate}
+
+Fragen 1-8 werden vor der Demonstration des Tools beantwortet. Die Fragen 9 bis 15 werden erst nach der Demonstration beantwortet.
+Die Antwortmöglichkeiten sind in Eckigen Klammern hinter der Frage angegeben.
+
+[Stimme überhaupt nicht zu, Stimme nicht zu, Weder Zustimmung noch Ablehnung, Stimme zu, Stimme voll und ganz zu] wird mit [Zustimmung] abgekürzt
+[Keine Erfahrung, Anfänger, Fortgeschrittener Anfänger ,Kompetent, Sehr kompetent, Experte] wird mit [Erfahrung] abgekürzt.
+\subsubsection{Demografische Fragen}
+\begin{enumerate}
+    \item Alter [numerisch]
+    \item Geschlecht [männlich, weiblich, n.a.]
+    \item Studiengang [Freitext]
+    \item Berufliche Erfahrung [Keine, < 6 Monate, 6-12 Monate, 1-2 Jahre, 2-3 Jahre, > 3 Jahre]
+\end{enumerate}
+\subsubsection{Vorkenntnisse allgemein und KI}
+Fragen 1 bis 5 befassen sich mit den Vorkenntnissen. 
+\begin{enumerate}
+    \item  Bewerten Sie Ihre Kenntnisse und Erfahrungen im Bereich „Künstliche Intelligenz“ [Erfahrung]
+    \item  Bewerten Sie Ihre Kenntnisse und Erfahrungen im Bereich „Machinelles Lernen zur Bildklassizierung“ [Erfahrung]
+    \item  Ich bin daran interessiert, etwas über künstliche Intelligenz zu lernen [Zustimmung]
+    \item  Ich beschäftige mich mit künstlicher Intelligenz, nur wenn ich dazu verpichtet bin [Zustimmung]
+    \item  Haben Sie Vorkenntnisse in folgenden Technologien? [neuronale Netzwerke (allgemein), neuronale Netzwerke (spezisch für Bildklassizerung) ,Grad-CAM ,LIME, anderweitige xAI Techniken]
+\end{enumerate}
+\subsubsection{Verständnis der KI für Bildqulifikation vor der Demonstration}
+Fragen 6 bis 8 befassen sich mit der Selbsteinschätzung zum Verständnis von Gründen der KI für Bildqulifikation vor der Demonstration der XAI Anwendung.
+\begin{enumerate}
+    \item  Ich verstehe, wie ein KI-Modell zur Bildklassizierung seine Vorhersagen trifft  [Zustimmung]
+    \item  Ich verstehe die Grenzen eines KI-Modells zur Bildklassizierung  [Zustimmung]
+    \item  Ich kann erklären, warum ein KI-Modell zur Bildklassizierung eine Eingabe aufeine bestimmte Weise klassiziert hat [Zustimmung]
+\end{enumerate}
+
+\subsubsection{Verständnis der KI für Bildqulifikation nach der Demonstration}
+Fragen 9 bis 15 befassen sich mit der Selbsteinschätzung zum Verständnis von Gründen der KI für Bildqulifikation nach der Demonstration der XAI Anwendung.
+\begin{enumerate}
+    \item  Das Tool hat mir geholfen, das Verhalten des Modells besser zu verstehen [Zustimmung]
+    \item  Ich kann anhand der Visualisierungen erkennen, welche Eingabemerkmale für die Modellentscheidung relevant waren. [Zustimmung]
+    \item  Die Erklärungen haben meine Fähigkeit verbessert, KI-Vorhersagen kritisch zu beurteilen [Zustimmung]
+    \item  Das Tool hat mir geholfen zu erkennen, wann das Modell möglicherweise falsche Vorhersagen trifft [Zustimmung]
+    \item  Das Tool hat mir geholfen, die Grenzen von KI-Modellen besser zu erkennen [Zustimmung]
+    \item  Ich verstehe besser den Unterschied zwischen der Genauigkeit eines Modells und seiner Interpretierbarkeit [Zustimmung]
+    \item  Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe [Zustimmung]
+    \item  Bemerkungen [Freitext]
+   \end{enumerate}
+\section{Ergebnisse}  
+
 \todox{Herr Tholen: keine deskriptive Statistik nötig}
 
 \todox[]{Beschreibung der Teilnehmer der Fallstudie (Anzahl, demografische Daten etc.)}
+Sieben Teilnehmer haben an der Umfrage teilgenommen, davon ist einer Professor und sechs Studenten. Ein Student kam erst während der Demopräsentation dazu, er wird daher nicht näher betrachtet, da es die Fallstudie verfälschen könnte.   
+
+Es gibt also fünf verwertbare Teilnehmer, die Studenten sind. Diese sind zwischen 21 und 33 Jahre alt. Vier Teilnehmer sind Männlich, ein Teilnehmer ist eine Frau. 
+
+Alle Studenten sind im Studiengang Praktische Informatik. 
 \todox[]{qualitativen Daten (Themenidentifikation etc.) präsentieren}
+
 \todox[]{Analyse der qualitativen Daten}
 \todox[]{Quantitative Ergebnisse der Fallstudie präsentieren}

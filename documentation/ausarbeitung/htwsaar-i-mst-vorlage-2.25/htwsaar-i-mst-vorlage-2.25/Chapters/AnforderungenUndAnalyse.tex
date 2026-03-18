@@ -28,12 +28,139 @@ Die Anforderungen an das interaktive Tool wurden erhoben, mithilfe der MoSCoW–
 In dieser Hinsicht wurden die Anforderungen in folgende Kategorien eingeteilt:
 
 \subsection{Must-Have Anforderungen}
-\todox[]{Anforderungen einfügen und begründen}
+
+\subsubsection{MH1 - Graphical User Interface (GUI)}
+
+\begin{itemize}
+    \item Die Anwendung muss ein Graphical User Interface für die Interaktion mit dem Nutzer zur Verfügung stellen.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Die GUI kann im Browser ausgeführt werden (z. B. Google Chrome, Firefox, Safari).
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Eine GUI bietet eine nutzerfreundliche Interaktion mit der Anwendung und abstrahiert die darunterliegende Codekomplexität.
+Die Implementierung der GUI als Webanwendung vereinfacht die Entwicklung.
+
+\subsubsection{MH2 - Bilder laden und anzeigen}
+
+\begin{itemize}
+    \item Die Anwendung muss Bilder laden und anzeigen können.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Die Anwendung kann lokal gespeicherte Bilder laden.
+        \item Die Anwendung kann geladene Bilder direkt im Browser anzeigen.
+        \item Die Anwendung unterstützt die Dateiformate jpeg, png und jpg.
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Durch das Laden von lokalen Bildern kann der Professor mit geringem Aufwand von den Studenten ausgewählte Beispiele zeigen.
+
+\subsubsection{MH3 - Bildklassifizierung}
+\begin{itemize}
+    \item Die Anwendung muss ein Bild mithilfe eines Neural-Network-Modells klassifizieren können.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Für die Klassifizierung wird das Modell EfficientNetV2 verwendet.
+        \item Die 5 Klassen mit der höchsten Wahrscheinlichkeit werden im Frontend angezeigt.
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} EfficientNetV2 bietet eine gute Balance aus Genauigkeit und Performance.
+Aufgrund der geringen Größe von maximal ein paar hundert MB sind EfficientNetV2-Modelle gut für lokal laufende Demos in Echtzeit während einer Vorlesung geeignet.
+
+\subsubsection{MH4 - Explainable AI (xAI) Heatmap}
+\begin{itemize}
+    \item Die Anwendung muss für ein klassifiziertes Bild eine Heatmap zur Erklärung generieren können.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Die Erklärungen werden mit der Grad-CAM-Methode generiert.
+        \item Der Nutzer kann aus den Top-5-Klassen auswählen, für welche Klasse die Heatmap generiert werden soll.
+        \item Die Heatmap wird transparent über dem Bild angezeigt.
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Grad-CAM ist weit verbreitet, intuitiv und in Vorlesungen einfach zu zeigen.
+Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, Youtube-Videos, \ldots), wodurch es ein guter erster Schritt ist, um Erklärbarkeit zu visualisieren.
+
+\subsubsection{MH5 - Wartbarkeit}
+\begin{itemize}
+    \item Die Anwendung muss einfach zu warten sein.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Dokumentation von:
+            \begin{itemize}
+                \item genutzten Programmiersprachen und Versionen
+                \item Versionen von Abhängigkeiten und Konfigurationsdetails
+            \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Gute Dokumentation stellt sicher, dass Mitwirkende wie z. B. Studenten in der Zukunft das System ohne Konfigurationsprobleme reproduzieren und erweitern können.
 
 \subsection{Should-Have Anforderungen}
-\todox[]{Anforderungen einfügen und begründen}
+
+\subsubsection{SH1 - Erweiterbarkeit}
+\begin{itemize}
+    \item Die Anwendung sollte einfach um weitere Modelle und xAI-Methoden zu erweitern sein.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Der Nutzer kann zwischen mehreren Bildklassifizierungsmodellen und xAI-Methoden auswählen.
+        \item Hat der Nutzer ein Modell ausgewählt, können nur kompatible Methoden ausgewählt werden.
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Erweiterbarkeit ermöglicht es, dass in zukünftigen Projekten neue Modelle oder xAI-Methoden leicht hinzugefügt werden können.
+
 \subsection{Could-Have Anforderungen}
-\todox[]{Anforderungen einfügen und begründen}
+
+\subsubsection{CH1 - Unterstützung für andere Erklärungsarten}
+\begin{itemize}
+    \item Die Anwendung könnte weitere Erklärungsformate unterstützen.
+    \item Akzeptanzkriterien:
+    \begin{enumerate}
+        \item Das System unterstützt:
+            \begin{itemize}
+                \item Textbasierte Erklärungen
+                \item Grafische Erklärungen
+            \end{itemize}
+    \end{enumerate}
+\end{itemize}
+\textit{Warum?} Textuelle oder grafische Ausgaben können das Verständnis und die Zugänglichkeit für verschiedene Lernarten verbessern.
+
 \subsection{Won't-Have Anforderungen}
-\todox[]{Anforderungen einfügen und begründen}
+
+\subsubsection{Streaming oder Batch Processing}
+\begin{itemize}
+    \item Keine Echtzeit- oder Batch-Bildverarbeitung
+\end{itemize}
+\textit{Warum?} Die Architektur wird vereinfacht und der Fokus auf Interaktion mit einzelnen Bildern für die Lehre gelegt.
+
+\subsubsection{Fortgeschrittene Erklärungsmethoden}
+\begin{itemize}
+    \item Kein LIME, SHAP oder Integrated Gradients
+    \item Keine 3D- oder zeitliche Visualisierungen
+\end{itemize}
+\textit{Warum?} Die Implementierung und Visualisierung dieser Methoden ist komplexer, Grad-CAM reicht zu Bildungszwecken.
+
+\subsubsection{Responsive Design}
+\begin{itemize}
+    \item Keine Responsive Web UI
+\end{itemize}
+\textit{Warum?} Das Tool dient nur zur Verwendung zu Testzwecken und in Vorlesungen und wird nicht öffentlich ausgeliefert.
+
+\subsubsection{Native App Deployment}
+\begin{itemize}
+    \item Kein Native App Deployment für Desktop oder Mobilgeräte
+\end{itemize}
+\textit{Warum?} Das Deployment einer App würde die Komplexität des Projekts erhöhen, während der Fokus auf Erklärbarkeit von KI liegt.
+Da der Nutzer über technisches Wissen verfügt, ist er in der Lage, die Start-Skripte auszuführen.
+
+\subsubsection{Mehrsprachige Benutzeroberfläche}
+\begin{itemize}
+    \item Die Benutzeroberfläche wird nur auf Englisch verfügbar sein.
+\end{itemize}
+\textit{Warum?} Englisch ist die Standardsprache der meisten KI-Lehrmaterialien und Übersetzungen sind nicht essenziell für einen ersten Release.
+
+\subsubsection{Docker Container}
+\begin{itemize}
+    \item Kein Docker Container.
+\end{itemize}
+\textit{Warum?} Obwohl Docker die Reproduzierbarkeit verbessert, würde es die Komplexität bei einer lokal laufenden Anwendung unnötig erhöhen.
+Da das Tool auf einem einzigen Gerät läuft und Nutzer direkt Abhängigkeiten installieren können, bietet Containerisierung hier wenig praktischen Nutzen.
+
 
