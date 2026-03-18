@@ -15,6 +15,7 @@ Dadurch eignen sich CNNs besonders gut für die Verarbeitung von Bilddaten, da s
 
 Das sogenannte AlexNet \cite{alex2012alexnet} war eines der ersten CNNs, das auf dem ImageNet-Datensatz eine signifikante Verbesserung der Bildklassifikationsleistung erzielte und damit den Durchbruch für CNNs in diesem Bereich markierte. Seitdem wurden viele weitere Architekturen entwickelt, die sich von AlexNet bei der Vewendung von Convolutional-Layers inspiriert lassen haben, wie z. B. VGGNet \cite{simonyan2015vgg}, ResNet \cite{he2016resnet}, MobileNet \cite{howard2017mobilenet} und EfficientNetV2 \cite{tan2021efficientnetv2}.
 
+Die nachsten Abschnitte konzentrieren sich auf die Architekturen ResNet und EfficientNetV2, da sie aufgrund ihrer historischen und technischen Relevanz hohe Bedeutung für die Bildklassifikation haben.
 
 \subsection{Residual Networks}
 Die Erhöhung der Anzahl der Schichten in einem Deep Neural Network (DNN) war nicht immer mit einer Verbesserung der Vorhersagegüte verbunden.
@@ -38,12 +39,8 @@ Dabei bezeichnet $x_k$ die Eingabe eines Blocks, $\mathcal{F}(x_k, \mathcal{W}_k
 Dies ist besonders vorteilhaft, wenn die Ausgabe eines Blocks ähnlich der Eingabe ist, da die Schichten dann nur lernen müssen, die Unterschiede zu modellieren, anstatt die gesamte Funktion zu lernen.
 
 ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation. Im originalen Paper \cite{he2016resnet} wurde ein 152-Schichte-Deep-Neural-Network vorgestellt, das auf dem ImageNet-Datensatz eine Top-5-Fehlerquote von nur 3,57\% erreichte.
-
-\subsection{MobileNet}
-\todox[]{MobileNet vorstellen, da es im Projekt benutzt wurde.}
-
-\subsection{EfficientNet}
-\todox[]{EfficientNet vorstellen, da es im Projekt benutzt wurde.}
+\subsection{EfficientNetV2}
+\todox[]{EfficientNetV2 vorstellen, da es im Projekt benutzt wurde.}
 
 \section{XAI-Verfahren}
 \todox[]{kurz Erklären, was XAI ist, warum es wichtig ist, und welche Ziele es verfolgt (Vertrauen, Nachvollziehbarkeit etc.)}
