@@ -1,17 +1,28 @@
 \chapter{Grundlagen}
 
-\section{Bildklassifikation mit Convolutional Neural Networks}
+\todox[]{Intro schreiben}
 
-\todox{Herr Tholen: Warum GANs/CNNs für eine lange Zeit eine der besten Methoden zur Bildgenerierung waren}
-\todox[]{AlexNet vorstellen, da es die CNNs eingeweiht hat.}
-\todox[]{Bei ver Vorstellung von AlexNet kurz Erklären, was CNNs sind, wie sie funktionieren, wofür sie eingesetzt werden, evtl. auch kurz Architektur (Convolutional Layer, Pooling Layer, Fully Connected Layer) erläutern.}
+\section{Bildklassifikation}
+\todox[]{Intro schreiben: Was ist Bildklassifikation? Warum ist sie wichtig? Welche Anwendungsfälle gibt es?}
 
+Mit der zunehmenden Verfügbarkeit von großen Bilddatensätzen und der Entwicklung leistungsfähiger Hardware haben sich Deep Learning-Modelle als äußerst effektiv für die Bildklassifikation erwiesen \cite{alex2012alexnet}.
+
+In diesem Abschnitt werden einige der wichtigsten Architekturen vorgestellt, die in diesem Bereich verwendet werden.
+
+\subsection{Convolutional Networks}
+Im Vergleich zu den klassischen \textit{Feedfoward Neural Networks} (FNNs) sind \textit{Convolutional Neural Networks} (CNNs) effizienter: Sie haben eine effiziente Struktur mit weniger Gewichten und Kanten zwischen den Modell-Schichten etabliert, was das Training erleichtert, ohne dabei einen betrachtlichen Verlust an Leistung zu verursachen. \cite{alex2012alexnet}
+Dadurch eignen sich CNNs besonders gut für die Verarbeitung von Bilddaten, da sie die räumlichen Beziehungen zwischen den Pixeln nutzen können, um relevante Merkmale durch verschiedene Abstraktionsebenen zu extrahieren. 
+
+Das sogenannte AlexNet \cite{alex2012alexnet} war eines der ersten CNNs, das auf dem ImageNet-Datensatz eine signifikante Verbesserung der Bildklassifikationsleistung erzielte und damit den Durchbruch für CNNs in diesem Bereich markierte. Seitdem wurden viele weitere Architekturen entwickelt, die sich von AlexNet bei der Vewendung von Convolutional-Layers inspiriert lassen haben, wie z. B. VGGNet \cite{simonyan2015vgg}, ResNet \cite{he2016resnet}, MobileNet \cite{howard2017mobilenet} und EfficientNetV2 \cite{tan2021efficientnetv2}.
+
+
+\subsection{Residual Networks}
 Die Erhöhung der Anzahl der Schichten in einem Deep Neural Network (DNN) war nicht immer mit einer Verbesserung der Vorhersagegüte verbunden.
 In dieser Hinsicht wurde beobachtet, dass die Erweiterung eines Netzwerks um eine größere Anzahl von Schichten oft zu einer deutlichen Erhöhung der Fehlerrate sowohl beim Training vor als auch bei den Tests führte. So wurde das Phänomen des sogennante \textit{Degradationsproblem} von \cite{he2016resnet} wie folgt beschrieben: 
 \begin{quote}
     Driven by the significance of depth, a question arises: Is learning better networks as easy as stacking more layers? [...]
     
-    When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly. Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error, as reported in [10, 41] and thoroughly verified by our experiments. [...]    
+    When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly. Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error, as reported in [10, 41] and thoroughly verified by our experiments. 
 \end{quote}
 
 Das hat die wissenschaftliche Gemeinschaft vor ein Rätsel gestellt: Falls die zusätzlichen Schichten nicht zu einer erhöhten Leistungen führen könnten, wären sie theoretisch trotzdem in der Lage die Identitätsfunktion zu approximieren, sodass die Leistung des erweiterten Modells zumindest nicht viel schlechter als die des ursprünglichen Modells sein könnte.
@@ -20,7 +31,7 @@ Dies war aber in der Praxis häufig nicht der Fall und die Leistung verschlechte
 
 So hat \cite{he2016resnet} dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.h das \textbf{Residuum}) zwischen der Eingabe und der Ausgabe lernen müssen, wie die sogenannte \textbf{Residualfunktion} darstellt:
 \begin{equation}
-y_k = x_k + \mathcal{F}(x_k, \mathcal{W}_k)
+    y_k = x_k + \mathcal{F}(x_k, \mathcal{W}_k)
 \end{equation}
 Dabei bezeichnet $x_k$ die Eingabe eines Blocks, $\mathcal{F}(x_k, \mathcal{W}_k)$ die durch die Schichten parametrisierte Residualfunktion und $y_k$ die Ausgabe des Blocks. Dieses Vorgehen ermöglicht einem Residual-Block das \textit{Identity-Mapping} mit geringer Rechenkomplexität zu realisieren, indem die Eingabe unverändert zur Ausgabe addiert wird.
 
@@ -28,8 +39,11 @@ Dies ist besonders vorteilhaft, wenn die Ausgabe eines Blocks ähnlich der Einga
 
 ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation. Im originalen Paper \cite{he2016resnet} wurde ein 152-Schichte-Deep-Neural-Network vorgestellt, das auf dem ImageNet-Datensatz eine Top-5-Fehlerquote von nur 3,57\% erreichte.
 
-\todox[]{EfficientNet vorstellen, da es im Projekt benutzt wurde.}
+\subsection{MobileNet}
 \todox[]{MobileNet vorstellen, da es im Projekt benutzt wurde.}
+
+\subsection{EfficientNet}
+\todox[]{EfficientNet vorstellen, da es im Projekt benutzt wurde.}
 
 \section{XAI-Verfahren}
 \todox[]{kurz Erklären, was XAI ist, warum es wichtig ist, und welche Ziele es verfolgt (Vertrauen, Nachvollziehbarkeit etc.)}
