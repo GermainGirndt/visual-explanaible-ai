@@ -50,8 +50,27 @@ Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controlle
 \end{itemize}
 
 \section{Statisches Modell}
+\subsubsection*{Klassendiagramm: Koordination durch die Presenter-Klasse}
+Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
 \includegraphics[width=\linewidth]{Graphics/static_model_presenter}
+
+\subsubsection*{Klassendiagramm: Beziehung zwischen Models und Views}
+\subsubsection*{Views}
+\begin{enumerate}
+    \item ImageView: rendert das Bild
+    \item PredictionView: rendert das Bild und die Klassifizierung
+    \item ExplanationView: rendert das Bild, die Klassifizierung und die Erklärung
+\end{enumerate}
+\subsubsection*{Models}
+\begin{enumerate}
+    \item Image: repräsentiert das geladene Bild, importiert es mit der statischen Methode \verb|load_from(file)|
+    \item NeuralNetwork: klassifiziert ein \verb|Image| und produziert eine \verb|Prediction|
+    \item Prediction: beinhaltet die Ausgabe der Klassifizierung (Name, ID und Wahrscheinlichkeit der Klasse)
+    \item ExplainableAITechnique: nutzt ein \verb|NeuralNetwork| und dessen \verb|Prediction| um eine \verb|Explanation| zu generieren (z. B. via Grad-CAM)
+    \item Explanation: repräsentiert das Ergebnis des xAI-Prozesses, normalerweise (aber nicht immer) als visuelle Heatmap generiert aus dem \verb|NeuralNetwork|-Modell und der \verb|Prediction|
+\end{enumerate}
 \includegraphics[width=\linewidth]{Graphics/static_model_models_views}
 
 \section{Dynamisches Modell}
+\subsubsection*{Sequenzdiagramm: Default Use Case}
 \includegraphics[width=\linewidth]{Graphics/dynamic_model}
