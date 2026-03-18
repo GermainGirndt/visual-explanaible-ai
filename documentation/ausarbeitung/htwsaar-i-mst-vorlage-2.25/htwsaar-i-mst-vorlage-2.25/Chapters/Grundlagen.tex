@@ -18,16 +18,15 @@ Das hat die wissenschaftliche Gemeinschaft vor ein Rätsel gestellt: Falls die z
 Dies war aber in der Praxis häufig nicht der Fall und die Leistung verschlechterte sich sogar deutlich.
 
 
-So hat \cite{he2016resnet} dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.h eine \textbf{Residualfunktion}) zwischen der Eingabe und der Ausgabe lernen müssen. So wurde die Formel
+So hat \cite{he2016resnet} dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.h das \textbf{Residuum}) zwischen der Eingabe und der Ausgabe lernen müssen, wie die sogenannte \textbf{Residualfunktion} darstellt:
 \begin{equation}
 y_k = x_k + \mathcal{F}(x_k, \mathcal{W}_k)
 \end{equation}
-vorgeschlagen. Dabei bezeichnet $x_k$ die Eingabe eines Blocks, $\mathcal{F}(x_k, \mathcal{W}_k)$ die durch die Schichten parametrisierte Residualfunktion und $y_k$ die Ausgabe des Blocks. Dieses Vorgehen ermöglicht einem Residual-Block das \textit{Identity-Mapping} mit geringer Rechenkomplexität zu realisieren, indem die Eingabe unverändert zur Ausgabe addiert wird.
+Dabei bezeichnet $x_k$ die Eingabe eines Blocks, $\mathcal{F}(x_k, \mathcal{W}_k)$ die durch die Schichten parametrisierte Residualfunktion und $y_k$ die Ausgabe des Blocks. Dieses Vorgehen ermöglicht einem Residual-Block das \textit{Identity-Mapping} mit geringer Rechenkomplexität zu realisieren, indem die Eingabe unverändert zur Ausgabe addiert wird.
 
 Dies ist besonders vorteilhaft, wenn die Ausgabe eines Blocks ähnlich der Eingabe ist, da die Schichten dann nur lernen müssen, die Unterschiede zu modellieren, anstatt die gesamte Funktion zu lernen.
 
-Im originalen Paper \cite{he2016resnet} wurde ein 152-Schichte-Deep-Neural-Network vorgestellt, das auf dem ImageNet-Datensatz eine Top-5-Fehlerquote von nur 3,57\% erreichte. ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation.
-ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation.
+ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation. Im originalen Paper \cite{he2016resnet} wurde ein 152-Schichte-Deep-Neural-Network vorgestellt, das auf dem ImageNet-Datensatz eine Top-5-Fehlerquote von nur 3,57\% erreichte.
 
 \todox[]{EfficientNet vorstellen, da es im Projekt benutzt wurde.}
 \todox[]{MobileNet vorstellen, da es im Projekt benutzt wurde.}
