@@ -276,3 +276,7 @@ TSWLatexianTemp*
 *.lpz
 clear.bat
 htwsaar-i-mst-vorlage.tcp
+
+
+# Created documents
+*.pdf
