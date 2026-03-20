@@ -70,11 +70,11 @@ Fragen 9 bis 15 befassen sich mit der Selbsteinschätzung zum Verständnis von G
 \begin{enumerate}
     \item  Das Tool hat mir geholfen, das Verhalten des Modells besser zu verstehen [Zustimmung]
     \item  Ich kann anhand der Visualisierungen erkennen, welche Eingabemerkmale für die Modellentscheidung relevant waren. [Zustimmung]
-    \item  Die Erklärungen haben meine Fähigkeit verbessert, KI-Vorhersagen kritisch zu beurteilen [Zustimmung]
-    \item  Das Tool hat mir geholfen zu erkennen, wann das Modell möglicherweise falsche Vorhersagen trifft [Zustimmung]
-    \item  Das Tool hat mir geholfen, die Grenzen von KI-Modellen besser zu erkennen [Zustimmung]
-    \item  Ich verstehe besser den Unterschied zwischen der Genauigkeit eines Modells und seiner Interpretierbarkeit [Zustimmung]
-    \item  Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe [Zustimmung]
+    \item  Die Erklärungen haben meine Fähigkeit verbessert, KI-Vorhersagen kritisch zu beurteilen [Zustimmung] [Frage 11]
+    \item  Das Tool hat mir geholfen zu erkennen, wann das Modell möglicherweise falsche Vorhersagen trifft [Zustimmung] [Frage 12]
+    \item  Das Tool hat mir geholfen, die Grenzen von KI-Modellen besser zu erkennen [Zustimmung] [Frage 13]
+    \item  Ich verstehe besser den Unterschied zwischen der Genauigkeit eines Modells und seiner Interpretierbarkeit [Zustimmung] [Frage 14]
+    \item  Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe [Zustimmung] [Frage 15]
     \item  Bemerkungen [Freitext]
    \end{enumerate}
 \section{Ergebnisse}  
@@ -92,11 +92,11 @@ Alle Studenten sind im Studiengang Praktische Informatik.
 \subsection{Qualitative Daten}
 Die Studienteilnehmer waren Anfänger/fortgeschrittener Anfänger in KI und ML für Bilderkennung, dazu sind die meisten an xAI interessiert und haben sich positiv gegenüber der Möglichkeit geäußert, über Visualisierungen zu erkennen, welche Eingabemerkmale für die Modellentscheidung relevant waren.
 
-Obwohl die meisten neutral gegenüber 'Die Erklärungen haben meine Fähigkeit verbessert, KI-Vorhersagen kritisch zu beurteilen.' waren, haben die meisten den Aussagen 'Das Tool hat mir geholfen zu erkennen, wann das Modell möglicherweise falsche Vorhersagen trifft.' und 'Das Tool hat mir geholfen, die Grenzen von KI-Modellen besser zu erkennen.' zugestimmt.
+Obwohl die meisten neutral gegenüber [Frage 11] waren, haben die meisten den Aussagen [Frage 12] und [Frage 13]' zugestimmt.
 
-Die Antworten waren neutral zu 'Ich verstehe besser den Unterschied zwischen der Genauigkeit eines Modells und seiner Interpretierbarkeit.'
+Die Antworten waren neutral zu [Frage 14].
 
-Die Antworten waren Neutral oder negativ zu 'Ich vertraue der Entscheidung des KI-Modells, nachdem ich das Tool gesehen habe.'
+Die Antworten waren Neutral oder negativ zu [Frage 15].
 
 Es gab zwei Bemerkungen: 
 
@@ -107,10 +107,16 @@ Es gab zwei Bemerkungen:
 \subsection{Analyse}
 Die Frage 'Ich verstehe besser den Unterschied zwischen der Genauigkeit eines Modells und seiner Interpretierbarkeit.' wurde nicht genau verstanden. Die Teilnehmer wussten wohl nicht was genau Interpretierbarkeit und Genauigkeit in Hinsicht auf KI-Modelle ist. Daher waren die Antworten vorwiegend Neutral. Die Auswahl verschiedener Modelle war außerdem möglich wir haben es nur nicht in der Demo gezeigt.
 
+Das Tool hilft den Teilnehmer dabei die Grenzen von KI-Modellen zu erkennen, sowie zu erkennen, wann das KI-Modell möglicherweise falsche Entscheidungen trifft. Die allgemeine Fähigkeit KI-Modelle kritisch zu beurteilen wurde dennoch nach der Umfrage nicht verbessert.
 
+Zudem war das Vertrauen in die Entscheidund des KI-Modells neutral bleibend bis gesunken, wahrscheinlich durch die Wahl der zu klassifizierenden Bildern, da zwei davon falsch klassifiziert wurden.
 \subsubsection{Bemerkungen}
 Das Tool ist nicht als Industrielle Anwendung oder Nutzeranwendung geplant sondern als Anwendung zum Zeigen von XAI Methoden im Studium, eine moderne UI wäre vorteilhaft, aber im Rahmen dieser Projektarbeit nicht realistisch.
 
-GradCam und LIME liefern eine visuelle Erklärung wieso das Modell das Bild einer Klasse zugeordnet hat, es liefert keine Erklärung wieso etwas inkorrekt klassifiziert wurde. 
+Da GradCam und LIME visuell über Heatmaps oder Bereiche funktionieren war es schwer zu erkennen, wieso das Modell misklassifiziert hat. Diese Erklärung wurde nach den Bemerkungen als mangelhaft angesehen.
+
+GradCam und LIME liefern also eine visuelle Erklärung wieso das Modell das Bild einer Klasse zugeordnet hat, es liefert keine eindeutige Erklärung wieso etwas inkorrekt klassifiziert wurde. 
+
+Die Antworten waren ziemlich homogen. Wahrscheinlich weil die Zielgruppe auch homogen war, also PI-Studis, die einen ähnlichen Hintergrund haben.
 \todox[]{Quantitative Ergebnisse der Fallstudie präsentieren}
 \subsection{Quantitative Daten}
