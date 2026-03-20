@@ -2,12 +2,17 @@
 
 \todox[]{Intro schreiben}
 
-\section{Bildklassifikation}
-\todox[]{Intro schreiben: Was ist Bildklassifikation? Warum ist sie wichtig? Welche Anwendungsfälle gibt es?}
+\section{ImageNet als Innovationstreiber in der Bildklassifikation}
 
-Mit der zunehmenden Verfügbarkeit von großen Bilddatensätzen und der Entwicklung leistungsfähiger Hardware haben sich Deep Learning-Modelle als äußerst effektiv für die Bildklassifikation erwiesen \cite{alex2012alexnet}.
+Als eines der bekanntesten Daten- und Benchmarking-Quellen in der Bildklassifikation gilt ImageNet, ein Projekt der Universitäten Stanford und Princeton \cite{imagenet_homepage}. Im Rahmen dieser Initiative wurden über die Jahre hinweg mehrere Datensätze veröffentlicht, auf denen Forscher ihre Modelle trainiert und getestet haben. Beispielsweise wurden 2009 zirka 3.2 Millionen Bilder zur Verfügung gestellt, die 5427 Kategorien zugeordnet wurden \cite{deng2009imagenet}.
 
-In diesem Abschnitt werden einige der wichtigsten Architekturen vorgestellt, die in diesem Bereich verwendet werden.
+Zwischen 2012 und 2017 wurden die sogennanten ImageNet Large Scale Visual Recognition Challenge (ILSVRC) durchgeführt, bei der Forscher ihre Modelle auf einem standardisierten Datensatz mit \enquote{ 1,281,167 training images, 50,000 validation images and 100,000 test images} \cite{imagenet_download} testen und vergleichen konnten \cite{imagenet_lsvrc_challenge, imagenet_homepage}. Diese Challenges haben zu bedeutenden Fortschritten in der Bildklassifikation geführt: Forscher haben Daten erhalten und eine standardisierte Umgebung, in der sie ihre Techniken testen und vergleichen konnten, was zu einem intensiven Wettbewerb geführt hat, in dem viele innovative Architekturen0 entsanden sind.
+Zwischen 2012 und 2017 wurden die sogennanten ImageNet Large Scale Visual Recognition Challenge (ILSVRC) durchgeführt, bei der Forscher ihre Modelle auf einem standardisierten Datensatz mit \enquote{ 1,281,167 training images, 50,000 validation images and 100,000 test images} \cite{imagenet_download} testen und vergleichen konnten \cite{imagenet_lsvrc_challenge, imagenet_homepage}. Diese Challenges haben zu bedeutenden Fortschritten in der Bildklassifikation geführt: Forscher haben Daten erhalten und eine standardisierte Umgebung, in der sie ihre Techniken testen und vergleichen konnten, was zu einem intensiven Wettbewerb geführt hat, in dem viele innovative Architekturen0 entsanden sind.
+Zwischen 2012 und 2017 wurden die sogennanten ImageNet Large Scale Visual Recognition Challenge (ILSVRC) durchgeführt, bei der Forscher ihre Modelle auf einem standardisierten Datensatz mit \enquote{ 1,281,167 training images, 50,000 validation images and 100,000 test images} \cite{imagenet_download} testen und vergleichen konnten \cite{imagenet_lsvrc_challenge, imagenet_homepage}. Diese Challenges haben zu bedeutenden Fortschritten in der Bildklassifikation geführt: Forscher haben Daten erhalten und eine standardisierte Umgebung, in der sie ihre Techniken testen und vergleichen konnten, was zu einem intensiven Wettbewerb geführt hat, in dem viele innovative Architekturen und Verfahren entstanden sind.
+
+
+\section{Architekturen für die Bildklassifikation}
+Mit der zunehmenden Verfügbarkeit von großen Bilddatensätzen und der Entwicklung leistungsfähiger Hardware haben sich Deep Learning-Modelle als äußerst effektiv für die Bildklassifikation erwiesen \cite{alex2012alexnet}. In den folgenden Abschnitten werden einige der wichtigsten Architekturen vorgestellt, die in diesem Bereich verwendet werden.
 
 \subsection{Convolutional Networks}
 Im Vergleich zu den klassischen \textit{Feedfoward Neural Networks} (FNNs) sind \textit{Convolutional Neural Networks} (CNNs) effizienter: Sie haben eine effiziente Struktur mit weniger Gewichten und Kanten zwischen den Modell-Schichten etabliert, was das Training erleichtert, ohne dabei einen betrachtlichen Verlust an Leistung zu verursachen. \cite{alex2012alexnet}
@@ -39,8 +44,13 @@ Dabei bezeichnet $x_k$ die Eingabe eines Blocks, $\mathcal{F}(x_k, \mathcal{W}_k
 Dies ist besonders vorteilhaft, wenn die Ausgabe eines Blocks ähnlich der Eingabe ist, da die Schichten dann nur lernen müssen, die Unterschiede zu modellieren, anstatt die gesamte Funktion zu lernen.
 
 ResNets haben in vielen Bildklassifikationswettbewerben hervorragende Ergebnisse erzielt und sind nach wie vor eine der beliebtesten Architekturen für die Bildklassifikation. Im originalen Paper \cite{he2016resnet} wurde ein 152-Schichte-Deep-Neural-Network vorgestellt, das auf dem ImageNet-Datensatz eine Top-5-Fehlerquote von nur 3,57\% erreichte.
+
 \subsection{EfficientNetV2}
-\todox[]{EfficientNetV2 vorstellen, da es im Projekt benutzt wurde.}
+
+EfficientNet ist eine Familie von Convolutional Neural Networks, die eine bessere Leistung bei geringerer Rechenkomplexität erzielen. So hat sich das Modell EfficientNetV2, die Nachfolgerversion von EfficientNetV1, als besonders leistungsfähig erwiesen: Es verfügt über eine Top-1-Genauigkeit von 85,7\% auf dem ImageNet-Datensatz und gleichzeitig 3-9 Mal schnelleres Trainingsverfahren und 6-8x weniger Gewichtsparameter als der Großteil ähnlicher Neural Networks im Stand der Technik zu dem Zeitpunkt \cite{tan2021efficientnetv2}.
+
+Diese Errungenschaft wurde vor allem durch die Einführung von Automated Machine Learning anhand Neural Architecture Search (NAS) zur Optimierung der Architektur von EfficientNetV2 und durch die Einführung von \textit{Fused-MBConv}-Blöcken erreicht, indem es die Suche nach der besten Kombination von Schichten und Hyperparametern zur Leistungsoptimierung automatisiert hat \cite{tan2021efficientnetv2}. Darüber hinaus hat die Verwendung von \textit{Progressive Learning} beim Training – zunächst mit kleineren Bildern und weniger Regularisierung und dann mit größeren Bildern und mehr Regularisierung – sich als besonders effektiv erwiesen, um die Trainingszeit zu verkürzen, ohne dabei die Korrektklassifizierungsrate des Modells zu beeinträchtigen \cite{tan2021efficientnetv2}.
+
 
 \section{XAI-Verfahren}
 \todox[]{kurz Erklären, was XAI ist, warum es wichtig ist, und welche Ziele es verfolgt (Vertrauen, Nachvollziehbarkeit etc.)}
