@@ -2,11 +2,36 @@
 
 \section{Webapplikation als Grafische Benutzeroberfläche}
 
-\todox[]{Screenshots der GUI einfügen}
-\todox[]{Begründung der Wahl einer Webapplikation als GUI (Plattformunabhängigkeit, Zugänglichkeit etc.)}
-\todox[]{Beschreibung der GUI-Elemente und deren Funktionalität}
-\todox[]{Erläuterung der Interaktionen zwischen Nutzer und GUI}
+\subsection{Wahl einer Webapplikation}
+Wir haben uns dafür entschieden, die Grafische Benutzeroberfläche (GUI) als Webapplikation zu implementieren.
+Ein Grund dafür ist die Plattformunabhängigkeit.
+Da die Anwendung im Browser läuft, kann sie auf allen Betriebssystemen ausgeführt werden.
+Läuft die Anwendung auf einem Webserver, ist sie auch leicht zugänglich, da keine Installation benötigt wird, was es vereinfacht, sie zu Demonstrationszwecken in Vorlesungen einzusetzen.
+Es erleichtert auch das Design, das mit HTML-Templates definiert wurde.
+Zur Implementierung der Webapplikation wurde das Framework FastAPI verwendet und die Templates wurden mit Jinja2 erstellt.
 
+\subsection{GUI-Elemente}
+Auf der linken Seite der GUI befinden sich die beiden Buttons \("\)Upload\("\) und \("\)Classify\("\).
+Durch einen Klick auf den Upload-Button wird ein Bild hochgeladen, das in der Mitte der Seite angezeigt wird.
+Unter dem Bild kann über ein Dropdown-Menü das Modell zur Klassifizierung ausgewählt werden.\\
+\includegraphics[width=\linewidth]{Graphics/uploaded_image}
+Das hochgeladene Bild kann dann mit dem Classify-Button klassifiziert werden.
+Dann erscheinen unter dem Bild zwei Dropdown-Menüs zur Auswahl einer der 5 wahrscheinlichsten Klassen und einer Erklärungsart.\\
+\includegraphics[width=\linewidth]{Graphics/classified_image}
+Die möglichen Erklärungsarten sind Grad-CAM und LIME.
+Durch Klick auf den Explain-Button wird die ausgewählte Erklärung für die ausgewählte Klasse ausgeführt und eine Heatmap über dem Bild angezeigt.
+Bei Grad-CAM markieren verschiedene Farben die Relevanz bestimmter Bereiche für die Klassifizierung des Bildes.
+Bei LIME wird nur in einer Farbe angezeigt, welcher Bereich für die Klassifizierung relevant war.\\
+\includegraphics[width=\linewidth]{Graphics/gradcam}
+\includegraphics[width=\linewidth]{Graphics/lime}
+
+\subsection{Interaktion mit der GUI}
+Das Layout der Seite wird über HTML-Templates definiert.
+Die Buttons zum Hochladen und Klassifizieren werden immer angezeigt.
+Der Upload-Button ist ein \verb|<input>|-Element, mit dem eine Datei ausgewählt werden kann.
+Das Element befindet sich in einem \verb|<form>|-Element, so dass beim Auswählen einer Datei diese in einer POST-Request an die URL \verb|/upload| gesendet wird.
+Ein weiteres \verb|<form>|-Element enthält ein verstecktes \verb|<input>|-Element, dass als \verb|value| die URL des hochgeladenen Bildes hat und ein \verb|<button>|-Element, über das eine POST-Request an \verb|/classify| gesendet wird.
+Diese sendet durch das \verb|<input>|-Elements die URL des Bildes an den Server.
 
 \section{Built-in Support für Grad-CAM sowie LIME auf EfficientNetV2}
 
