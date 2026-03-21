@@ -54,3 +54,15 @@ Das macht es zu einem sehr effizienten Netz bei hoher Genauigkeit.
 Der Speicherbedarf ist nicht zu hoch und bei einer Demonstration in einer Vorlesung hat es den Vorteil, dass das Netz nicht mehr trainiert werden muss und die Klassifizierung schnell abgeschlossen ist.
 
 \subsection{Implementierung der XAI-Verfahren}
+Für die Implementierung der XAI-Methoden gibt es die Klasse \verb|ExplainableAITechnique| mit der Methode \verb|explain|.
+Diese bekommt als Parameter eine\verb|Prediction|, bestehend aus ID, Name und Wahrscheinlichkeit einer Klasse, sowie ein \verb|NeuralNetwork|-Modell und wird in den Unterklassen \verb|GradCAM| und \verb|LIME| von der jeweiligen Methode implementiert.
+
+\subsubsection{Grad-CAM}
+Zur Generierung einer Grad-CAM-Erklärung wird zuerst die letzte Convolutional Layer des Netzes gefunden.
+Dort wird dann eine Forward-Hook zum Speichern der Aktivierungen und eine Backward-Hook zum Speichern der Gradienten erstellt.
+Dann wird ein Forward Pass und ein Backward Pass durchgeführt, wodurch die Hooks ausgelöst werden.
+Die Gewichte der Filter werden anhand des Mittelwertes der Gradienten berechnet und mit ihnen die gewichtete Summe der Feature Maps gebildet, wodurch ein 2D-Array entsteht.
+Daraufhin wird noch eine ReLU-Funktion angewendet und eine Normalisierung durchgeführt, damit sich alle Werte zwischen 0 und 1 befinden.
+Das 2D-Array wird schließlich in eine Heatmap umgewandelt und transparent über das Bild gelegt.
+
+\subsubsection{LIME}
