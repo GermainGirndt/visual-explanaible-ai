@@ -6,7 +6,7 @@
 
 Als eine der bekanntesten Daten- und Benchmarking-Quellen in der Bildklassifikation gilt ImageNet, ein Projekt der Universitäten Stanford und Princeton \cite{imagenet_homepage}. Im Rahmen dieser Initiative wurden über die Jahre hinweg mehrere Datensätze veröffentlicht, auf denen Forscher ihre Modelle trainiert und getestet haben. Beispielsweise wurden 2009 zirka 3,2 Millionen Bilder zur Verfügung gestellt, die 5427 Kategorien zugeordnet wurden \cite{deng2009imagenet}.
 
-Zwischen 2012 und 2017 wurden die sogenannten ImageNet Large Scale Visual Recognition Challenges (ILSVRC) durchgeführt, bei denen Forscher ihre Modelle auf einem standardisierten Datensatz mit \enquote{1,281,167 training images, 50,000 validation images and 100,000 test images} \cite{imagenet_download} testen und vergleichen konnten \cite{imagenet_lsvrc_challenge, imagenet_homepage}. Diese Challenges haben zu bedeutenden Fortschritten in der Bildklassifikation geführt: Forscher erhielten Daten und eine standardisierte Umgebung, in der sie ihre Techniken testen und vergleichen konnten, was zu einem intensiven Wettbewerb führte, in dem viele innovative Architekturen entstanden sind.
+Zwischen 2012 und 2017 wurden die sogenannten ImageNet Large Scale Visual Recognition Challenges (ILSVRC) durchgeführt, bei denen Forscher ihre Modelle auf einem standardisierten Datensatz mit 1,281,167 Trainingsbildern, 50,000 Validierungsbildern und 100,000 Testbildern \cite{imagenet_download} testen und vergleichen konnten \cite{imagenet_lsvrc_challenge, imagenet_homepage}. Diese Challenges haben zu bedeutenden Fortschritten in der Bildklassifikation geführt: Forscher erhielten Daten und eine standardisierte Umgebung, in der sie ihre Techniken testen und vergleichen konnten, was zu einem intensiven Wettbewerb führte, in dem viele innovative Architekturen entstanden sind.
 
 \section{Architekturen für die Bildklassifikation}
 
@@ -57,6 +57,7 @@ Obwohl Deep Neural Networks (DNNs) eine beeindruckende Leistung bei der Bildklas
 
 In diesem Zusammenhang gewinnt das Forschungsfeld der Explainable Artificial Intelligence (XAI) zunehmend an Bedeutung, da es darauf abzielt, Methoden und Techniken zur Interpretierbarkeit und Transparenz von KI-Modellen zu entwickeln, wobei der Mensch als zentraler Fokus im Mittelpunkt steht \cite{selvaraju2017gradcam}. So ermöglicht XAI die Identifizierung von Fehlern, die Herstellung von geeignetem Vertrauen und Zutrauen bei Nutzern sowie das Gewinnen von Erkenntnissen über die Funktionsweise von Modellen und Systemen \cite{selvaraju2017gradcam}.
 
+
 In den nächsten Abschnitten werden einige der wichtigsten XAI-Verfahren vorgestellt, die in der Bildklassifikation verwendet werden, um die Entscheidungsprozesse von Modellen wie ResNet und EfficientNetV2 besser zu verstehen.
 
 \subsection{Grad-CAM}
@@ -74,18 +75,36 @@ In den nächsten Abschnitten werden einige der wichtigsten XAI-Verfahren vorgest
 \end{minipage}
 
 \captionof{figure}{Grad-CAM Visualizierung für zwei Beispiele wie in \cite{selvaraju2017gradcam}: 
-für ein Bild eines Hundes und einer Katze (links) visualisiert das Grad-CAM-Verfahren die wichtigsten Regionen bei der Vorhersage von 'Katze' (oben rechts) und 'Hund' (unten rechts).}
-\label{fig:gradcam}
+für ein Bild eines Hundes und einer Katze (links) visualisiert das Grad-CAM-Verfahren die wichtigsten Regionen bei der Vorhersage von 'Katze' (oben rechts) und 'Hund' (unten rechts) (Bild von \cite{selvaraju2017gradcam}).}
+\label{fig:gradcam-1}
 \end{minipage}
 
 \vspace{0.5em}
 
 Das Verfahren Grad-CAM (\textit{Gradient-weighted Class Activation Mapping}) ermöglicht es, die Bereiche eines Bildes zu identifizieren, die für die Vorhersage eines Modells am wichtigsten sind \cite{selvaraju2017gradcam}. Es basiert auf der Berechnung von Gradienten, um die Bedeutung der verschiedenen Regionen eines Bildes für die Vorhersage zu bestimmen. Durch die Visualisierung dieser Regionen können Forscher und Anwender besser verstehen, welche Merkmale des Bildes das Modell für seine Entscheidungen verwendet \cite{selvaraju2017gradcam}.
 
-Grad-CAM kann auf verschiedenen CNNS angewandt werden, inbesondere \enquote{(1) CNNs with Fully-Connected-Layers (e.g. VGG), (2) CNNs used for structured outputs (e.g. captioning), (3) CNNs used in tasks with multi-modal inputs (e.g. VQA) or reinforcement learning} \cite{selvaraju2017gradcam}, ohne das ursprüngliche Modell zu verändern.
+Grad-CAM kann auf verschiedenen CNNS angewandt werden, inbesondere (1) CNNs mit Fully-Connected-Layers (z. B. VGG), (2) CNNs für struktierte Ausgaben (z. B. Captioning) und (3) CNNs für Tasks mit multi-modalen Eingaben oder Reinforcement-Learning, ohne das ursprüngliche Modell zu verändern \cite{selvaraju2017gradcam}.
 
 
 \subsection{LIME}
+
+\begin{minipage}{\linewidth}
+\centering
+\begin{minipage}{1.0\linewidth}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Graphics/lime-1.png}
+\end{minipage}
+\captionof{figure}{Daten über Patientensymptome und die vorhergesate Diagnose eines Modells können erklärt werden, indem die wichtigsten Merkmale für die Vorhersage durch LIME identifiziert werden (Bild von \cite{ribeiro2016lime}).}
+\label{fig:lime-1}
+\end{minipage}
+\vspace{0.5em}
+
+Im Gegensatz zu Grad-CAM bietet LIME (\textit{Local Interpretable Model-agnostic Explanations}) eine \textbf{agnotische} Methode zur Erklärung von Vorhersagen in beliebigen Modellarchitekturen.
+
+Die Idee hinter LIME ist simpel. Die Vorhersage eines Modells für eine bestimmte Eingabe kann durch die Erstellung eines einfachen, interpretablen Modells in der Nähe dieser Eingabe approximiert werden.  Das einfache Modell kann dann verwendet werden, um die Vorhersage des komplexen Modells zu erklären, indem es die wichtigsten Merkmale identifiziert, die zur Vorhersage beitragen \cite{ribeiro2016lime, molnar2022interpretable}.
+
+Dies wird folgendermaßen realisiert: Permutationen der originallen Daten werden erstellt und die Vorhersage des zu erklärenden Modells für diese Variationen berechnet. Die Permutationen sowie die daraus resultierenden Vorhersagen werden dann verwendet, um ein einfaches gewichtetes Modell zu trainieren, das die Vorhersage des komplexen Modells in der Nähe der ursprünglichen Eingabe approximiert. Dieses einfache, lokale Modell wird dann zur Erklärung der ursprünglichen Vorhersage verwendet \cite{ribeiro2016lime, molnar2022interpretable}.
+
 
 \subsection{Layerwise Relevance Propagation}
 
