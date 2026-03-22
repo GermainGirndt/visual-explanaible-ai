@@ -6,9 +6,30 @@ Im folgenden werden die Ergebnisse der Fallstudie evaluiert und diskutiert die W
 \subsection{Vergleich nach der Demonstration}
 Das Tool hat nach der Umfrage den Teilnehmern geholfen, die Modellentscheidung durch die Visualisierung zu verstehen und erkennen welche Eingabemermale für die Klassifizierung relevant waren. 
 Das Tool hat außerdem geholfen zu erkennen, wann das KI Modell möglicherweise falsche Vorhersagen trifft und zeigt Grenzen des KI-Modells auf. 
+\subsection{Schlussfolgerungen}
+Unser Tool hat also dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da GradCam und LIME visuell funktionieren werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar. 
+
+Das ist nur kritisch wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
+Das Tool liefert also keine ausreichende Erklärung wieso etwas falsch klassifiziert wurde oder wieso diese Eingabemerkmale genau relevant sind. 
+
+Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Modelle verringern, was aber auch mit der Auswahl von EfficientNetV2 zu tun haben könnte, da auch bessere KI-Modelle mit einer geringeren Fehlerrate existieren. Es wurden auch zwei richtig klassifizierte Bilder und zwei falsch klassifizierte Bilder gezeigt, was den Eindruck von dem KI-Modell verzerrt.
 
 \todox[]{Was haben andere Studien zum Thema herausgefunden? Was war deren Ergebnisse? Wie lassen sich die Ergebnisse mit den Ergebnissen von dieser Studie vergleichen?}
 \section{Studienlage}
+\subsection{Andere Studien}
+\subsubsection{Mangelnde Interpretierbarkeit}
+xAI zeigt welche Features und Muster wichtig für die interne KI-Modell Entscheidung sind. Diese Muster ergeben, aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.
+
+Eine Heatmap, die durch LRP erstellt wurde kann so zum Beispiel einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}.
+\subsection{Vergleich}
 \todox[]{Herr Tholen: Grenzen der Fallstudie diskutieren (z.B. Stichprobengröße, Repräsentativität etc., Definition von "Interpretierbarkeit" und "Vertrauen" in diesem Kontext)}
 \todox[]{Mögliche Verzerrungen}
 \section{Grenzen und Verzerrungen}
+\subsection{Stichprobengröße}
+Wir hatten nur 5 verwertbare Umfragebögen, Stand  WS 2023/2024 gab es im Studiengang Praktische Informatik 303 Studierende und im Studiengang Kommunikationsinformatik 124 Studierende \cite{htwStudents}. 5 davon sind unter 1 Prozent.
+
+Die Repräsentativität einer Stichprobe ist wie unverzerrt die Merkmalszusammensetzung in der Stichprobe die Merkmalszusammensetzung in der Zielgruppe widerspiegelt \cite{Döring2023}[S. 198]. Nicht alle Studierende dieser Studiengänge belegen Einführung in die Grundlagen der Künstlichen Intelligenz und nur ein Teil dieser Studierenden nehmen regelmäßig an der Vorlesung währenddessen die Umfrage stattfand teil. %Hier Zahlen noch raussuchen
+Die Ergebnisse der Umfrage waren ziemlich homogen. Die Umfrage ist nicht unbedingt repräsentativ für alle Studenten im Studiengang Praktische Informatik und Kommunikationsinformatik, aber spiegelt Studenten, die Einführung in die Grundlagen der Künstlichen Intelligenz und regelmäßig die Vorlesung besucht gut dar. 
+\subsection{Demonstration}
+\subsubsection{KI-Modell}
+\subsubsection{Beispiele}
