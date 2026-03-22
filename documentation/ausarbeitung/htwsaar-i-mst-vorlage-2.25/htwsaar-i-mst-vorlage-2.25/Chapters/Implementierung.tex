@@ -35,6 +35,34 @@ Diese sendet durch das \verb|<input>|-Elements die URL des Bildes an den Server.
 
 \section{Built-in Support für Grad-CAM sowie LIME auf EfficientNetV2}
 
-\todox[]{Begründung der Wahl von Grad-CAM und LIME als XAI-Verfahren (Vielfalt der Ansätze, Popularität etc.)}
-\todox[]{Begründung der Wahl von EfficientNetV2 als vortrainiertes CNN-Modell (Leistung, Effizienz etc.)}
-\todox[]{Beschreibung der Implementierung der XAI-Verfahren auf das CNN-Modell}
+\subsection{Wahl der XAI-Verfahren}
+Wir haben uns für die XAI-Verfahren Grad-CAM und LIME entschieden.
+Diese beiden Verfahren gehören zu den beliebtesten XAI-Verfahren und vor allem Grad-CAM wurde seit Mitte 2025 immer beliebter.
+Aufgrund der Popularität werden diese Verfahren häufig in wissenschaftlichen Papers behandelt und sind gut dokumentiert.
+Außerdem sind die Methoden mit PyTorch einfach zu implementieren.
+Mit zwei unterschiedlichen Verfahren lässt sich auch der Unterschied zwischen der modellspezifischen und der modellagnostischen Funktionsweise zeigen.
+Grad-CAM ist modellspezifisch, da es mit den Gradienten des Neural Networks arbeitet.
+LIME ist dagegen modellagnostisch und approximiert die Klassifizierung lokal.\\
+\includegraphics[width=\linewidth]{Graphics/google_trends_gradcam}
+
+\subsection{Wahl des CNN-Modells}
+Als CNN-Modell wurde ein vortrainiertes EfficientNetV2 verwendet.
+Dieses kann wie viele andere Modelle über torchvision verwendet werden.
+EfficientNetV2 ist in den Größen L, M und S verfügbar, hier wird das Modell in Grüße L genutzt.
+Mit einer Acc@1 von 85.8\% und einer Acc@5 von 97.8\% ist es eines der genauesten Netze und mit 118,5 Millionen Parametern deutlich kleiner als Modelle mit ähnlicher Genauigkeit (Regnet\_Y\_128GF hat 644,8 Millionen Parameter).\cite{torchvision_models}
+Das macht es zu einem sehr effizienten Netz bei hoher Genauigkeit.
+Der Speicherbedarf ist nicht zu hoch und bei einer Demonstration in einer Vorlesung hat es den Vorteil, dass das Netz nicht mehr trainiert werden muss und die Klassifizierung schnell abgeschlossen ist.
+
+\subsection{Implementierung der XAI-Verfahren}
+Für die Implementierung der XAI-Methoden gibt es die Klasse \verb|ExplainableAITechnique| mit der Methode \verb|explain|.
+Diese bekommt als Parameter eine\verb|Prediction|, bestehend aus ID, Name und Wahrscheinlichkeit einer Klasse, sowie ein \verb|NeuralNetwork|-Modell und wird in den Unterklassen \verb|GradCAM| und \verb|LIME| von der jeweiligen Methode implementiert.
+
+\subsubsection{Grad-CAM}
+Zur Generierung einer Grad-CAM-Erklärung wird zuerst die letzte Convolutional Layer des Netzes gefunden.
+Dort wird dann eine Forward-Hook zum Speichern der Aktivierungen und eine Backward-Hook zum Speichern der Gradienten erstellt.
+Dann wird ein Forward Pass und ein Backward Pass durchgeführt, wodurch die Hooks ausgelöst werden.
+Die Gewichte der Filter werden anhand des Mittelwertes der Gradienten berechnet und mit ihnen die gewichtete Summe der Feature Maps gebildet, wodurch ein 2D-Array entsteht.
+Daraufhin wird noch eine ReLU-Funktion angewendet und eine Normalisierung durchgeführt, damit sich alle Werte zwischen 0 und 1 befinden.
+Das 2D-Array wird schließlich in eine Heatmap umgewandelt und transparent über das Bild gelegt.
+
+\subsubsection{LIME}
