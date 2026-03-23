@@ -15,15 +15,19 @@ Auf der linken Seite der GUI befinden sich die beiden Buttons \("\)Upload\("\) u
 Durch einen Klick auf den Upload-Button wird ein Bild hochgeladen, das in der Mitte der Seite angezeigt wird.
 Unter dem Bild kann über ein Dropdown-Menü das Modell zur Klassifizierung ausgewählt werden.\\
 \includegraphics[width=\linewidth]{Graphics/uploaded_image}
+\captionof{figure}{Anzeige des hochgeladenen Bildes}
 Das hochgeladene Bild kann dann mit dem Classify-Button klassifiziert werden.
 Dann erscheinen unter dem Bild zwei Dropdown-Menüs zur Auswahl einer der 5 wahrscheinlichsten Klassen und einer Erklärungsart.\\
 \includegraphics[width=\linewidth]{Graphics/classified_image}
+\captionof{figure}{Anzeige der 5 wahrscheinlichsten Klasse in einem Dropdown-Menü}
 Die möglichen Erklärungsarten sind Grad-CAM und LIME.
 Durch Klick auf den Explain-Button wird die ausgewählte Erklärung für die ausgewählte Klasse ausgeführt und eine Heatmap über dem Bild angezeigt.
 Bei Grad-CAM markieren verschiedene Farben die Relevanz bestimmter Bereiche für die Klassifizierung des Bildes.
 Bei LIME wird nur in einer Farbe angezeigt, welcher Bereich für die Klassifizierung relevant war.\\
 \includegraphics[width=\linewidth]{Graphics/gradcam}
+\captionof{figure}{Anzeige der Grad-CAM-Heatmap über dem Bild}
 \includegraphics[width=\linewidth]{Graphics/lime}
+\captionof{figure}{Anzeige des LIME-Overlays über dem Bild}
 
 \subsection{Interaktion mit der GUI}
 Das Layout der Seite wird über HTML-Templates definiert.
@@ -44,6 +48,7 @@ Mit zwei unterschiedlichen Verfahren lässt sich auch der Unterschied zwischen d
 Grad-CAM ist modellspezifisch, da es mit den Gradienten des Neural Networks arbeitet.
 LIME ist dagegen modellagnostisch und approximiert die Klassifizierung lokal.\\
 \includegraphics[width=\linewidth]{Graphics/google_trends_gradcam}
+\captionof{figure}{Zeitlicher Verlauf der Suchanfragen zu Grad-CAM im Vergleich zu anderen Methoden}
 
 \subsection{Wahl des CNN-Modells}
 Als CNN-Modell wurde ein vortrainiertes EfficientNetV2 verwendet.
@@ -66,3 +71,9 @@ Daraufhin wird noch eine ReLU-Funktion angewendet und eine Normalisierung durchg
 Das 2D-Array wird schließlich in eine Heatmap umgewandelt und transparent über das Bild gelegt.
 
 \subsubsection{LIME}
+Eine Erklärung für LIME kann mit der Funktion \verb|explain_instance| erzeugt werden.
+Diese erhält als Eingabe unter anderem das Bild, die Klassifizierungsfunktion und die Anzahl der zufällig veränderten Bilder, die in diesem Fall auf 100 gesetzt ist.
+Die Klassifizierungsfunktion \verb|lime_predict| gibt anhand eines Arrays von leicht veränderten Bildern die Klassenwahrscheinlichkeiten für jedes Bild zurück.
+Über den Parameter \verb|segmentation_fn| wird hier festgelegt, dass das Bild in 30 Segmente aufgeteilt wird.
+Die Funktion \verb|get_image_and_mask| bestimmt, dass die 3 wichtigsten Segmente für die Klassifizierung eingefärbt werden.
+Am Ende wird dann ein transparentes Overlay, bei dem diese Segmente rot gefärbt sind, über das Bild gelegt.
