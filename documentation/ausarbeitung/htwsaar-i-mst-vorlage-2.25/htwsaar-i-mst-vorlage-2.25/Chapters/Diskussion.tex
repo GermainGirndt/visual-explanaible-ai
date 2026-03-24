@@ -21,7 +21,10 @@ Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Mode
 xAI zeigt welche Features und Muster wichtig für die interne KI-Modell Entscheidung sind. Diese Muster ergeben, aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.
 
 Eine Heatmap, die durch LRP erstellt wurde kann so zum Beispiel einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}.
+
+Je nach ausgewähltem Netz sind die Erklärungen durch Menschen mal mehr und mal weniger gut Interpretierbar.
 \subsection{Vergleich}
+Wenn das KI-Modell ein Bild klassifiziert werden die relevanten Bereiche gehighlightet. So kann man gut die relevanten Eingabemerkmale bestimmen, im Falle einer inkorrekten Klassifikation liefern visuelle Erklärmethoden, aber keine gut durch Menschen interpretierbare Erklärung.
 \todox[]{Herr Tholen: Grenzen der Fallstudie diskutieren (z.B. Stichprobengröße, Repräsentativität etc., Definition von "Interpretierbarkeit" und "Vertrauen" in diesem Kontext)}
 \todox[]{Mögliche Verzerrungen}
 \section{Grenzen und Verzerrungen}
@@ -32,4 +35,6 @@ Die Repräsentativität einer Stichprobe ist wie unverzerrt die Merkmalszusammen
 Die Ergebnisse der Umfrage waren ziemlich homogen. Die Umfrage ist nicht unbedingt repräsentativ für alle Studenten im Studiengang Praktische Informatik und Kommunikationsinformatik, aber spiegelt Studenten, die Einführung in die Grundlagen der Künstlichen Intelligenz und regelmäßig die Vorlesung besucht gut dar. 
 \subsection{Demonstration}
 \subsubsection{KI-Modell}
+In der Demonstration wurde EfficientNetV2 benutzt, es hat eine gute Performance dafür, dass es auf einem Laptop ausgeführt wurde. Leistungsstärkere Modelle klassifizieren Objekte öfter korrekt, aber sind für eine Demonstration auf einem Laptop nicht realistisch. Leistungsschwächere Modelle klassifizieren öfter falsch. Beide Arten können Fragen zum Vertrauen in KI-Modelle oder das Erkennen von Grenzen verzerren.
 \subsubsection{Beispiele}
+Es wurden zwei korrekt klassifizierte Bilder und zwei inkorrekt klassifizierte Bilder gezeigt, das hat wahrscheinlich die Antworten in Hinsicht zum Vertrauen in dieses KI-Modell und das Erkennen von Grenzen beeinflusst. Inkorrekt klassifizierte Bilder mindern das Vertrauen, aber zeigen auch, dass KI-Modelle Grenzen haben. 
