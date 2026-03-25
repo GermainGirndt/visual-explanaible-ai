@@ -12,7 +12,7 @@
     <nav>
       <section class="togglers-container">
         <form id="upload" action="/upload" method="post" enctype="multipart/form-data">
-          <label for="file-input" class="file-label">
+          <label id="upload-button" for="file-input" class="file-label">
             <img src="../static/assets/icons/image_icon.svg">
           </label>
           <input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
@@ -22,9 +22,13 @@
           <input type="hidden" name="image_url" value="{{ image_url }}" />
           <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img
               src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg"
-              id="share-3"></button> Classify
+              id="share-3"></button> <span id="classify-text">Classify</span>
         </form>
-      </section>
+          <div>
+              <button onclick="openExplanationModal()" id="explain-button">
+                  <img src="../static/assets/icons/comment_icon.svg">
+              </button>Explain
+          </div>
       </section>
     </nav>
   </header>
@@ -41,3 +45,13 @@
 </body>
 
 </html>
+
+<script>
+    function openExplanationModal() {
+        document.getElementById("explainModal").style.display = "block";
+    }
+
+    function closeExplanationModal() {
+        document.getElementById("explainModal").style.display = "none";
+    }
+</script>

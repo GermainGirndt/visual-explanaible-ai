@@ -145,13 +145,21 @@ body>main>header h1 {
   left: -12px;
 }
 
-#classify-button {
+#classify-button, #explain-button {
   background: none;
   border: none;
   cursor: pointer;
 }
 
+#upload-button {
+    cursor: pointer;
+}
 
+#classify-text {
+    position: relative;
+    left: -12px;
+    top: 5px;
+}
 
 @media (max-width: 1200px) {
   body {
@@ -162,4 +170,29 @@ body>main>header h1 {
     width: 100%;
     height: auto;
   }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
 }

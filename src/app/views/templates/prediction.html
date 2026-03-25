@@ -4,32 +4,44 @@
 
 <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
 <h3>Top {{ class_predictions|length }} Predictions:</h3>
+{% for p in class_predictions %}
+    <div>{{ p.class_name }} — {{ "%.2f"|format(p.confidence * 100) }}%</div>
+{% endfor %}
 
-<form action="/explain" method="post" id="explain-form" onsubmit="return validateSelection()">
-  <select id="prediction-select" onchange="updateValues(this)">
-    <option disabled selected>Select a class to explain</option>
-    {% for p in class_predictions %}
-    <option data-class-id="{{ p.class_id }}" data-class-name="{{ p.class_name }}" data-confidence="{{ p.confidence }}">
-      {{ p.class_name }} — {{ "%.2f"|format(p.confidence * 100) }}%
-    </option>
-    {% endfor %}
-  </select>
+<div id="explainModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeExplanationModal()">&times;</span>
 
-  <input type="hidden" name="class_id" id="class_id" />
-  <input type="hidden" name="class_name" id="class_name" />
-  <input type="hidden" name="confidence" id="confidence" />
+    <h3>Select explanation</h3>
 
-  <select name="expanation_type" id="expanation_type" onchange="updateMethod(value)">
-    <option disabled selected>Select an explanation type</option>
-    <option value="Gradcam">
-      Gradcam
-    </option>
-    <option value="LIME">
-      LIME
-    </option>
-  </select>
-  <button id="submit_button" type="submit">Explain</button>
-</form>
+    <form action="/explain" method="post" id="explain-form" onsubmit="return validateSelection()">
+      <select id="prediction-select" onchange="updateValues(this)">
+        <option disabled selected>Select a class to explain</option>
+        {% for p in class_predictions %}
+        <option data-class-id="{{ p.class_id }}" data-class-name="{{ p.class_name }}" data-confidence="{{ p.confidence }}">
+          {{ p.class_name }} — {{ "%.2f"|format(p.confidence * 100) }}%
+        </option>
+        {% endfor %}
+      </select>
+
+      <input type="hidden" name="class_id" id="class_id" />
+      <input type="hidden" name="class_name" id="class_name" />
+      <input type="hidden" name="confidence" id="confidence" />
+
+      <select name="expanation_type" id="expanation_type" onchange="updateMethod(value)">
+        <option disabled selected>Select an explanation type</option>
+        <option value="Gradcam">
+          Gradcam
+        </option>
+        <option value="LIME">
+          LIME
+        </option>
+      </select>
+        <button id="submit_button" type="submit">Explain</button>
+    </form>
+
+  </div>
+</div>
 
 
 <script>
