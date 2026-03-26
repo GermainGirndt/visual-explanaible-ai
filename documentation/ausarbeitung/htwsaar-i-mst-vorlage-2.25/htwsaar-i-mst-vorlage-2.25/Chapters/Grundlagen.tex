@@ -32,7 +32,7 @@ Die Erhöhung der Anzahl der Schichten in einem Deep Neural Network (DNN) war ni
 
 Dies stellte die wissenschaftliche Gemeinschaft vor ein Rätsel: Falls zusätzliche Schichten nicht zu einer erhöhten Leistung führen, wären sie theoretisch dennoch in der Lage, die Identitätsfunktion zu approximieren, sodass die Leistung des erweiterten Modells zumindest nicht wesentlich schlechter als die des ursprünglichen Modells sein sollte. In der Praxis war dies jedoch häufig nicht der Fall, und die Leistung verschlechterte sich sogar deutlich.
 
-So wurde dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst \cite{he2016resnet}. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.\,h. das \textbf{Residuum}) zwischen der Eingabe und der Ausgabe lernen müssen, wie die sogenannte \textbf{Residualfunktion} darstellt:
+So wurde dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst \cite{he2016resnet}. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.\, h. dass \textbf{Residuum}) zwischen der Eingabe und der Ausgabe lernen müssen, wie die sogenannte \textbf{Residualfunktion} darstellt:
 
 \begin{equation}
     y_k = x_k + \mathcal{F}(x_k, \mathcal{W}_k)
@@ -56,7 +56,6 @@ Diese Errungenschaft wurde vor allem durch den Einsatz von Automated Machine Lea
 Obwohl Deep Neural Networks (DNNs) eine beeindruckende Leistung bei der Bildklassifikation ermöglichen, sind sie oft als \textit{Black-Box}-Modelle bekannt, da sich ein genaues Verständnis der Vorhersagens- und Entscheidungsprozesse dieser Modelle als schwierig erweist \cite{selvaraju2017gradcam}.
 
 In diesem Zusammenhang gewinnt das Forschungsfeld der Explainable Artificial Intelligence (XAI) zunehmend an Bedeutung, da es darauf abzielt, Methoden und Techniken zur Interpretierbarkeit und Transparenz von KI-Modellen zu entwickeln, wobei der Mensch als zentraler Fokus im Mittelpunkt steht \cite{selvaraju2017gradcam}. So ermöglicht XAI die Identifizierung von Fehlern, die Herstellung von geeignetem Vertrauen und Zutrauen bei Nutzern sowie das Gewinnen von Erkenntnissen über die Funktionsweise von Modellen und Systemen \cite{selvaraju2017gradcam}.
-
 
 In den nächsten Abschnitten werden einige der wichtigsten XAI-Verfahren vorgestellt, die in der Bildklassifikation verwendet werden, um die Entscheidungsprozesse von Modellen wie ResNet und EfficientNetV2 besser zu verstehen.
 
@@ -85,7 +84,6 @@ Das Verfahren Grad-CAM (\textit{Gradient-weighted Class Activation Mapping}) erm
 
 Grad-CAM kann auf verschiedenen CNNS angewandt werden, inbesondere (1) CNNs mit Fully-Connected-Layers (z. B. VGG), (2) CNNs für struktierte Ausgaben (z. B. Captioning) und (3) CNNs für Tasks mit multi-modalen Eingaben oder Reinforcement-Learning, ohne das ursprüngliche Modell zu verändern \cite{selvaraju2017gradcam}.
 
-
 \subsection{LIME}
 
 \begin{minipage}{\linewidth}
@@ -94,7 +92,7 @@ Grad-CAM kann auf verschiedenen CNNS angewandt werden, inbesondere (1) CNNs mit 
     \centering
     \includegraphics[width=0.8\linewidth]{Graphics/lime-1.png}
 \end{minipage}
-\captionof{figure}{Daten über Patientensymptome und die vorhergesate Diagnose eines Modells können erklärt werden, indem die wichtigsten Merkmale für die Vorhersage durch LIME identifiziert werden (Bild von \cite{ribeiro2016lime}).}
+\captionof{figure}{Daten über Patientensymptome und die vorhergesagte Diagnose eines Modells können erklärt werden, indem die wichtigsten Merkmale für die Vorhersage durch LIME identifiziert werden (Bild von \cite{ribeiro2016lime}).}
 \label{fig:lime-1}
 \end{minipage}
 \vspace{0.5em}
@@ -103,11 +101,10 @@ Im Gegensatz zu Grad-CAM bietet LIME (\textit{Local Interpretable Model-agnostic
 
 Die Idee hinter LIME ist simpel. Die Vorhersage eines Modells für eine bestimmte Eingabe kann durch die Erstellung eines einfachen, interpretablen Modells in der Nähe dieser Eingabe approximiert werden.  Das einfache Modell kann dann verwendet werden, um die Vorhersage des komplexen Modells zu erklären, indem es die wichtigsten Merkmale identifiziert, die zur Vorhersage beitragen \cite{ribeiro2016lime, molnar2022interpretable}.
 
-Dies wird folgendermaßen realisiert: Permutationen der originallen Daten werden erstellt und die Vorhersage des zu erklärenden Modells für diese Variationen berechnet. Die Permutationen sowie die daraus resultierenden Vorhersagen werden dann verwendet, um ein einfaches gewichtetes Modell zu trainieren, das die Vorhersage des komplexen Modells in der Nähe der ursprünglichen Eingabe approximiert. Dieses einfache, lokale Modell wird dann zur Erklärung der ursprünglichen Vorhersage verwendet \cite{ribeiro2016lime, molnar2022interpretable}.
-
+Dies wird folgendermaßen realisiert: Permutationen der originalen Daten werden erstellt und die Vorhersage des zu erklärenden Modells für diese Variationen berechnet. Die Permutationen sowie die daraus resultierenden Vorhersagen werden dann verwendet, um ein einfaches gewichtetes Modell zu trainieren, das die Vorhersage des komplexen Modells in der Nähe der ursprünglichen Eingabe approximiert. Dieses einfache, lokale Modell wird dann zur Erklärung der ursprünglichen Vorhersage verwendet \cite{ribeiro2016lime, molnar2022interpretable}.
 
 \subsection{Layerwise Relevance Propagation}
-Layerwise Relevance Propagation oder LRP ist eine visuelle xAI Technik und bestimmt die Merkmale von bestimmten Eingangsvektoren, die am stärksten zu einem Klassifizierungsergebnis beitragen \cite{lrp}.
+Layerwise Relevance Propagation oder LRP ist eine visuelle xAI-Technik und bestimmt die Merkmale von bestimmten Eingangsvektoren, die am stärksten zu einem Klassifizierungsergebnis beitragen \cite{lrp}.
 
 \begin{minipage}{\linewidth}
 \centering
@@ -119,3 +116,4 @@ Layerwise Relevance Propagation oder LRP ist eine visuelle xAI Technik und besti
 \label{fig:lrp}
 \end{minipage}
 \vspace{0.5em}
+
