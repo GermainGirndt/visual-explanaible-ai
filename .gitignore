@@ -8,3 +8,5 @@ __pycache__/
 **/views/static/**/*.jpg
 **/views/static/**/*.jpeg
 **/views/static/**/*.png
+
+temp/*
