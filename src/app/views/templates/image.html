@@ -17,7 +17,7 @@
     </form>
 </div>
 {% else %}
-<img src="../static/assets/Frame.png" alt="Uploaded Image" style="max-width: 400px" />
+<img src="{{ url_for('static', path='assets/image_placeholder.svg') }}" alt="Uploaded Image Placeholder" style="max-width: 400px" />
 {% endif %}
 <br />
 {% endblock %}
