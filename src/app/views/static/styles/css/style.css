@@ -127,10 +127,16 @@ body>main>header h1 {
   position: relative;
 }
 
+.togglers-container {
 
+  form {
+    /* make clickable */
+    cursor: pointer;
+  }
+}
 #share-1 {
   position: relative;
-  left: 10px;
+  left: 14px;
 }
 
 #share-2 {

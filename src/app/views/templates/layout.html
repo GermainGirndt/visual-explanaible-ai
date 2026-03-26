@@ -12,23 +12,33 @@
   <header>
     <nav>
       <section class="togglers-container">
-        <form id="upload" action="/upload" method="post" enctype="multipart/form-data">
+        <form id="upload" action="/upload" method="post" enctype="multipart/form-data">          
           <label id="upload-button" for="file-input" class="file-label">
             <img src="../static/assets/icons/image_icon.svg">
+            <span>
+              Upload
+            </span>
           </label>
           <input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
-            onchange="document.getElementById('upload').submit();" /> Upload
+            onchange="document.getElementById('upload').submit();" />   
         </form>
+        
         <form action="/classify" method="post">
           <input type="hidden" name="image_url" value="{{ image_url }}" />
-          <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1"><img
-              src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg"
-              id="share-3"></button> <span id="classify-text">Classify</span>
+          <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1">
+            <span id="share-icon-container">
+              <img
+                src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg"
+                id="share-3">
+            </span>
+            <span id="classify-text">Classify</span>
+            </button> 
         </form>
           <div>
               <button onclick="openExplanationModal()" id="explain-button">
                   <img src="../static/assets/icons/comment_icon.svg">
-              </button>Explain
+                  <span>Explain</span>
+              </button>
           </div>
       </section>
     </nav>
