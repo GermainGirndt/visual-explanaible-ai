@@ -4,7 +4,7 @@ import os
 from pyparsing import ABC, abstractmethod
 import torch
 from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
-from torchvision.models import mobilenet_v3_large, MobileNet_V3_Large_Weights
+from torchvision.models import resnet152, ResNet152_Weights
 from PIL import Image as PIL_Image
 
 from app.models.predictions import Predictions
@@ -25,9 +25,9 @@ class EfficientNet(NeuralNetwork):
     currentImage = []
     weights = []
     def __init__(self, MODEL_TYPE):        
-        if MODEL_TYPE == "MobileNet":
-            self.weights = MobileNet_V3_Large_Weights.DEFAULT
-            self.model = mobilenet_v3_large(weights=self.weights)
+        if MODEL_TYPE == "ResNet":
+            self.weights = ResNet152_Weights.DEFAULT
+            self.model = resnet152(weights=self.weights)
         elif MODEL_TYPE == "EfficientNet":
             self.weights = EfficientNet_V2_L_Weights.IMAGENET1K_V1
             self.model = efficientnet_v2_l(weights=self.weights)
