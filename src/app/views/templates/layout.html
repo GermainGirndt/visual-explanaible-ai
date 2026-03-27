@@ -20,7 +20,7 @@
 									<input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
             onchange="document.getElementById('upload').submit();" />
 								</form>
-								<form action="/classify" method="post">
+								<form action="/classify" method="post" onsubmit="return alertIfImageDoesNotExist({{image_url}})">
 									<input type="hidden" name="image_url" value="{{ image_url }}" />
 									<button id="classify-button" type="submit">
 										<img src="../static/assets/icons/share_icon.svg" id="share-1">
@@ -128,5 +128,12 @@
     function closeProcessModal() {
         document.getElementById("processModal").style.display = "none";
     }
+                                            function alertIfImageDoesNotExist(image_url) {
+                                                if (!image_url) {
+                                                    alert("Upload an image first!");
+                                                    return false;
+                                                }
+                                                return true;
+                                            }
 </script>
 									</html>
