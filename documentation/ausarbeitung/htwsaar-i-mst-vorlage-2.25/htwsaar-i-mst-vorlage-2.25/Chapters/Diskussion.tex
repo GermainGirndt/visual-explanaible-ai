@@ -1,18 +1,21 @@
 \chapter{Diskussion}
 Im folgenden werden die Ergebnisse der Fallstudie evaluiert und diskutiert die Wirksamkeit des Tools.
 \todox[]{Worauf deuten die Ergebnisse der Fallstudie im Kontext der Forschungsfragen und Ziele der Arbeit hin?}
-\todox[]{Herr Tholen: Vergleich vor und nach der Präsentation}
 \section{Ergebnisse}
-\subsection{Vergleich nach der Demonstration}
-Das Tool hat nach der Umfrage den Teilnehmern geholfen, die Modellentscheidung durch die Visualisierung zu verstehen und erkennen welche Eingabemermale für die Klassifizierung relevant waren. 
+\subsection{Vergleich vor und nach der Demonstration}
+Das Tool hat nach der Umfrage den Teilnehmern geholfen im Vergleich zu vor der Demonstration, die Modellentscheidung durch die Visualisierung zu verstehen und erkennen welche Eingabemermale für die Klassifizierung relevant waren. 
 Das Tool hat außerdem geholfen zu erkennen, wann das KI Modell möglicherweise falsche Vorhersagen trifft und zeigt Grenzen des KI-Modells auf. 
 \subsection{Schlussfolgerungen}
 Unser Tool hat also dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da GradCam und LIME visuell funktionieren werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar. 
 
-Das ist nur kritisch wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
+Das ist kritisch wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
 Das Tool liefert also keine ausreichende Erklärung wieso etwas falsch klassifiziert wurde oder wieso diese Eingabemerkmale genau relevant sind. 
 
 Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Modelle verringern, was aber auch mit der Auswahl von EfficientNetV2 zu tun haben könnte, da auch bessere KI-Modelle mit einer geringeren Fehlerrate existieren. Es wurden auch zwei richtig klassifizierte Bilder und zwei falsch klassifizierte Bilder gezeigt, was den Eindruck von dem KI-Modell verzerrt.
+
+\subsection{Wirksamkeit des Tools}
+Das Tool veranschaulicht die visuellen Erklärmethoden GradCam und LIME, dadurch wird den Studierenden ein Einstieg in das Gebiet xAI erleichtert, das sie die Erklärungen für mehrere Klassifizierungsklassen anschauen können. Das Tool hat erfüllt daher den Zweck einer Einführung in xAI.
+
 
 \todox[]{Was haben andere Studien zum Thema herausgefunden? Was war deren Ergebnisse? Wie lassen sich die Ergebnisse mit den Ergebnissen von dieser Studie vergleichen?}
 \section{Studienlage}
@@ -37,4 +40,4 @@ Die Ergebnisse der Umfrage waren ziemlich homogen. Die Umfrage ist nicht unbedin
 \subsubsection{KI-Modell}
 In der Demonstration wurde EfficientNetV2 benutzt, es hat eine gute Performance dafür, dass es auf einem Laptop ausgeführt wurde. Leistungsstärkere Modelle klassifizieren Objekte öfter korrekt, aber sind für eine Demonstration auf einem Laptop nicht realistisch. Leistungsschwächere Modelle klassifizieren öfter falsch. Beide Arten können Fragen zum Vertrauen in KI-Modelle oder das Erkennen von Grenzen verzerren.
 \subsubsection{Beispiele}
-Es wurden zwei korrekt klassifizierte Bilder und zwei inkorrekt klassifizierte Bilder gezeigt, das hat wahrscheinlich die Antworten in Hinsicht zum Vertrauen in dieses KI-Modell und das Erkennen von Grenzen beeinflusst. Inkorrekt klassifizierte Bilder mindern das Vertrauen, aber zeigen auch, dass KI-Modelle Grenzen haben. 
+Es wurden zwei korrekt klassifizierte Bilder und zwei inkorrekt klassifizierte Bilder gezeigt, das hat wahrscheinlich die Antworten in Hinsicht zum Vertrauen in dieses KI-Modell und das Erkennen von Grenzen beeinflusst. Inkorrekt klassifizierte Bilder mindern das Vertrauen, wenn die Erklärung nicht für Menschen nachvollziebar ist, aber zeigen auch, dass KI-Modelle Grenzen haben. 
