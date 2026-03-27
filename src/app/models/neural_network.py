@@ -3,8 +3,7 @@ import os
 
 from pyparsing import ABC, abstractmethod
 import torch
-from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
-from torchvision.models import resnet152, ResNet152_Weights
+from torchvision.models import EfficientNet_V2_L_Weights, efficientnet_v2_l, resnet152, ResNet152_Weights
 from PIL import Image as PIL_Image
 
 from app.models.predictions import Predictions
