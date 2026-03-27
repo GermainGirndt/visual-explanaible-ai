@@ -1,63 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>{{ title if title else "Explainable AI" }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='styles/bootstrap/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', path='styles/css/style.css') }}">
-</head>
-
-<body>
-  <header>
-    <nav>
-      <section class="togglers-container">
-        <form id="upload" action="/upload" method="post" enctype="multipart/form-data">          
-          <label id="upload-button" for="file-input" class="file-label">
-            <img src="../static/assets/icons/image_icon.svg">
-            <span>
+	<head>
+		<meta charset="UTF-8" />
+		<title>{{ title if title else "Explainable AI" }}</title>
+		<link rel="stylesheet" href="{{ url_for('static', path='styles/bootstrap/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ url_for('static', path='styles/css/style.css') }}">
+			</head>
+			<body>
+				<header>
+					<nav>
+						<section class="togglers-container">
+							<form id="upload" action="/upload" method="post" enctype="multipart/form-data">
+								<label id="upload-button" for="file-input" class="file-label">
+									<img src="../static/assets/icons/image_icon.svg">
+										<span>
               Upload
             </span>
-          </label>
-          <input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
-            onchange="document.getElementById('upload').submit();" />   
-        </form>
-        
-        <form action="/classify" method="post">
-          <input type="hidden" name="image_url" value="{{ image_url }}" />
-          <button id="classify-button" type="submit"><img src="../static/assets/icons/share_icon.svg" id="share-1">
-            <span id="share-icon-container">
-              <img
-                src="../static/assets/icons/share_icon.svg" id="share-2"><img src="../static/assets/icons/share_icon.svg"
+									</label>
+									<input id="file-input" type="file" name="file" accept="image/png, image/jpeg" style="display:none;" required
+            onchange="document.getElementById('upload').submit();" />
+								</form>
+								<form action="/classify" method="post">
+									<input type="hidden" name="image_url" value="{{ image_url }}" />
+									<button id="classify-button" type="submit">
+										<img src="../static/assets/icons/share_icon.svg" id="share-1">
+											<span id="share-icon-container">
+												<img
+                src="../static/assets/icons/share_icon.svg" id="share-2">
+													<img src="../static/assets/icons/share_icon.svg"
                 id="share-3">
-            </span>
-            <span id="classify-text">Classify</span>
-            </button> 
-        </form>
-          <div>
-              <button onclick="openExplanationModal()" id="explain-button">
-                  <img src="../static/assets/icons/comment_icon.svg">
-                  <span>Explain</span>
-              </button>
-          </div>
-      </section>
-    </nav>
-  </header>
-  <main>
-    <header>
-      <h1>Explainable AI</h1>
-    </header>
-    <section class="content">
+													</span>
+													<span id="classify-text">Classify</span>
+												</button>
+											</form>
+											<div>
+												<button onclick="openExplanationModal()" id="explain-button">
+													<img src="../static/assets/icons/comment_icon.svg">
+														<span>Explain</span>
+													</button>
+												</div>
+											</section>
+											<section>
+												<div>
+													<button onclick="openModelModal()" id="model-button">
+														<img src="../static/assets/icons/state_icon.svg">
+															<div>Model</div>
+														</button>
+													</div>
+													<div>
+														<button onclick="openProcessModal()" id="process-button">
+															<img src="../static/assets/icons/state_icon.svg">
+																<div>Process</div>
+															</button>
+														</div>
+													</section>
+												</nav>
+											</header>
+											<main>
+												<header>
+													<h1>Explainable AI</h1>
+												</header>
+												<section class="content">
       {% block content %}
-      <br />
+
+
+													<br />
       {% endblock %}
-  </main>
-  </main>
-</body>
 
-<script src="{{ url_for('static', path='styles/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
-<script>
+												</main>
+											</main>
+											<div id="processModal" class="modal">
+												<div class="modal-content">
+													<span class="close" onclick="closeProcessModal()">&times;</span>
+													<h3>Select process</h3>
+													<label for="explanation-select">Explanation Type:</label>
+													<select name="explanation-select" id="explanation-select" onchange="updateMethod(value)">
+														<option value="Gradcam" selected>
+          Gradcam
+        </option>
+														<option value="LIME">
+          LIME
+        </option>
+													</select>
+												</div>
+											</div>
+											<div id="modelModal" class="modal">
+												<div class="modal-content">
+													<span class="close" onclick="closeModelModal()">&times;</span>
+													<h3>Select model</h3>
+													<form action="/" method="post" class="model-size-form">
+														<label for="model_type">Model Type:</label>
+														<select name="model_type" id="model_type" onchange="this.form.submit()">
+															<option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
+                EfficientNet
+            </option>
+															<option value="ResNet" {% if model_type=="ResNet" %}selected{% endif %}>
+                ResNet
+            </option>
+														</select>
+													</form>
+												</div>
+											</div>
+										</body>
+										<script src="{{ url_for('static', path='styles/bootstrap/bootstrap.bundle.min.js') }}"></script>
+										<script>
     function openExplanationModal() {
         document.getElementById("explainModal").style.display = "block";
     }
@@ -65,5 +112,21 @@
     function closeExplanationModal() {
         document.getElementById("explainModal").style.display = "none";
     }
+
+    function openModelModal() {
+        document.getElementById("modelModal").style.display = "block";
+    }
+
+    function closeModelModal() {
+        document.getElementById("modelModal").style.display = "none";
+    }
+
+    function openProcessModal() {
+        document.getElementById("processModal").style.display = "block";
+    }
+
+    function closeProcessModal() {
+        document.getElementById("processModal").style.display = "none";
+    }
 </script>
-</html>
+									</html>

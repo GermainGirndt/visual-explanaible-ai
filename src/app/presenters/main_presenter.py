@@ -68,9 +68,9 @@ class MainPresenter:
 
 
         @app.post("/explain")
-        async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...), expanation_type:str = Form(...) ):
+        async def explain(request: Request, confidence:float = Form(...), class_id:int = Form(...), class_name:str = Form(...), explanation_type:str = Form(...)):
            prediction = Prediction(confidence, class_id, class_name)
-           if(expanation_type=="Gradcam"):
+           if(explanation_type== "Gradcam"):
                 explainable_ai_technique = GradCam()
                 explanation = explainable_ai_technique.explain(prediction, self.model)
            else:
