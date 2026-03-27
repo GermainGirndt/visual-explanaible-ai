@@ -6,23 +6,6 @@
 <div>
 	<img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
 </div>
-<div id="modelModal" class="modal">
-	<div class="modal-content">
-		<span class="close" onclick="closeModelModal()">&times;</span>
-		<h3>Select model</h3>
-		<form action="/" method="post" class="model-size-form">
-			<label for="model_type">Model Type:</label>
-			<select name="model_type" id="model_type" onchange="this.form.submit()">
-				<option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
-                EfficientNet
-            </option>
-				<option value="ResNet" {% if model_type=="ResNet" %}selected{% endif %}>
-                ResNet
-            </option>
-			</select>
-		</form>
-	</div>
-</div>
 
 {% else %}
 
