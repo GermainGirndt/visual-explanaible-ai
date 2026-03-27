@@ -74,6 +74,7 @@
 												<div class="modal-content">
 													<span class="close" onclick="closeProcessModal()">&times;</span>
 													<h3>Select process</h3>
+													<br />
 													<label for="explanation-select">Explanation Type:</label>
 													<select name="explanation-select" id="explanation-select" onchange="updateMethod(value)">
 														<option value="Gradcam" selected>
@@ -90,7 +91,9 @@
 													<span class="close" onclick="closeModelModal()">&times;</span>
 													<h3>Select model</h3>
 													<form action="/" method="post" class="model-size-form">
+														<br />
 														<label for="model_type">Model Type:</label>
+														<br />
 														<select name="model_type" id="model_type" onchange="this.form.submit()">
 															<option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
                 EfficientNet
