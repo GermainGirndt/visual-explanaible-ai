@@ -11,23 +11,22 @@ Es erleichtert auch das Design, das mit HTML-Templates definiert wurde.
 Zur Implementierung der Webapplikation wurde das Framework FastAPI verwendet und die Templates wurden mit Jinja2 erstellt.
 
 \subsection{GUI-Elemente}
-Auf der linken Seite der GUI befinden sich die beiden Buttons \("\)Upload\("\) und \("\)Classify\("\).
-Durch einen Klick auf den Upload-Button wird ein Bild hochgeladen, das in der Mitte der Seite angezeigt wird.
-Unter dem Bild kann über ein Dropdown-Menü das Modell zur Klassifizierung ausgewählt werden.\\
+Auf der linken Seite der GUI befinden sich die Buttons \("\)Upload\("\), \("\)Classify\("\) und \("\)Explain\("\).
+Durch einen Klick auf den Upload-Button wird ein Bild hochgeladen, das in der Mitte der Seite angezeigt wird.\\
 \includegraphics[width=\linewidth]{Graphics/uploaded_image}
 \captionof{figure}{Anzeige des hochgeladenen Bildes}
-Das hochgeladene Bild kann dann mit dem Classify-Button klassifiziert werden.
-Durch Klick auf den Explain-Button öffnet sich ein Dialog mit zwei Dropdown-Menüs zur Auswahl einer der 5 wahrscheinlichsten Klassen und einer Erklärungsart.\\
+Das hochgeladene Bild kann dann mit dem Classify-Button klassifiziert werden.\\
 \includegraphics[width=\linewidth]{Graphics/classified_image}
 \captionof{figure}{Anzeige der 5 wahrscheinlichsten Klassen}
+Durch Klick auf den Explain-Button öffnet sich ein Dialog mit zwei Dropdown-Menüs zur Auswahl einer der 5 wahrscheinlichsten Klassen.
 Die möglichen Erklärungsarten sind Grad-CAM und LIME.
-Durch Klick auf den Explain-Button wird die ausgewählte Erklärung für die ausgewählte Klasse ausgeführt und eine Heatmap über dem Bild angezeigt.
 Bei Grad-CAM markieren verschiedene Farben die Relevanz bestimmter Bereiche für die Klassifizierung des Bildes.
 Bei LIME wird nur in einer Farbe angezeigt, welcher Bereich für die Klassifizierung relevant war.\\
 \includegraphics[width=\linewidth]{Graphics/gradcam}
 \captionof{figure}{Anzeige der Grad-CAM-Heatmap über dem Bild}
 \includegraphics[width=\linewidth]{Graphics/lime}
 \captionof{figure}{Anzeige des LIME-Overlays über dem Bild}
+Das Modell zur Klassifizierung kann mit dem Model-Button und die Erklärungsart mit dem Process-Button ausgewählt werden.
 
 \subsection{Interaktion mit der GUI}
 Das Layout der Seite wird über HTML-Templates definiert.

@@ -36,29 +36,29 @@
 </div>
 
 <script>
-  function updateValues(select) {
-    const option = select.options[select.selectedIndex];
+    function updateValues(select) {
+        const option = select.options[select.selectedIndex];
 
-    document.getElementById("class_id").value = option.dataset.classId;
-    document.getElementById("class_name").value = option.dataset.className;
-    document.getElementById("confidence").value = option.dataset.confidence;
+        document.getElementById("class_id").value = option.dataset.classId;
+        document.getElementById("class_name").value = option.dataset.className;
+        document.getElementById("confidence").value = option.dataset.confidence;
 
-  }
-
-  function updateMethod(select) {
-    document.getElementById("explanation_type").value = select;
-  }
-
-  function validateSelection() {
-    console.log( document.getElementById("expanation_type"))
-    if (!document.getElementById("class_id").value || document.getElementById("expanation_type").value =="Select an explanation type") {
-      alert("Please select a class and explanation type first.");
-      return false;
     }
-    else {
-      return true
+
+    function updateMethod(select) {
+        document.getElementById("explanation_type").value = select;
     }
-  }
+
+    function validateSelection() {
+        console.log( document.getElementById("expanation_type"))
+        if (!document.getElementById("class_id").value || document.getElementById("expanation_type").value =="Select an explanation type") {
+          alert("Please select a class and explanation type first.");
+          return false;
+        }
+        else {
+          return true
+        }
+    }
 </script>
 
 
