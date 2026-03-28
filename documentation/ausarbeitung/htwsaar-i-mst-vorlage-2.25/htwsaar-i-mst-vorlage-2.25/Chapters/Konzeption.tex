@@ -10,7 +10,14 @@ Die Explainable-AI-Anwendung muss folgendes können:
     \item Erklärungen mit einer xAI-Methode generieren
     \item wartbar, erweiterbar und einfach in einer Vorlesung zu zeigen sein
 \end{enumerate}
-Die MVP-Architektur erfüllt diese Anforderungen durch eine klare Trennung zwischen:
+Die MVP-Architektur hat als Hauptkomponenten:
+\begin{itemize}
+    \item Models: beinhalten die Logik der einzelnen Komponenten wie die Klassifizierung mit einem Neural-Network-Modell und Generierung der Erklärung
+    \item Views: rendern die Anwendung im Browser
+    \item Presenters: bieten Schnittstellen zum Aufruf der Funktionen durch den Nutzer an
+\end{itemize}
+Sie erfüllt die Anforderungen durch eine klare Trennung der Komponenten.
+In der XAI-Anwendung haben diese die folgenden Aufgaben:
 \begin{itemize}
     \item AI und Berechnungslogik (Model)
     \item Visualisierungslogik (View)
@@ -43,22 +50,19 @@ Die Vorteile von MVP überwiegen jedoch, vor allem aufgrund der funktionalen Anf
 Deshalb können neue Funktionalitäten (z. B. neue Neural-Network-Modelle oder Erklärungsmethoden) bei MVP durch Vererbung hinzugefügt werden.
 Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controllern nicht so einfach.
 
-\subsection{Hauptkomponenten}
-\todo[]{Dieser Punkt sollte oben bei der Einleitung in das MVP-Architekturmuster sein}
-\begin{itemize}
-    \item Models: beinhalten die Logik der einzelnen Komponenten wie die Klassifizierung mit einem Neural-Network-Modell und Generierung der Erklärung
-    \item Presenters: bieten Schnittstellen zum Aufruf der Funktionen durch den Nutzer an
-    \item Views: rendern die Anwendung im Browser
-\end{itemize}
-
 \section{Statisches Modell}
-\todo[]{Es fehlt die Einleitung (z.B. was das ist, dass es auf Basis der Anforderungen erstellt wurde. Denk mal daran, dass Herr Tholen kein Software-Engineer ist.)}
+Das statische Modell stellt die Klassen der Anwendung mit ihren Attributen und Methoden dar sowie die Beziehungen zwischen ihnen.
+Die Klassendiagramme wurden auf Basis der Anforderungen erstellt.
 \subsubsection{Klassendiagramm: Koordination durch die Presenter-Klasse}
 
 Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
-\includegraphics[width=\linewidth]{Graphics/static_model_presenter}
-\captionof{figure}{Klassendiagramm: Koordination durch die Presenter-Klasse}
-\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
+\clearpage
+\begin{figure}
+    \centering
+    \includegraphics[width=\paperwidth, angle=270]{Graphics/static_model_presenter}
+    \captionof{figure}{Klassendiagramm: Koordination durch die Presenter-Klasse}
+\end{figure}
+\clearpage
 
 \subsubsection{Klassendiagramm: Beziehung zwischen Models und Views}
 \subsubsection{Views}
@@ -69,11 +73,13 @@ Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
 \end{enumerate}
 \subsubsection{Models}
 
-
-\includegraphics[width=\linewidth]{Graphics/static_model_models_views}
-\captionof{figure}{Klassendiagramm: Beziehung zwischen Models und Views}
-\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
-
+\clearpage
+\begin{figure}
+    \centering
+    \includegraphics[width=\paperwidth, angle=270]{Graphics/static_model_models_views}
+    \captionof{figure}{Klassendiagramm: Beziehung zwischen Models und Views}
+\end{figure}
+\clearpage
 
 \begin{enumerate}
     \item Image: repräsentiert das geladene Bild, importiert es mit der statischen Methode \verb|load_from(file)|
@@ -84,10 +90,23 @@ Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
 \end{enumerate}
 
 \section{Dynamisches Modell}
-\todo[]{Hier fehlt ebenso die Einleitung (z.B. was das ist, dass es auf Basis der Anforderungen + des statischen Modells erstellt wurde.)}
+Das dynamische Modell stellt die Funktionsaufrufe und Rückgabewerte zwischen dem User und den Klassen dar.
+Die Sequenzdiagramme wurden auf Basis des statischen Modells und der Anforderungen erstellt.
 \subsubsection{Sequenzdiagramm: Default Use Case}
-\includegraphics[width=\linewidth]{Graphics/dynamic_model}
-\captionof{figure}{Sequenzdiagramm: Default Use Case}
-\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
 
-\todo[]{Hier fehlt eine kurze Beschreibung des Use Cases, z.B. was der Nutzer tut, was die Anwendung macht, was die Interaktionen zwischen den Komponenten sind, etc.}
+\clearpage
+\begin{figure}
+    \centering
+    \includegraphics[width=\paperwidth, angle=270]{Graphics/dynamic_model}
+    \captionof{figure}{Sequenzdiagramm: Default Use Case}
+\end{figure}
+\clearpage
+
+Dieses Sequenzdiagramm stellt die vier Use Cases der Anwendung dar.
+Der Nutzer ruft immer zuerst die \verb|MainPresenter|-Klasse auf, die dann Funktionen von anderen Klassen aufrufen kann.
+\begin{itemize}
+    \item Modell ändern: \verb|MainPresenter| ruft keine weitere Klasse auf
+    \item Bild hochladen: \verb|MainPresenter| ruft \verb|Image| auf, um das Bild zu laden und \verb|ImageView| rendert das Bild.
+    \item Bild klassifizieren: \verb|MainPresenter| ruft \verb|NeuralNetwork| auf, um das Bild zu klassifizieren und \verb|PredictionView| zeigt die Wahrscheinlichkeiten der Klassen an.
+    \item Bild hochladen: \verb|MainPresenter| ruft \verb|ExplainableAITechnique| auf, um eine Erklärung zu generieren und \verb|ExplanationView| zeigt das Bild mit der Erklärung an.
+\end{itemize}
