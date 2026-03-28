@@ -20,7 +20,7 @@
 							onchange="document.getElementById('upload').submit();" />
 					</form>
 
-					<form action="/classify" method="post" onsubmit="return alertIfImageDoesNotExist({{image_url}})">
+					<form action="/classify" method="post" onsubmit="return alertIfImageDoesNotExist()">
 						<input type="hidden" name="image_url" value="{{ image_url }}" />
 						<button id="classify-button" type="submit">
 							<img src="../static/assets/icons/share_icon.svg" id="share-1">
@@ -109,8 +109,17 @@
 		<script src="{{ url_for('static', path='styles/bootstrap/bootstrap.bundle.min.js') }}"></script>
 
 		<script>
+            const imageUrl = "{{ image_url }}";
+            const classPredictions = "{{ class_predictions }}";
+
 			function openExplanationModal() {
-				document.getElementById("explainModal").style.display = "block";
+			    if (!imageUrl) {
+					alert("Upload an image first!");
+				} else if (!classPredictions) {
+                    alert("Create a prediction first!");
+                } else {
+				    document.getElementById("explainModal").style.display = "block";
+                }
 			}
 
 			function closeExplanationModal() {
@@ -133,8 +142,8 @@
 				document.getElementById("processModal").style.display = "none";
 			}
 
-			function alertIfImageDoesNotExist(image_url) {
-				if (!image_url) {
+			function alertIfImageDoesNotExist() {
+				if (!imageUrl) {
 					alert("Upload an image first!");
 					return false;
 				}
