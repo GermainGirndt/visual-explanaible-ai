@@ -134,9 +134,9 @@ class GradCam(ExplainableAITechnique):
         
         image_uuid = uuid.uuid4()  
         overlay = overlay_heatmap_on_pil(img, gradcam_np, alpha=0.5)
-        filename = f"src/app/views/static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
+        filename = f"src/app/views/static/predictions/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
         overlay.save(filename)
-        explanation = Explanation(f"static/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
+        explanation = Explanation(f"static/predictions/gradcam_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
         return explanation
     
     
@@ -225,7 +225,7 @@ class LIME(ExplainableAITechnique):
         alpha=0.7
         )
         image_uuid = uuid.uuid4()
-        filename = f"src/app/views/static/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
+        filename = f"src/app/views/static/predictions/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png"
         colored.save(filename)
-        explanation = Explanation(f"static/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
+        explanation = Explanation(f"static/predictions/lime_{image_uuid}_{prediction.class_name.replace(' ', '_')}.png")
         return explanation
