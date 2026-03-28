@@ -104,9 +104,9 @@ Die Idee hinter LIME ist simpel. Die Vorhersage eines Modells für eine bestimmt
 Dies wird folgendermaßen realisiert: Permutationen der originalen Daten werden erstellt und die Vorhersage des zu erklärenden Modells für diese Variationen berechnet. Die Permutationen sowie die daraus resultierenden Vorhersagen werden dann verwendet, um ein einfaches gewichtetes Modell zu trainieren, das die Vorhersage des komplexen Modells in der Nähe der ursprünglichen Eingabe approximiert. Dieses einfache, lokale Modell wird dann zur Erklärung der ursprünglichen Vorhersage verwendet \cite{ribeiro2016lime, molnar2022interpretable}.
 
 \subsection{Layerwise Relevance Propagation}
-Layerwise Relevance Propagation oder LRP ist eine visuelle xAI-Technik und bestimmt die Merkmale von bestimmten Eingangsvektoren, die am stärksten zu einem Klassifizierungsergebnis beitragen \cite{lrp}.
+Layerwise Relevance Propagation (LRP) ist eine visuelle XAI-Technik und bestimmt die Merkmale von bestimmten Eingangsvektoren, die am stärksten zu einem Klassifizierungsergebnis beitragen \cite{lrp}.
 
-LRP definiert den relevance measure R über den Inputvektor, sodass man den KI-Modell Output als Summe der Werte von R dargestellt werden kann\cite{lrp}: 
+LRP definiert den Relevance Measure R über den Inputvektor, sodass der KI-Modell-Output als Summe der Werte von R dargestellt werden kann \cite{lrp}:
 
 \begin{minipage}{1.0\linewidth}
     \centering
@@ -114,7 +114,7 @@ LRP definiert den relevance measure R über den Inputvektor, sodass man den KI-M
 \end{minipage}
 
 
-Dabei ist f die forward-pass-Funktion des KI-Models, bei LRP wird der Output des Modells in die Summe der der Relevanten Pixel des Inputs zerlegt, um das zu erreichen, fängt man mit der Relevanz des Output-Knotens an und propagiert iterativ rückwärts durch das KI-Modell \cite{lrp}.
+Dabei ist f die Forward-Pass-Funktion des KI-Modells, bei LRP wird der Output des Modells in die Summe der relevanten Pixel des Inputs zerlegt, um das zu erreichen, fängt man mit der Relevanz des Output-Knotens an und propagiert iterativ rückwärts durch das KI-Modell \cite{lrp}.
 
 
 \begin{minipage}{1.0\linewidth}

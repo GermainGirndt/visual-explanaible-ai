@@ -3,7 +3,7 @@
 \section{Webapplikation als Grafische Benutzeroberfläche}
 
 \subsection{Wahl einer Webapplikation}
-Wir haben uns dafür entschieden \todo[]{objektive Sprache, nicht in der 1. Person schreiben}, die Grafische Benutzeroberfläche (GUI) als Webapplikation zu implementieren.
+Es wurde sich dafür entschieden, die Grafische Benutzeroberfläche (GUI) als Webapplikation zu implementieren.
 Ein Grund dafür ist die Plattformunabhängigkeit.
 Da die Anwendung im Browser läuft, kann sie auf allen Betriebssystemen ausgeführt werden.
 Läuft die Anwendung auf einem Webserver, ist sie auch leicht zugänglich, da keine Installation benötigt wird, was es vereinfacht, sie zu Demonstrationszwecken in Vorlesungen einzusetzen.
@@ -62,17 +62,19 @@ Als CNN-Modell wurden ein vortrainiertes EfficientNetV2 und ein ResNet-Modell ve
 Diese können – wie viele andere Modelle – über die Library \texttt{torchvision} verwendet werden.
 
 EfficientNetV2 ist in den Größen L, M und S verfügbar, hier wird das Modell in Grüße L genutzt.
-Mit einer Acc@1 von 85.8\% und einer Acc@5 von 97.8\% ist es eines der genauesten Netze und mit 118,5 Millionen Parametern deutlich kleiner als Modelle mit ähnlicher Genauigkeit (Regnet\_Y\_128GF hat 644,8 Millionen Parameter)\cite{torchvision_models}.
+Mit einer Acc@1 von 85,8\% und einer Acc@5 von 97,8\% ist es eines der genauesten Netze und mit 118,5 Millionen Parametern deutlich kleiner als Modelle mit ähnlicher Genauigkeit (Regnet\_Y\_128GF hat 644,8 Millionen Parameter).
 Das macht es zu einem sehr effizienten Netz bei hoher Genauigkeit.
 Der Speicherbedarf ist nicht zu hoch und bei einer Demonstration in einer Vorlesung hat es den Vorteil, dass das Netz nicht mehr trainiert werden muss und die Klassifizierung schnell abgeschlossen ist.
-
-\todo[]{Schreib hier auch mal einen neuen Abschnitt zum ResNet-Modell, weil wir es ja auch implementiert haben.}
+Für ResNet gibt es vier verschiedene Größen, die XAI-Anwendung verwendet das größte Modell ResNet152.
+Es ist mit nur 60,2 Millionen Parameter ein kleineres und effizienteres Netz als EfficientMetV2.
+Mit 82,3\% Acc@1 und 96,0\% Acc@5 ist es deshalb auch etwas ungenauer.
+\cite{torchvision_models}
+Durch die Wahl der beiden Netze lässt sich ein Vergleich der Effizienz und Genauigkeit zwischen Netzen unterschiedlicher Größe aufstellen.
 
 \subsection{Implementierung der XAI-Verfahren}
 Für die Implementierung der XAI-Methoden gibt es die Klasse \verb|ExplainableAITechnique| mit der Methode \verb|explain|.
-Diese bekommt als Parameter eine\verb|Prediction|, bestehend aus ID, Name und Wahrscheinlichkeit einer Klasse, sowie ein \verb|NeuralNetwork|-Modell und wird in den Unterklassen \verb|GradCAM| und \verb|LIME| von der jeweiligen Methode implementiert.
-\todox[]{Ja, aber wurden dafür auch Libraries verwendet? Wenn nicht, woher kommt der Code und wieso?}
-
+Diese bekommt als Parameter eine \verb|Prediction|, bestehend aus ID, Name und Wahrscheinlichkeit einer Klasse, sowie ein \verb|NeuralNetwork|-Modell und wird in den Unterklassen \verb|GradCAM| und \verb|LIME| von der jeweiligen Methode implementiert.
+Für die Berechnungen werden bei beiden Methoden die Bibliotheken \verb|numpy| und \verb|torch| verwendet, für die Bildverarbeitung \verb|PIL|.
 
 \subsubsection{Grad-CAM}
 Zur Generierung einer Grad-CAM-Erklärung wird zuerst die letzte Convolutional Layer des Netzes gefunden.
@@ -80,10 +82,10 @@ Dort wird dann eine Forward-Hook zum Speichern der Aktivierungen und eine Backwa
 Dann wird ein Forward Pass und ein Backward Pass durchgeführt, wodurch die Hooks ausgelöst werden.
 Die Gewichte der Filter werden anhand des Mittelwertes der Gradienten berechnet und mit ihnen die gewichtete Summe der Feature Maps gebildet, wodurch ein 2D-Array entsteht.
 Daraufhin wird noch eine ReLU-Funktion angewendet und eine Normalisierung durchgeführt, damit sich alle Werte zwischen 0 und 1 befinden.
-Das 2D-Array wird schließlich in eine Heatmap umgewandelt und transparent über das Bild gelegt.
+Das 2D-Array wird schließlich mit der Funktion \verb|cm| von \verb|matplotlib| in eine Heatmap umgewandelt und transparent über das Bild gelegt.
 
 \subsubsection{LIME}
-Eine Erklärung für LIME kann mit der Funktion \verb|explain_instance| erzeugt werden.
+Eine Erklärung für LIME kann mit der Funktion \verb|explain_instance| der \verb|lime|-Bibliothek erzeugt werden.
 Diese erhält als Eingabe unter anderem das Bild, die Klassifizierungsfunktion und die Anzahl der zufällig veränderten Bilder, die in diesem Fall auf 100 gesetzt ist.
 Die Klassifizierungsfunktion \verb|lime_predict| gibt anhand eines Arrays von leicht veränderten Bildern die Klassenwahrscheinlichkeiten für jedes Bild zurück.
 Über den Parameter \verb|segmentation_fn| wird hier festgelegt, dass das Bild in 30 Segmente aufgeteilt wird.
