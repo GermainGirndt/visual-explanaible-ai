@@ -4,38 +4,41 @@ Im folgenden werden die Ergebnisse der Fallstudie evaluiert und diskutiert die W
 \section{Ergebnisse}
 \subsection{Vergleich vor und nach der Demonstration}
 Das Tool hat nach der Umfrage den Teilnehmern geholfen im Vergleich zu vor der Demonstration, die Modellentscheidung durch die Visualisierung zu verstehen und erkennen welche Eingabemermale für die Klassifizierung relevant waren. 
-Das Tool hat außerdem geholfen zu erkennen, wann das KI Modell möglicherweise falsche Vorhersagen trifft und zeigt Grenzen des KI-Modells auf. 
+Das Tool hat außerdem geholfen zu erkennen, wann das KI Modell möglicherweise falsche Vorhersagen trifft und zeigt Grenzen des KI-Modells auf. \todo[]{Wieso? Nimm mal Bezug auf die Antworten der Umfrage}
 \subsection{Schlussfolgerungen}
-Unser Tool hat also dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da GradCam und LIME visuell funktionieren werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar. 
 
-Das ist kritisch wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
-Das Tool liefert also keine ausreichende Erklärung wieso etwas falsch klassifiziert wurde oder wieso diese Eingabemerkmale genau relevant sind. 
+Unser Tool \todo[]{Nicht in der 1. Person schreiben, sondern in der 3. Person, z.B. 'Die Ergebnisse deuten darauf hin, dass...' oder 'Das Tool Visual Explainable AI hat den Teilnehmern dabei geholfen...'} hat also dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da GradCam und LIME visuell funktionieren werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar. 
 
-Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Modelle verringern, was aber auch mit der Auswahl von EfficientNetV2 zu tun haben könnte, da auch bessere KI-Modelle mit einer geringeren Fehlerrate existieren. Es wurden auch zwei richtig klassifizierte Bilder und zwei falsch klassifizierte Bilder gezeigt, was den Eindruck von dem KI-Modell verzerrt.
+Das ist kritisch, wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
+Das Tool liefert also keine ausreichende Erklärung, warum etwas falsch klassifiziert wurde oder warum diese Eingabemerkmale genau relevant sind. 
+
+Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Modelle verringern, was aber auch mit der Auswahl von EfficientNetV2 zu tun haben könnte, da auch bessere KI-Modelle mit einer geringeren Fehlerrate existieren. Es wurden auch zwei richtig klassifizierte Bilder und zwei falsch klassifizierte Bilder gezeigt, was den Eindruck von dem KI-Modell verzerrt. \todo[]{guter Punkt!}
 
 \subsection{Wirksamkeit des Tools}
-Das Tool veranschaulicht die visuellen Erklärmethoden GradCam und LIME, dadurch wird den Studierenden ein Einstieg in das Gebiet xAI erleichtert, das sie die Erklärungen für mehrere Klassifizierungsklassen anschauen können. Das Tool hat erfüllt daher den Zweck einer Einführung in xAI.
+Das Tool veranschaulicht die visuellen Erklärmethoden GradCam und LIME. Dadurch wird den Studierenden ein Einstieg in das Gebiet xAI erleichtert, indem sie die Erklärungen für mehrere Klassifizierungsklassen anschauen können. Das Tool hat erfüllt daher den Zweck einer Einführung in xAI.
 
 
 \todox[]{Was haben andere Studien zum Thema herausgefunden? Was war deren Ergebnisse? Wie lassen sich die Ergebnisse mit den Ergebnissen von dieser Studie vergleichen?}
 \section{Studienlage}
 \subsection{Andere Studien}
 \subsubsection{Mangelnde Interpretierbarkeit}
-xAI zeigt welche Features und Muster wichtig für die interne KI-Modell Entscheidung sind. Diese Muster ergeben, aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.
+XAI zeigt welche Features und Muster wichtig für die interne KI-Modell Entscheidung sind. Diese Muster ergeben aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.  So kann beispielsweise eine Heatmap, die durch LRP erstellt wurde kann zum Beispiel einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}, was für Menschen nicht interpretierbar sein könnte.
 
-Eine Heatmap, die durch LRP erstellt wurde kann so zum Beispiel einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}.
-
-Je nach ausgewähltem Netz sind die Erklärungen durch Menschen mal mehr und mal weniger gut Interpretierbar.
+Darüber hinaus können je nach ausgewähltem Netz die erzeugten Erklärungen besser oder schlechter interpretierbar durch Menschen sein. \todo[]{Wo ist die Referenz?}
 \subsection{Vergleich}
-Wenn das KI-Modell ein Bild klassifiziert werden die relevanten Bereiche gehighlightet. So kann man gut die relevanten Eingabemerkmale bestimmen, im Falle einer inkorrekten Klassifikation liefern visuelle Erklärmethoden, aber keine gut durch Menschen interpretierbare Erklärung.
+\todo[]{In wie weit bezieht sich dieser Punkt auf die Ergebnisse der Fallstudie?}
+Wenn das KI-Modell ein Bild klassifiziert werden die relevanten Bereiche hervorgehoben. Dadurch kann man gut die relevanten Eingabemerkmale bestimmen, im Falle einer inkorrekten Klassifikation liefern visuelle Erklärmethoden, aber keine gut durch Menschen interpretierbare Erklärung.
 \todox[]{Herr Tholen: Grenzen der Fallstudie diskutieren (z.B. Stichprobengröße, Repräsentativität etc., Definition von "Interpretierbarkeit" und "Vertrauen" in diesem Kontext)}
 \todox[]{Mögliche Verzerrungen}
 \section{Grenzen und Verzerrungen}
+\todo[]{Dieser Punkt sollte vielleicht der allererste sein (7.1?), gleich nachdem man die untersuche Gruppe (PI-Studierende, HTW, Einführung in die Grundlagen der KI) definiert hat }
 \subsection{Stichprobengröße}
-Wir hatten nur 5 verwertbare Umfragebögen, Stand  WS 2023/2024 gab es im Studiengang Praktische Informatik 303 Studierende und im Studiengang Kommunikationsinformatik 124 Studierende \cite{htwStudents}. 5 davon sind unter 1 Prozent.
+Wir hatten nur 5 verwertbare Umfragebögen \todo[]{in der 3. Person schreiben}, Stand  WS 2023/2024 gab es im Studiengang Praktische Informatik 303 Studierende und im Studiengang Kommunikationsinformatik 124 Studierende \cite{htwStudents}. 5 davon sind unter 1 Prozent.
 
-Die Repräsentativität einer Stichprobe ist wie unverzerrt die Merkmalszusammensetzung in der Stichprobe die Merkmalszusammensetzung in der Zielgruppe widerspiegelt \cite{Döring2023}[S. 198]. Nicht alle Studierende dieser Studiengänge belegen Einführung in die Grundlagen der Künstlichen Intelligenz und nur ein Teil dieser Studierenden nehmen regelmäßig an der Vorlesung währenddessen die Umfrage stattfand teil. %Hier Zahlen noch raussuchen
+
+Die Repräsentativität einer Stichprobe ist wie unverzerrt die Merkmalszusammensetzung in der Stichprobe die Merkmalszusammensetzung in der Zielgruppe widerspiegelt \cite{Döring2023}[S. 198] \todo[]{ich habe diesen Satz leider nicht verstanden}. Nicht alle Studierende dieser Studiengänge belegen Einführung in die Grundlagen der Künstlichen Intelligenz und nur ein Teil dieser Studierenden nehmen regelmäßig an der Vorlesung währenddessen die Umfrage stattfand teil. %Hier Zahlen noch raussuchen
 Die Ergebnisse der Umfrage waren ziemlich homogen. Die Umfrage ist nicht unbedingt repräsentativ für alle Studenten im Studiengang Praktische Informatik und Kommunikationsinformatik, aber spiegelt Studenten, die Einführung in die Grundlagen der Künstlichen Intelligenz und regelmäßig die Vorlesung besucht gut dar. 
+\todo[]{Generell wurden hier unabhängige Aussagen geschrieben, aber nicht den Zusammenhang zwischen ihnen. Es wäre gut, die Aussagen zu begründen, zu erklären und miteinander zu verbinden, um einen besseren Fluss zu gewährleisten.}
 \subsection{Demonstration}
 \subsubsection{KI-Modell}
 In der Demonstration wurde EfficientNetV2 benutzt, es hat eine gute Performance dafür, dass es auf einem Laptop ausgeführt wurde. Leistungsstärkere Modelle klassifizieren Objekte öfter korrekt, aber sind für eine Demonstration auf einem Laptop nicht realistisch. Leistungsschwächere Modelle klassifizieren öfter falsch. Beide Arten können Fragen zum Vertrauen in KI-Modelle oder das Erkennen von Grenzen verzerren.

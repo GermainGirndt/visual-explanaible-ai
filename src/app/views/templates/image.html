@@ -2,22 +2,15 @@
 
 
 {% if image_url %}
+
 <div>
-    <img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
-    <form action="/" method="post" class="model-size-form">
-        <label for="model_type">Model Type:</label>
-        <select name="model_type" id="model_type" onchange="this.form.submit()">
-            <option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
-                EfficientNet
-            </option>
-            <option value="ResNet" {% if model_type=="ResNet" %}selected{% endif %}>
-                ResNet
-            </option>
-        </select>
-    </form>
+	<img src="{{ image_url }}" alt="Uploaded Image" style="max-width: 400px" />
 </div>
+
 {% else %}
+
 <img src="{{ url_for('static', path='assets/image_placeholder.svg') }}" alt="Uploaded Image Placeholder" style="max-width: 400px" />
 {% endif %}
+
 <br />
 {% endblock %}
