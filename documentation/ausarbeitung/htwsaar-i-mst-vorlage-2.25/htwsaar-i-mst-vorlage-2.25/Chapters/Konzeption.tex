@@ -19,20 +19,21 @@ Die MVP-Architektur erfüllt diese Anforderungen durch eine klare Trennung zwisc
 
 \subsection{Wahl der Architektur}
 Die MVP-Architektur wurde hauptsächlich gewählt, um die Kriterien zur Wartbarkeit und Erweiterbarkeit mit einer flexiblen und leichtgewichtigen Architektur zu erfüllen.
-\subsubsection*{Vorteile von MVP:}
+\subsubsection{Vorteile von MVP:}
 \begin{itemize}
     \item Separation of Concerns: Isoliert Berechnungen, Logik und UI für einfache Wartung
-    \item Erweiterbarkeit: Neue Modelle oder xAI-Methoden können durch Erweiterung der Model-Schicht hinzugefügt werden.
-    \item Testbarkeit: Model und Presenter können mit Unit Tests unabhängig vom View getestet werden.
+    \item Erweiterbarkeit: Neue Modelle oder xAI-Methoden können durch Erweiterung der Modell-Schicht hinzugefügt werden.
+    \item Testbarkeit: Model und Presenter können in einem späteren Zeitpunkt mit Unit Tests unabhängig vom View getestet werden.
     \item Pädagogische Klarheit: Spiegelt konzeptuelle Trennung zwischen Daten, Verarbeitung und Präsentation wider, was nützlich zur Lehre ist
 \end{itemize}
-\subsubsection*{Nachteile von MVP:}
+\subsubsection{Nachteile von MVP:}
 \begin{itemize}
     \item etwas mehr Boilerplate-Code (z. B. zusätzliche Klassen für Views und Presenter)
-    \item benötigt disziplinierte Koordination zwischen Komponenten, um \("\)Fat Presenters\("\) zu vermeiden.
+    \item benötigt disziplinierte Koordination zwischen Komponenten, um \enquote{Fat Presenters} zu vermeiden.
 \end{itemize}
-\subsubsection*{Vergleich mit Model View Controller (MVC)}
-MVC ist eine einfachere und leichtgewichtige Alternative zu MVP mit weniger Code und weniger Schichten zum Implementieren.
+\subsubsection{Warum MVP besser als MVC zur Erfüllung der Anforderungen}
+\todo[]{Es wurde nicht klar wie MVC aufgebaut ist und warum es nicht besser als MVP für unseren Fall ist. }
+Model-View-Controller (MVC) ist eine einfachere und leichtgewichtige Alternative zu MVP mit weniger Code und weniger Schichten zum Implementieren.
 Die Vorteile von MVP überwiegen jedoch, vor allem aufgrund der funktionalen Anforderungen der Wartbarkeit und besonders Erweiterbarkeit.
 \begin{itemize}
     \item Views rendern nur die Komponente und sind unabhängig vom Model (kein Data-Binding/Observer)
@@ -43,6 +44,7 @@ Deshalb können neue Funktionalitäten (z. B. neue Neural-Network-Modelle oder E
 Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controllern nicht so einfach.
 
 \subsection{Hauptkomponenten}
+\todo[]{Dieser Punkt sollte oben bei der Einleitung in das MVP-Architekturmuster sein}
 \begin{itemize}
     \item Models: beinhalten die Logik der einzelnen Komponenten wie die Klassifizierung mit einem Neural-Network-Modell und Generierung der Erklärung
     \item Presenters: bieten Schnittstellen zum Aufruf der Funktionen durch den Nutzer an
@@ -50,19 +52,29 @@ Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controlle
 \end{itemize}
 
 \section{Statisches Modell}
-\subsubsection*{Klassendiagramm: Koordination durch die Presenter-Klasse}
+\todo[]{Es fehlt die Einleitung (z.B. was das ist, dass es auf Basis der Anforderungen erstellt wurde. Denk mal daran, dass Herr Tholen kein Software-Engineer ist.)}
+\subsubsection{Klassendiagramm: Koordination durch die Presenter-Klasse}
+
 Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
 \includegraphics[width=\linewidth]{Graphics/static_model_presenter}
 \captionof{figure}{Klassendiagramm: Koordination durch die Presenter-Klasse}
+\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
 
-\subsubsection*{Klassendiagramm: Beziehung zwischen Models und Views}
-\subsubsection*{Views}
+\subsubsection{Klassendiagramm: Beziehung zwischen Models und Views}
+\subsubsection{Views}
 \begin{enumerate}
     \item ImageView: rendert das Bild
     \item PredictionView: rendert das Bild und die Klassifizierung
     \item ExplanationView: rendert das Bild, die Klassifizierung und die Erklärung
 \end{enumerate}
-\subsubsection*{Models}
+\subsubsection{Models}
+
+
+\includegraphics[width=\linewidth]{Graphics/static_model_models_views}
+\captionof{figure}{Klassendiagramm: Beziehung zwischen Models und Views}
+\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
+
+
 \begin{enumerate}
     \item Image: repräsentiert das geladene Bild, importiert es mit der statischen Methode \verb|load_from(file)|
     \item NeuralNetwork: klassifiziert ein \verb|Image| und produziert eine \verb|Prediction|
@@ -70,10 +82,12 @@ Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
     \item ExplainableAITechnique: nutzt ein \verb|NeuralNetwork| und dessen \verb|Prediction| um eine \verb|Explanation| zu generieren (z. B. via Grad-CAM)
     \item Explanation: repräsentiert das Ergebnis des xAI-Prozesses, normalerweise (aber nicht immer) als visuelle Heatmap generiert aus dem \verb|NeuralNetwork|-Modell und der \verb|Prediction|
 \end{enumerate}
-\includegraphics[width=\linewidth]{Graphics/static_model_models_views}
-\captionof{figure}{Klassendiagramm: Beziehung zwischen Models und Views}
 
 \section{Dynamisches Modell}
-\subsubsection*{Sequenzdiagramm: Default Use Case}
+\todo[]{Hier fehlt ebenso die Einleitung (z.B. was das ist, dass es auf Basis der Anforderungen + des statischen Modells erstellt wurde.)}
+\subsubsection{Sequenzdiagramm: Default Use Case}
 \includegraphics[width=\linewidth]{Graphics/dynamic_model}
 \captionof{figure}{Sequenzdiagramm: Default Use Case}
+\todo[]{Das Bild ist zu klein, man kann es nicht sehen!!! Man sollte sich in den Leser hineinversetzen, der das Dokument zum ersten Mal liest. Lieber das Bild auf die eigene Seite machen.}
+
+\todo[]{Hier fehlt eine kurze Beschreibung des Use Cases, z.B. was der Nutzer tut, was die Anwendung macht, was die Interaktionen zwischen den Komponenten sind, etc.}

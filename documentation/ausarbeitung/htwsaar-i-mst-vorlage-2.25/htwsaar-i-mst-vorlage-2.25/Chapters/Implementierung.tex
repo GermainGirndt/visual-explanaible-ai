@@ -3,7 +3,7 @@
 \section{Webapplikation als Grafische Benutzeroberfläche}
 
 \subsection{Wahl einer Webapplikation}
-Wir haben uns dafür entschieden, die Grafische Benutzeroberfläche (GUI) als Webapplikation zu implementieren.
+Wir haben uns dafür entschieden \todo[]{objektive Sprache, nicht in der 1. Person schreiben}, die Grafische Benutzeroberfläche (GUI) als Webapplikation zu implementieren.
 Ein Grund dafür ist die Plattformunabhängigkeit.
 Da die Anwendung im Browser läuft, kann sie auf allen Betriebssystemen ausgeführt werden.
 Läuft die Anwendung auf einem Webserver, ist sie auch leicht zugänglich, da keine Installation benötigt wird, was es vereinfacht, sie zu Demonstrationszwecken in Vorlesungen einzusetzen.
@@ -11,13 +11,19 @@ Es erleichtert auch das Design, das mit HTML-Templates definiert wurde.
 Zur Implementierung der Webapplikation wurde das Framework FastAPI verwendet und die Templates wurden mit Jinja2 erstellt.
 
 \subsection{GUI-Elemente}
-Auf der linken Seite der GUI befinden sich die Buttons \("\)Upload\("\), \("\)Classify\("\) und \("\)Explain\("\).
+Auf der linken Seite der GUI befinden sich die Buttons \enquote{Upload}, \enquote{Classify} und \enquote{Explain}, die in den folgenden Abschnitten beschrieben werden.
+
+\subsubsection{Upload-Button}
 Durch einen Klick auf den Upload-Button wird ein Bild hochgeladen, das in der Mitte der Seite angezeigt wird.\\
 \includegraphics[width=\linewidth]{Graphics/uploaded_image}
 \captionof{figure}{Anzeige des hochgeladenen Bildes}
+
+\subsubsection{Classify-Button}
 Das hochgeladene Bild kann dann mit dem Classify-Button klassifiziert werden.\\
 \includegraphics[width=\linewidth]{Graphics/classified_image}
 \captionof{figure}{Anzeige der 5 wahrscheinlichsten Klassen}
+
+\subsubsection{Explain-Button}
 Durch Klick auf den Explain-Button öffnet sich ein Dialog mit zwei Dropdown-Menüs zur Auswahl einer der 5 wahrscheinlichsten Klassen.
 Die möglichen Erklärungsarten sind Grad-CAM und LIME.
 Bei Grad-CAM markieren verschiedene Farben die Relevanz bestimmter Bereiche für die Klassifizierung des Bildes.
@@ -26,7 +32,7 @@ Bei LIME wird nur in einer Farbe angezeigt, welcher Bereich für die Klassifizie
 \captionof{figure}{Anzeige der Grad-CAM-Heatmap über dem Bild}
 \includegraphics[width=\linewidth]{Graphics/lime}
 \captionof{figure}{Anzeige des LIME-Overlays über dem Bild}
-Das Modell zur Klassifizierung kann mit dem Model-Button und die Erklärungsart mit dem Process-Button ausgewählt werden.
+Darüber hinaus können das Modell zur Klassifizierung und die Erklärungsart jeweils mit dem Model-Button und mit dem Process-Button ausgewählt werden.
 
 \subsection{Interaktion mit der GUI}
 Das Layout der Seite wird über HTML-Templates definiert.
@@ -39,6 +45,8 @@ Diese sendet durch das \verb|<input>|-Elements die URL des Bildes an den Server.
 \section{Built-in Support für Grad-CAM sowie LIME auf EfficientNetV2}
 
 \subsection{Wahl der XAI-Verfahren}
+\todo[]{Die Subsection 'Wahl der XAI-Verfahren' wie es geschrieben wurde gehört eigentlich in die Anforderungsanalyse (und eventuell in die Grundlage). Stattdessen sollte hier eher beschrieben werden, wie die XAI-Verfahren implementiert wurden (z. B. welche Libraries dafür verwendet wurden und warum)}
+
 Wir haben uns für die XAI-Verfahren Grad-CAM und LIME entschieden.
 Diese beiden Verfahren gehören zu den beliebtesten XAI-Verfahren und vor allem Grad-CAM wurde seit Mitte 2025 immer beliebter.
 Aufgrund der Popularität werden diese Verfahren häufig in wissenschaftlichen Papers behandelt und sind gut dokumentiert.
@@ -49,17 +57,22 @@ LIME ist dagegen modellagnostisch und approximiert die Klassifizierung lokal.\\
 \includegraphics[width=\linewidth]{Graphics/google_trends_gradcam}
 \captionof{figure}{Zeitlicher Verlauf der Suchanfragen zu Grad-CAM im Vergleich zu anderen Methoden}
 
-\subsection{Wahl des CNN-Modells}
-Als CNN-Modell wurde ein vortrainiertes EfficientNetV2 verwendet.
-Dieses kann wie viele andere Modelle über torchvision verwendet werden.
+\subsection{Implementierung der EfficientNetV2- und ResNet-Modelle}
+Als CNN-Modell wurden ein vortrainiertes EfficientNetV2 und ein ResNet-Modell verwendet.
+Diese können – wie viele andere Modelle – über die Library \texttt{torchvision} verwendet werden.
+
 EfficientNetV2 ist in den Größen L, M und S verfügbar, hier wird das Modell in Grüße L genutzt.
-Mit einer Acc@1 von 85.8\% und einer Acc@5 von 97.8\% ist es eines der genauesten Netze und mit 118,5 Millionen Parametern deutlich kleiner als Modelle mit ähnlicher Genauigkeit (Regnet\_Y\_128GF hat 644,8 Millionen Parameter).\cite{torchvision_models}
+Mit einer Acc@1 von 85.8\% und einer Acc@5 von 97.8\% ist es eines der genauesten Netze und mit 118,5 Millionen Parametern deutlich kleiner als Modelle mit ähnlicher Genauigkeit (Regnet\_Y\_128GF hat 644,8 Millionen Parameter)\cite{torchvision_models}.
 Das macht es zu einem sehr effizienten Netz bei hoher Genauigkeit.
 Der Speicherbedarf ist nicht zu hoch und bei einer Demonstration in einer Vorlesung hat es den Vorteil, dass das Netz nicht mehr trainiert werden muss und die Klassifizierung schnell abgeschlossen ist.
+
+\todo[]{Schreib hier auch mal einen neuen Abschnitt zum ResNet-Modell, weil wir es ja auch implementiert haben.}
 
 \subsection{Implementierung der XAI-Verfahren}
 Für die Implementierung der XAI-Methoden gibt es die Klasse \verb|ExplainableAITechnique| mit der Methode \verb|explain|.
 Diese bekommt als Parameter eine\verb|Prediction|, bestehend aus ID, Name und Wahrscheinlichkeit einer Klasse, sowie ein \verb|NeuralNetwork|-Modell und wird in den Unterklassen \verb|GradCAM| und \verb|LIME| von der jeweiligen Methode implementiert.
+\todox[]{Ja, aber wurden dafür auch Libraries verwendet? Wenn nicht, woher kommt der Code und wieso?}
+
 
 \subsubsection{Grad-CAM}
 Zur Generierung einer Grad-CAM-Erklärung wird zuerst die letzte Convolutional Layer des Netzes gefunden.

@@ -59,7 +59,7 @@ Die Implementierung der GUI als Webanwendung vereinfacht die Entwicklung.
     \item Die Anwendung muss ein Bild mithilfe eines Neural-Network-Modells klassifizieren können.
     \item Akzeptanzkriterien:
     \begin{enumerate}
-        \item Für die Klassifizierung wird das Modell EfficientNetV2 verwendet.
+        \item Für die Klassifizierung wird die EfficientNetV2-Architektur verwendet.
         \item Die 5 Klassen mit der höchsten Wahrscheinlichkeit werden im Frontend angezeigt.
     \end{enumerate}
 \end{itemize}
@@ -77,7 +77,7 @@ Aufgrund der geringen Größe von maximal ein paar hundert MB sind EfficientNetV
     \end{enumerate}
 \end{itemize}
 \textit{Warum?} Grad-CAM ist weit verbreitet, intuitiv und in Vorlesungen einfach zu zeigen.
-Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, Youtube-Videos, \ldots), wodurch es ein guter erster Schritt ist, um Erklärbarkeit zu visualisieren.
+Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, Youtube-Videos, \ldots), wodurch es ein guter erster Schritt ist, um Erklärbarkeit zu visualisieren. 
 
 \subsubsection{MH5 - Wartbarkeit}
 \begin{itemize}
@@ -85,13 +85,13 @@ Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, 
     \item Akzeptanzkriterien:
     \begin{enumerate}
         \item Dokumentation von:
-            \begin{itemize}
+            \begin{enumerate}
                 \item genutzten Programmiersprachen und Versionen
                 \item Versionen von Abhängigkeiten und Konfigurationsdetails
-            \end{itemize}
+            \end{enumerate}
     \end{enumerate}
 \end{itemize}
-\textit{Warum?} Gute Dokumentation stellt sicher, dass Mitwirkende wie z. B. Studenten in der Zukunft das System ohne Konfigurationsprobleme reproduzieren und erweitern können.
+\textit{Warum?} Gute Dokumentation stellt sicher, dass Stakeholder wie z. B. Studenten in der Zukunft das System ohne Konfigurationsprobleme reproduzieren und erweitern können.
 
 \subsection{Should-Have Anforderungen}
 
@@ -100,11 +100,14 @@ Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, 
     \item Die Anwendung sollte einfach um weitere Modelle und xAI-Methoden zu erweitern sein.
     \item Akzeptanzkriterien:
     \begin{enumerate}
-        \item Der Nutzer kann zwischen mehreren Bildklassifizierungsmodellen und xAI-Methoden auswählen.
+        \item Weitere Bildklassifizierungsmodelle (z. B. ResNet) können ausgewählt werden.
+        \item Weitere XAI-Methoden (z. B. LIME) können ausgewählt werden.
+        \item Die Architektur ist modular aufgebaut, sodass neue Modelle oder Methoden leicht hinzugefügt werden können. 
         \item Hat der Nutzer ein Modell ausgewählt, können nur kompatible Methoden ausgewählt werden.
     \end{enumerate}
 \end{itemize}
-\textit{Warum?} Erweiterbarkeit ermöglicht es, dass in zukünftigen Projekten neue Modelle oder xAI-Methoden leicht hinzugefügt werden können.
+\textit{Warum?} Erweiterbarkeit ermöglicht es, dass in zukünftigen Projekten neue Modelle oder XAI-Methoden leicht hinzugefügt werden können.
+Darüber hinaus sind ResNet ein wichtiges Bildklassifizierungsmodell und LIME eine modellagnostische XAI-Methoden, mit denen die Studierenden Experimente und Vergleiche mit den anderen Modellen und XAI-Methoden durchführen können. Die Implementierung von ResNet und LIME dient zur Demonstration der Erweiterbarkeit der Architektur. 
 
 \subsection{Could-Have Anforderungen}
 
@@ -136,12 +139,13 @@ Es gibt viele verfügbare Ressourcen zum Lernen über Grad-CAM, (z. B. Artikel, 
     \item Keine 3D- oder zeitliche Visualisierungen
 \end{itemize}
 \textit{Warum?} Die Implementierung und Visualisierung dieser Methoden ist komplexer, Grad-CAM reicht zu Bildungszwecken.
+\todo[]{Anpassen, weil wir im Endeffekt doch LIME implementieren!!!}
 
 \subsubsection{Responsive Design}
 \begin{itemize}
     \item Keine Responsive Web UI
 \end{itemize}
-\textit{Warum?} Das Tool dient nur zur Verwendung zu Testzwecken und in Vorlesungen und wird nicht öffentlich ausgeliefert.
+\textit{Warum?} Das Tool dient nur zur Verwendung zu Testzwecken und in Vorlesungen und wird nicht öffentlich ausgeliefert. Daher ist die Unterstüzung von Tablets und Mobilgeräten im ersten Moment nicht notwendig.
 
 \subsubsection{Native App Deployment}
 \begin{itemize}
