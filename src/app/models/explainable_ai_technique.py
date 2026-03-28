@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 import uuid
 import torch
-from torchvision.models import EfficientNet_V2_S_Weights, efficientnet_v2_s, EfficientNet_V2_L_Weights, efficientnet_v2_l
 from PIL import Image
 import torch.nn.functional as F
 import numpy as np

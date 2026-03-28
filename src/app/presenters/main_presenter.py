@@ -4,7 +4,7 @@ from app.views.prediction_view import PredictionView
 from app.views.explanation_view import ExplanationView
 from starlette.responses import RedirectResponse
 from app.models.image import Image
-from app.models.neural_network import NeuralNetwork, EfficientNet
+from app.models.neural_network import NeuralNetwork, EfficientNetv2, ResNet
 from app.models.predictions import Prediction
 from app.models.explanation import Explanation
 from app.models.explainable_ai_technique import ExplainableAITechnique, GradCam, LIME
@@ -16,7 +16,7 @@ from app.config import STATIC_DIR
 class MainPresenter:
      type = "EfficientNet"
      image = []
-     model: NeuralNetwork = EfficientNet("EfficientNet")
+     model: NeuralNetwork = EfficientNetv2()
      def __init__(self, app: FastAPI):
         image_view = ImageView()
         prediction_view = PredictionView()
@@ -40,9 +40,14 @@ class MainPresenter:
         
         @app.post("/")
         def change_model_size(request: Request, model_type: str = Form(...)):
-             self.model = EfficientNet(model_type)
-             self.type = model_type
-             return RedirectResponse("/resize", status_code=303)
+            if model_type == "ResNet":
+                 self.model = ResNet()
+                 self.type = model_type
+            else:
+                 self.model = EfficientNetv2()
+                 self.type = model_type  
+          
+            return RedirectResponse("/resize", status_code=303)
             
         @app.post("/upload")
         async def upload_image(request: Request, file: UploadFile):
