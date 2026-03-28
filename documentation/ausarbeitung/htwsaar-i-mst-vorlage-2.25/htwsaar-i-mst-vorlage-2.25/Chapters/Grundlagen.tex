@@ -106,14 +106,20 @@ Dies wird folgendermaßen realisiert: Permutationen der originalen Daten werden 
 \subsection{Layerwise Relevance Propagation}
 Layerwise Relevance Propagation oder LRP ist eine visuelle xAI-Technik und bestimmt die Merkmale von bestimmten Eingangsvektoren, die am stärksten zu einem Klassifizierungsergebnis beitragen \cite{lrp}.
 
-\begin{minipage}{\linewidth}
-\centering
+LRP definiert den relevance measure R über den Inputvektor, sodass man den KI-Modell Output als Summe der Werte von R dargestellt werden kann\cite{lrp}: 
+
 \begin{minipage}{1.0\linewidth}
     \centering
+    \includegraphics[width=0.5\linewidth]{Graphics/lrpsum.png}
+\end{minipage}
+
+
+Dabei ist f die forward-pass-Funktion des KI-Models, bei LRP wird der Output des Modells in die Summe der der Relevanten Pixel des Inputs zerlegt, um das zu erreichen, fängt man mit der Relevanz des Output-Knotens an und propagiert iterativ rückwärts durch das KI-Modell \cite{lrp}.
+
+
     \includegraphics[width=0.8\linewidth]{Graphics/LRP.png}
-\end{minipage}
-\captionof{figure}{Erklärungen für die Output Neuronen 'passenger car' \cite{Montavon2019}[Seite 10]}
+    \captionof{figure}{Erklärungen für die Output Neuronen 'passenger car' \cite{Montavon2019}[Seite 10]}
 \label{fig:lrp}
-\end{minipage}
+
 \vspace{0.5em}
 
