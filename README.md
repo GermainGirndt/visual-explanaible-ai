@@ -1,61 +1,62 @@
-# visual-explanaible-ai
+# Visual Explainable AI
 
-### Project Setup
+## Project Setup
 
-For setting up the project on your machine, execute the following steps:
+For setting up the project on your machine, execute the following 5 steps:
+
+#### 1. Ensure Python version is 3.10.14:
 
 ```
-# Ensure Python version is 3.10.14
 python --version
+```
 
-# Create a Virtual Environment
+#### 2. Create a Virtual Environment:
+
+```
 python -m venv venv
+```
 
-# Execute the Virtual Environment
+#### 3. Execute the Virtual Environment:
+
+```
 source venv/bin/activate # Example for MacOS/Linux
-venv\Scripts\activate # Windows
+venv\Scripts\activate # Example for Windows
+```
 
-# Install the required libraries
+#### 4. Install the required libraries
+
+```
 pip install -r requirements.txt
+```
 
-# Create a new .env file according to the template
+#### 5. Create a new .env file according to the template
+
+```
 cp .env.example .env
 ```
 
-### Running the App
+## Running the App
 
-For running the App at http://127.0.0.1:8000, we call the fastapi CLI, passing in our root file:
+For running the App at http://127.0.0.1:8000, we call the fastapi CLI, passing in our root file.
+
+#### In project root folder ('visual_explainable_ai'), run the following command:
 
 ```
-# Make sure you're in the project root folder ('visual_explainable_ai')
 fastapi dev src/app/main.py
-
-# Alternative with workers
-fastapi run --workers 4 src/app/main.py
 ```
 
-### Running the Experiments
+## Other Notes
 
-After configuring your `.env` file according to your system specs:
+### In case of Pytorch incompatibilities:
 
-```
-# Make sure you're in the project root folder ('visual_explainable_ai')
-pwd
+The install command for Pytorch may be different depending on the user machine. If there's any incompatibility, check the following website:
+https://pytorch.org/get-started/locally/
 
-# Execute the desired script
-python src/01_image_classification_pipeline.py
-```
+### Rendering the Documentation Diagrams
 
-### Notes
+To render the documentation diagrams on your browser, use the `https://mermaid.live` website.
 
-#### Pytorch
-
-- The install command for Pytorch may be different depending on the user machine. If there's any incompatibility, check the following website:
-  https://pytorch.org/get-started/locally/
-
-### VSCODE Setup for Documentation
-
-If you're using VSCode, it is recommend to use following Markdown plugins:
+Alternatively, to render them on VSCode install the following Markdown plugins and opening the diagrams as a Markdown file:
 
 ```
 # Markdown Syntax Highlightning
@@ -74,9 +75,11 @@ bierner.markdown-mermaid
 ### Project Management Trello-Board
 
 The Trello-Board for the project with the Trello Cards can be found in (access required):
+
 https://trello.com/b/51PYbgcp/xai-projektarbeit-master
 
 ### Figma Prototype
 
 The Figma-Prototype can be found in (access required):
+
 https://www.figma.com/design/9V11JkjmbXjMg4URsNOcdb/Explainable-AI-App?node-id=0-1&t=65zz7mwVtSEh9lhl-1
