@@ -30,7 +30,7 @@ Die Erhöhung der Anzahl der Schichten in einem Deep Neural Network (DNN) war ni
     When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly. Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error, as reported in [10, 41] and thoroughly verified by our experiments.
 \end{quote}
 
-Dies stellte die wissenschaftliche Gemeinschaft vor ein Rätsel: Falls zusätzliche Schichten nicht zu einer erhöhten Leistung führen, wären sie theoretisch dennoch in der Lage, die Identitätsfunktion zu approximieren, sodass die Leistung des erweiterten Modells zumindest nicht wesentlich schlechter als die des ursprünglichen Modells sein sollte. In der Praxis war dies jedoch häufig nicht der Fall, und die Leistung verschlechterte sich sogar deutlich.
+Dies stellte die wissenschaftliche Gemeinschaft vor ein Rätsel: Falls zusätzliche Schichten nicht zu einer erhöhten Leistung führten, wären sie theoretisch dennoch in der Lage, die Identitätsfunktion zu approximieren, sodass die Leistung des erweiterten Modells zumindest nicht wesentlich schlechter als die des ursprünglichen Modells sein sollte. In der Praxis war dies jedoch häufig nicht der Fall, und die Leistung verschlechterte sich sogar deutlich.
 
 So wurde dieses Problem durch die Einführung sogenannter Residual-Blöcke gelöst \cite{he2016resnet}. Diese Blöcke enthalten eine direkte Verbindung zwischen der Eingabe und der Ausgabe, sodass die dazwischenliegenden Schichten lediglich die Differenz (d.\, h. dass \textbf{Residuum}) zwischen der Eingabe und der Ausgabe lernen müssen, wie die sogenannte \textbf{Residualfunktion} darstellt:
 
@@ -96,9 +96,9 @@ Grad-CAM kann auf verschiedenen CNNS angewandt werden, inbesondere (1) CNNs mit 
 \end{minipage}
 \vspace{0.5em}
 
-Im Gegensatz zu Grad-CAM bietet LIME (\textit{Local Interpretable Model-agnostic Explanations}) eine \textbf{agnotische} Methode zur Erklärung von Vorhersagen in beliebigen Modellarchitekturen.
+Im Gegensatz zu Grad-CAM bietet LIME (\textit{Local Interpretable Model-agnostic Explanations}) eine \textbf{agnostische} Methode zur Erklärung von Vorhersagen in beliebigen Modellarchitekturen.
 
-Die Idee hinter LIME ist simpel. Die Vorhersage eines Modells für eine bestimmte Eingabe kann durch die Erstellung eines einfachen, interpretablen Modells in der Nähe dieser Eingabe approximiert werden.  Das einfache Modell kann dann verwendet werden, um die Vorhersage des komplexen Modells zu erklären, indem es die wichtigsten Merkmale identifiziert, die zur Vorhersage beitragen \cite{ribeiro2016lime, molnar2022interpretable}.
+Die Idee hinter LIME ist simpel. Die Vorhersage eines Modells für eine bestimmte Eingabe kann durch die Erstellung eines einfachen, interpretierbaren Modells in der Nähe dieser Eingabe approximiert werden.  Das einfache Modell kann dann verwendet werden, um die Vorhersage des komplexen Modells zu erklären, indem es die wichtigsten Merkmale identifiziert, die zur Vorhersage beitragen \cite{ribeiro2016lime, molnar2022interpretable}.
 
 Dies wird folgendermaßen realisiert: Permutationen der originalen Daten werden erstellt und die Vorhersage des zu erklärenden Modells für diese Variationen berechnet. Die Permutationen sowie die daraus resultierenden Vorhersagen werden dann verwendet, um ein einfaches gewichtetes Modell zu trainieren, das die Vorhersage des komplexen Modells in der Nähe der ursprünglichen Eingabe approximiert. Dieses einfache, lokale Modell wird dann zur Erklärung der ursprünglichen Vorhersage verwendet \cite{ribeiro2016lime, molnar2022interpretable}.
 

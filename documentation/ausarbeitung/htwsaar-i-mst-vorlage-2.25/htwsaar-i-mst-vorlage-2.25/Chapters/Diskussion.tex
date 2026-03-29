@@ -1,12 +1,12 @@
 \chapter{Diskussion}
-Im folgenden werden die Ergebnisse der Fallstudie evaluiert und diskutiert die Wirksamkeit des Tools.
+Im Folgenden werden die Ergebnisse der Fallstudie evaluiert und die Wirksamkeit des Tools diskutiert.
 
 \section{Grenzen und Verzerrungen}
 \subsection{Stichprobengröße}
-Es gab nur 5 verwertbare Umfragebögen, Stand  WS 2023/2024 gab es im Studiengang Praktische Informatik 303 Studierende und im Studiengang Kommunikationsinformatik 124 Studierende \cite{htwStudents}. 5 davon sind unter 1 Prozent.
+Es gab nur 5 verwertbare Umfragebögen, Stand WS 2023/2024 gab es im Studiengang Praktische Informatik 303 und im Studiengang Kommunikationsinformatik 124 Studierende \cite{htwStudents}. 5 davon sind unter 1 Prozent.
 
-Die Repräsentativität einer Stichprobe ist, wie unverzerrt die Merkmalszusammensetzung in der Stichprobe die Merkmalszusammensetzung in der Zielgruppe widerspiegelt \cite{Döring2023}[S. 198]. Nicht alle Studierende dieser Studiengänge belegen Einführung in die Grundlagen der Künstlichen Intelligenz und nur ein Teil dieser Studierenden nehmen regelmäßig an der Vorlesung währenddessen die Umfrage stattfand teil. 
-Die Umfrage ist nicht unbedingt repräsentativ für alle Studenten im Studiengang Praktische Informatik und Kommunikationsinformatik, aber spiegelt Studenten, die Einführung in die Grundlagen der Künstlichen Intelligenz und regelmäßig die Vorlesung besucht gut dar, dadurch waren die Ergebnisse der Umfrage auch ziemlich homogen.
+Die Repräsentativität einer Stichprobe ist, wie unverzerrt die Merkmalszusammensetzung in der Stichprobe die Merkmalszusammensetzung in der Zielgruppe widerspiegelt \cite{Döring2023}[S. 198]. Nicht alle Studierende dieser Studiengänge belegen \textit{Einführung in die Grundlagen der Künstlichen Intelligenz} und nur ein Teil dieser Studierenden nehmen regelmäßig an der Vorlesung, während der die Umfrage stattfand, teil.
+Die Umfrage ist nicht unbedingt repräsentativ für alle Studenten im Studiengang Praktische Informatik und Kommunikationsinformatik, aber spiegelt Studenten, die \textit{Einführung in die Grundlagen der Künstlichen Intelligenz} und regelmäßig die Vorlesung besucht gut dar, dadurch waren die Ergebnisse der Umfrage auch ziemlich homogen.
 \subsection{Demonstration}
 \subsubsection{KI-Modell}
 In der Demonstration wurde EfficientNetV2 benutzt, es hat eine gute Performance dafür, dass es auf einem Laptop ausgeführt wurde. Leistungsstärkere Modelle klassifizieren Objekte öfter korrekt, aber sind für eine Demonstration auf einem Laptop nicht realistisch. Leistungsschwächere Modelle klassifizieren öfter falsch. Beide Arten können Fragen zum Vertrauen in KI-Modelle oder das Erkennen von Grenzen verzerren.
@@ -16,23 +16,23 @@ Es wurden zwei korrekt klassifizierte Bilder und zwei inkorrekt klassifizierte B
 
 \section{Ergebnisse}
 \subsection{Vergleich vor und nach der Demonstration}
-Das Tool Visual Explainable AI hat nach der Umfrage den Teilnehmern geholfen im Vergleich zu vor der Demonstration, die Modellentscheidung durch die Visualisierung zu verstehen [s. Frage 9] und erkennen welche Eingabemermale für die Klassifizierung relevant waren [s. Frage 10]. 
-Das Tool hat außerdem geholfen zu erkennen, wann das KI Modell möglicherweise falsche Vorhersagen trifft [s. Frage 12] und zeigt Grenzen des KI-Modells auf[s. Frage 13]. 
+Das Tool Visual Explainable AI hat nach der Umfrage den Teilnehmern geholfen im Vergleich zu vor der Demonstration, die Modellentscheidung durch die Visualisierung zu verstehen [s. Frage 9] und zu erkennen welche Eingabemermale für die Klassifizierung relevant waren [s. Frage 10].
+Das Tool hat außerdem geholfen zu erkennen, wann das KI-Modell möglicherweise falsche Vorhersagen trifft [s. Frage 12] und zeigt Grenzen des KI-Modells auf[s. Frage 13].
 \subsection{Schlussfolgerungen}
 
-Das Tool Visual Explainable AI hat den Teilnehmern der Fallstudie dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da GradCam und LIME visuell funktionieren werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar. 
+Das Tool Visual Explainable AI hat den Teilnehmern der Fallstudie dabei geholfen zu erkennen welche Eingabemerkmale relevant für eine Entscheidung waren, da Grad-CAM und LIME visuell funktionieren, werden so auf einen Blick die für die Klassifizierung relevanten Bereiche sichtbar.
 
-Das ist kritisch, wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt ist sondern objektiv irrelevante Bereiche.
+Das ist kritisch, wenn das Bild falsch klassifiziert wird oder die Eingabemerkmale nicht das zu klassifizierende Objekt sind, sondern objektiv irrelevante Bereiche.
 Das Tool liefert also keine ausreichende Erklärung, warum etwas falsch klassifiziert wurde oder warum diese Eingabemerkmale genau relevant sind. 
 
 Es kann anscheinend mit falschen Klassifizierungen auch das Vertrauen in KI-Modelle verringern, was aber auch mit der Auswahl von EfficientNetV2 zu tun haben könnte, da auch bessere KI-Modelle mit einer geringeren Fehlerrate existieren. Es wurden auch zwei richtig klassifizierte Bilder und zwei falsch klassifizierte Bilder gezeigt, was den Eindruck von dem KI-Modell verzerrt. 
 
 \subsection{Wirksamkeit des Tools}
-Das Tool veranschaulicht die visuellen Erklärmethoden GradCam und LIME. Dadurch wird den Studierenden ein Einstieg in das Gebiet XAI erleichtert, indem sie die Erklärungen für mehrere Klassifizierungsklassen anschauen können. Das Tool hat erfüllt daher den Zweck einer Einführung in XAI.
+Das Tool veranschaulicht die visuellen Erklärmethoden Grad-CAM und LIME. Dadurch wird den Studierenden ein Einstieg in das Gebiet XAI erleichtert, indem sie die Erklärungen für mehrere Klassifizierungsklassen anschauen können. Das Tool hat daher den Zweck einer Einführung in XAI erfüllt .
 
 \section{Studienlage}
 \subsection{Andere Studien}
 \subsubsection{Mangelnde Interpretierbarkeit}
-XAI zeigt welche Features und Muster wichtig für die interne KI-Modell Entscheidung sind. Diese Muster ergeben aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.  So kann beispielsweise eine Heatmap, die durch LRP erstellt wurde kann zum Beispiel einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}, was für Menschen nicht interpretierbar sein könnte.
+XAI zeigt welche Features und Muster wichtig für die interne KI-Modell-Entscheidung sind. Diese Muster ergeben aber nicht unbedingt Sinn aus der Sicht eines Menschen \cite{Zednik2026}.  So kann beispielsweise eine Heatmap, die durch LRP erstellt wurde, einen amorphen Blob oder zufällige Pixel highlighten \cite{articleStopBlackBox}, was für Menschen nicht interpretierbar sein könnte.
 
 Darüber hinaus können je nach ausgewähltem Netz die erzeugten Erklärungen besser oder schlechter interpretierbar durch Menschen sein\cite{Zednik2026}.
