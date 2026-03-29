@@ -21,8 +21,6 @@
 # *.eps
 # *.pdf
 
-## Generated if empty string is given at "Please type another file name for output:"
-*\ausarbeitung\htwsaar-i-mst-vorlage-2.25\htwsaar-i-mst-vorlage-2.25\htwsaar-i-mst-vorlage.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -279,4 +277,4 @@ htwsaar-i-mst-vorlage.tcp
 
 
 # Created documents
-*.pdf
+\htwsaar-i-mst-vorlage.pdf
