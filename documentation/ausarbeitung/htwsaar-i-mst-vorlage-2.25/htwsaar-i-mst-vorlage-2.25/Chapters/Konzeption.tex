@@ -7,7 +7,7 @@ Die Explainable-AI-Anwendung muss folgendes können:
 \begin{enumerate}
     \item Bilder laden und anzeigen
     \item Bilder mit einem Neural-Network-Modell klassifizieren
-    \item Erklärungen mit einer xAI-Methode generieren
+    \item Erklärungen mit einer XAI-Methode generieren
     \item wartbar, erweiterbar und einfach in einer Vorlesung zu zeigen sein
 \end{enumerate}
 Die MVP-Architektur erfüllt die Anforderungen durch eine klare Trennung ihrer Hauptkomponenten:
@@ -22,7 +22,7 @@ Die MVP-Architektur wurde hauptsächlich gewählt, um die Kriterien zur Wartbark
 \subsubsection{Vorteile von MVP:}
 \begin{itemize}
     \item Separation of Concerns: Isoliert Berechnungen, Logik und UI für einfache Wartung
-    \item Erweiterbarkeit: Neue Modelle oder xAI-Methoden können durch Erweiterung der Modell-Schicht hinzugefügt werden.
+    \item Erweiterbarkeit: Neue Modelle oder XAI-Methoden können durch Erweiterung der Modell-Schicht hinzugefügt werden.
     \item Testbarkeit: Model und Presenter können in einem späteren Zeitpunkt mit Unit Tests unabhängig vom View getestet werden.
     \item Pädagogische Klarheit: Spiegelt konzeptuelle Trennung zwischen Daten, Verarbeitung und Präsentation wider, was nützlich zur Lehre ist
 \end{itemize}
@@ -81,7 +81,7 @@ Der Nutzer interagiert mit dem Presenter, der die anderen Klassen koordiniert.\\
     \item NeuralNetwork: klassifiziert ein \verb|Image| und produziert eine \verb|Prediction|
     \item Prediction: beinhaltet die Ausgabe der Klassifizierung (Name, ID und Wahrscheinlichkeit der Klasse)
     \item ExplainableAITechnique: nutzt ein \verb|NeuralNetwork| und dessen \verb|Prediction| um eine \verb|Explanation| zu generieren (z. B. via Grad-CAM)
-    \item Explanation: repräsentiert das Ergebnis des xAI-Prozesses, normalerweise (aber nicht immer) als visuelle Heatmap generiert aus dem \verb|NeuralNetwork|-Modell und der \verb|Prediction|
+    \item Explanation: repräsentiert das Ergebnis des XAI-Prozesses, normalerweise (aber nicht immer) als visuelle Heatmap generiert aus dem \verb|NeuralNetwork|-Modell und der \verb|Prediction|
 \end{enumerate}
 
 \section{Dynamisches Modell}
