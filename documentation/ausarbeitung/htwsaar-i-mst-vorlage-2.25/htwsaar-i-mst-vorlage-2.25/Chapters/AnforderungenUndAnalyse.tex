@@ -166,4 +166,14 @@ Da der Nutzer über technisches Wissen verfügt, ist er in der Lage, die Start-S
 \textit{Warum?} Obwohl Docker die Reproduzierbarkeit verbessert, würde es die Komplexität bei einer lokal laufenden Anwendung unnötig erhöhen.
 Da das Tool auf einem einzigen Gerät läuft und Nutzer direkt Abhängigkeiten installieren können, bietet Containerisierung hier wenig praktischen Nutzen.
 
+\subsection{Wahl der XAI-Verfahren}
 
+Als XAI-Verfahren sollen Grad-CAM und LIME verwendet werden.
+Diese beiden Verfahren gehören zu den beliebtesten XAI-Verfahren und vor allem Grad-CAM wurde seit Mitte 2025 immer beliebter.
+Aufgrund der Popularität werden diese Verfahren häufig in wissenschaftlichen Papers behandelt und sind gut dokumentiert.
+Außerdem sind die Methoden mit PyTorch einfach zu implementieren.
+Mit zwei unterschiedlichen Verfahren lässt sich auch der Unterschied zwischen der modellspezifischen und der modellagnostischen Funktionsweise zeigen.
+Grad-CAM ist modellspezifisch, da es mit den Gradienten des Neural Networks arbeitet.
+LIME ist dagegen modellagnostisch und approximiert die Klassifizierung lokal.\\
+\includegraphics[width=\linewidth]{Graphics/google_trends_gradcam}
+\captionof{figure}{Zeitlicher Verlauf der Suchanfragen zu Grad-CAM im Vergleich zu anderen Methoden}

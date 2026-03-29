@@ -10,18 +10,11 @@ Die Explainable-AI-Anwendung muss folgendes können:
     \item Erklärungen mit einer xAI-Methode generieren
     \item wartbar, erweiterbar und einfach in einer Vorlesung zu zeigen sein
 \end{enumerate}
-Die MVP-Architektur hat als Hauptkomponenten:
+Die MVP-Architektur erfüllt die Anforderungen durch eine klare Trennung ihrer Hauptkomponenten:
 \begin{itemize}
     \item Models: beinhalten die Logik der einzelnen Komponenten wie die Klassifizierung mit einem Neural-Network-Modell und Generierung der Erklärung
     \item Views: rendern die Anwendung im Browser
     \item Presenters: bieten Schnittstellen zum Aufruf der Funktionen durch den Nutzer an
-\end{itemize}
-Sie erfüllt die Anforderungen durch eine klare Trennung der Komponenten.
-In der XAI-Anwendung haben diese die folgenden Aufgaben:
-\begin{itemize}
-    \item AI und Berechnungslogik (Model)
-    \item Visualisierungslogik (View)
-    \item Nutzerinteraktion (Presenter)
 \end{itemize}
 
 \subsection{Wahl der Architektur}
@@ -39,8 +32,9 @@ Die MVP-Architektur wurde hauptsächlich gewählt, um die Kriterien zur Wartbark
     \item benötigt disziplinierte Koordination zwischen Komponenten, um \enquote{Fat Presenters} zu vermeiden.
 \end{itemize}
 \subsubsection{MVP ist besser geeignet als MVC}
-\todo[]{Es wurde nicht klar wie MVC aufgebaut ist und warum es nicht besser als MVP für unseren Fall ist. }
 Model-View-Controller (MVC) ist eine einfachere und leichtgewichtige Alternative zu MVP mit weniger Code und weniger Schichten zum Implementieren.
+Bei diesem Modell reagiert der Controller auf die Nutzereingabe und greift auf das Model zu.
+Dieses aktualisiert dann den View, wodurch die Änderungen angezeigt werden. \cite{mvc_vs_mvp}
 Die Vorteile von MVP überwiegen jedoch, vor allem aufgrund der funktionalen Anforderungen der Wartbarkeit und besonders Erweiterbarkeit.
 \begin{itemize}
     \item Views rendern nur die Komponente und sind unabhängig vom Model (kein Data-Binding/Observer)
@@ -49,6 +43,7 @@ Die Vorteile von MVP überwiegen jedoch, vor allem aufgrund der funktionalen Anf
 \end{itemize}
 Deshalb können neue Funktionalitäten (z. B. neue Neural-Network-Modelle oder Erklärungsmethoden) bei MVP durch Vererbung hinzugefügt werden.
 Bei MVC wäre das aufgrund der höheren Kopplung von Models, Views und Controllern nicht so einfach.
+Anpassungen des Views würden auch Einfluss auf das Model haben.
 
 \section{Statisches Modell}
 Das statische Modell stellt die Klassen der Anwendung mit ihren Attributen und Methoden dar sowie die Beziehungen zwischen ihnen.

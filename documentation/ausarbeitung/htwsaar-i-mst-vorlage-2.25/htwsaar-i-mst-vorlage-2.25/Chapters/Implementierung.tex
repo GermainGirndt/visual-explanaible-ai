@@ -44,19 +44,6 @@ Diese sendet durch das \verb|<input>|-Elements die URL des Bildes an den Server.
 
 \section{Built-in Support für Grad-CAM sowie LIME auf EfficientNetV2}
 
-\subsection{Wahl der XAI-Verfahren}
-\todo[]{Die Subsection 'Wahl der XAI-Verfahren' wie es geschrieben wurde gehört eigentlich in die Anforderungsanalyse (und eventuell in die Grundlage). Stattdessen sollte hier eher beschrieben werden, wie die XAI-Verfahren implementiert wurden (z. B. welche Libraries dafür verwendet wurden und warum)}
-
-Wir haben uns für die XAI-Verfahren Grad-CAM und LIME entschieden.
-Diese beiden Verfahren gehören zu den beliebtesten XAI-Verfahren und vor allem Grad-CAM wurde seit Mitte 2025 immer beliebter.
-Aufgrund der Popularität werden diese Verfahren häufig in wissenschaftlichen Papers behandelt und sind gut dokumentiert.
-Außerdem sind die Methoden mit PyTorch einfach zu implementieren.
-Mit zwei unterschiedlichen Verfahren lässt sich auch der Unterschied zwischen der modellspezifischen und der modellagnostischen Funktionsweise zeigen.
-Grad-CAM ist modellspezifisch, da es mit den Gradienten des Neural Networks arbeitet.
-LIME ist dagegen modellagnostisch und approximiert die Klassifizierung lokal.\\
-\includegraphics[width=\linewidth]{Graphics/google_trends_gradcam}
-\captionof{figure}{Zeitlicher Verlauf der Suchanfragen zu Grad-CAM im Vergleich zu anderen Methoden}
-
 \subsection{Implementierung der EfficientNetV2- und ResNet-Modelle}
 Als CNN-Modell wurden ein vortrainiertes EfficientNetV2 und ein ResNet-Modell verwendet.
 Diese können – wie viele andere Modelle – über die Library \texttt{torchvision} verwendet werden.
