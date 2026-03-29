@@ -77,7 +77,7 @@
 				<br />
 
 				<label for="explanation-select">Explanation Type:</label>
-				<select name="explanation-select" id="explanation-select" onchange="updateMethod(value)">
+				<select name="explanation-select" id="explanation-select" onchange="updateMethod(value)" class="custom-select">
 					<option value="Gradcam" selected>Gradcam</option>
 					<option value="LIME">LIME</option>
 				</select>
@@ -94,7 +94,7 @@
 					<label for="model_type">Model Type:</label>
 					<br />
 
-					<select name="model_type" id="model_type" onchange="this.form.submit()">
+					<select name="model_type" id="model_type" onchange="this.form.submit()" class="custom-select">
 						<option value="EfficientNet" {% if model_type=="EfficientNet" %}selected{% endif %}>
 							EfficientNet
 						</option>

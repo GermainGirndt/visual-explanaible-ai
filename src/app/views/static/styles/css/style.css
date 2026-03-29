@@ -111,6 +111,9 @@ body > main {
   padding: 24px;
   display: flex;
   flex-direction: column;
+
+  min-height: calc(100vh - 50px);
+  overflow: scroll;
 }
 
 body > main > header {
@@ -132,6 +135,9 @@ body > main > header h1 {
   justify-content: center;
   align-items: center;
   position: relative;
+
+  /* overflow: scroll; */
+  /* min-height: calc(100vh - 150px); */
 }
 
 .togglers-container {

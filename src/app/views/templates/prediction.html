@@ -15,8 +15,10 @@
 		<span class="close" onclick="closeExplanationModal()">&times;</span>
 		<h3>Select class</h3>
 		<form action="/explain" method="post" id="explain-form" onsubmit="return validateSelection()">
-			<label for="prediction-select">Class:</label>
-			<select id="prediction-select" onchange="updateValues(this)">
+			
+    </br>
+      <label for="prediction-select">Class:</label>
+			<select id="prediction-select" onchange="updateValues(this)" class="custom-select">
 				<option disabled selected>Select a class to explain</option>
         {% for p in class_predictions %}
 
@@ -30,7 +32,7 @@
 			<input type="hidden" name="class_name" id="class_name" />
 			<input type="hidden" name="confidence" id="confidence" />
 			<input type="hidden" name="explanation_type" id="explanation_type" value="Gradcam" />
-			<button id="submit-class-button" type="submit">Explain</button>
+			<button id="submit-class-button" type="submit" class="btn btn-primary">Explain</button>
 		</form>
 	</div>
 </div>
