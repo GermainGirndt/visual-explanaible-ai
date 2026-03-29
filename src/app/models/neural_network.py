@@ -27,6 +27,7 @@ class EfficientNetv2(NeuralNetwork):
      
     
     def classify(self, image: Image) -> Predictions:
+        print("""Classifying image with EfficientNetV2""")
         
         if not image:
             raise ValueError("No image provided for classification.")
@@ -87,7 +88,7 @@ class ResNet(NeuralNetwork):
         self.model = resnet152(weights=self.weights)
     
     def classify(self, image: Image) -> Predictions:
-        
+        print("""Classifying image with ResNet""")
         if not image:
             raise ValueError("No image provided for classification.")
         
