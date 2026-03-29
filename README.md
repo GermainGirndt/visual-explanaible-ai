@@ -1,5 +1,8 @@
 # Visual Explainable AI
 
+![Visual Explanaible AI Preview](visual-explainable-ai-preview.png)
+Grad-CAM Explanation for EfficientNetV2's 'Tabby (Cat)' Classification
+
 ## Project Setup
 
 For setting up the project on your machine, execute the following 5 steps:
