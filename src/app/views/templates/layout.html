@@ -77,8 +77,8 @@
 				<br />
 
 				<label for="explanation-select">Explanation Type:</label>
-				<select name="explanation-select" id="explanation-select" onchange="updateMethod(value)" class="custom-select">
-					<option value="Gradcam" selected>Gradcam</option>
+				<select name="explanation-select" id="explanation-select" onchange="{localStorage.setItem('explanation_type', value); updateExplanationType(value);}" class="custom-select">
+					<option value="Gradcam">Gradcam</option>
 					<option value="LIME">LIME</option>
 				</select>
 			</div>
@@ -94,11 +94,11 @@
 					<label for="model_type">Model Type:</label>
 					<br />
 
-					<select name="model_type" id="model_type" onchange="this.form.submit()" class="custom-select">
-						<option value="EfficientNetV2" {% if model_type=="EfficientNetV2" %}selected{% endif %}>
+					<select name="model_type" id="model_type" onchange="{this.form.submit(); localStorage.setItem('model_type', value); updateModelType(value);}" class="custom-select">
+						<option value="EfficientNetV2">
 							EfficientNetV2
 						</option>
-						<option value="ResNet" {% if model_type=="ResNet" %}selected{% endif %}>
+						<option value="ResNet">
 							ResNet
 						</option>
 					</select>
@@ -149,6 +149,28 @@
 				}
 				return true;
 			}
+
+			function updateExplanationType(value) {
+			    document.getElementById("explanation-select").value = value;
+			    document.getElementById("explanation_type").value = value;
+			}
+
+			function updateModelType(value) {
+			    document.getElementById("model_type").value = value;
+			}
+
+			window.onload = function () {
+                const explanation = localStorage.getItem("explanation_type");
+                if (explanation) {
+                    updateExplanationType(explanation);
+                }
+
+                const model = localStorage.getItem("model_type");
+                if (model) {
+                    updateModelType(model);
+                }
+            };
+
 		</script>
 	</body>
 </html>
