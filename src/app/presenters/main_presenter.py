@@ -29,25 +29,7 @@ class MainPresenter:
         def home(request: Request):
             """Render the upload page."""
             return image_view.render_nav_page(request, model_type=self.type)
-        
-        @app.get("/resize")
-        def resize(request:Request):
-            if self.image != []:
-                return image_view.render_image_page(request, self.image.image_url, self.type)
-            else:
-                return image_view.render_nav_page(request, model_type=self.type)
-                
-        
-        @app.post("/")
-        def change_model_size(request: Request, model_type: str = Form(...)):
-            if model_type == "ResNet":
-                 self.model = ResNet()
-                 self.type = model_type
-            else:
-                 self.model = EfficientNetv2()
-                 self.type = model_type  
-          
-            return RedirectResponse("/resize", status_code=303)
+
             
         @app.post("/upload")
         async def upload_image(request: Request, file: UploadFile):
@@ -59,7 +41,13 @@ class MainPresenter:
 
 
         @app.post("/classify")
-        async def classify(request: Request, image_url: str = Form(...)):
+        async def classify(request: Request, image_url: str = Form(...), model_type:str = Form(...)):
+            if model_type == "ResNet":
+                 self.model = ResNet()
+                 self.type = model_type
+            else:
+                 self.model = EfficientNetv2()
+                 self.type = model_type
             image = Image(image_url=image_url)
             predictions = self.model.classify(image)
             top_five_class_predictions = predictions.top_k(5)

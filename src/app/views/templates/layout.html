@@ -22,6 +22,7 @@
 
 					<form action="/classify" method="post" onsubmit="return alertIfImageDoesNotExist()">
 						<input type="hidden" name="image_url" value="{{ image_url }}" />
+                        <input type="hidden" name="model_type" id="model_type" value="EfficientNetV2" />
 						<button id="classify-button" type="submit">
 							<img src="../static/assets/icons/share_icon.svg" id="share-1">
 							<span id="share-icon-container">
@@ -89,20 +90,18 @@
 				<span class="close" onclick="closeModelModal()">&times;</span>
 				<h3>Select model</h3>
 
-				<form action="/" method="post" class="model-size-form">
-					<br />
-					<label for="model_type">Model Type:</label>
-					<br />
+                <br />
+                <label for="model-select">Model Type:</label>
+                <br />
 
-					<select name="model_type" id="model_type" onchange="{this.form.submit(); localStorage.setItem('model_type', value); updateModelType(value);}" class="custom-select">
-						<option value="EfficientNetV2">
-							EfficientNetV2
-						</option>
-						<option value="ResNet">
-							ResNet
-						</option>
-					</select>
-				</form>
+                <select name="model-select" id="model-select" onchange="{localStorage.setItem('model_type', value); updateModelType(value);}" class="custom-select">
+                    <option value="EfficientNetV2">
+                        EfficientNetV2
+                    </option>
+                    <option value="ResNet">
+                        ResNet
+                    </option>
+                </select>
 			</div>
 		</div>
 
@@ -156,6 +155,7 @@
 			}
 
 			function updateModelType(value) {
+			    document.getElementById("model-select").value = value;
 			    document.getElementById("model_type").value = value;
 			}
 
