@@ -3,6 +3,13 @@
 ![Visual Explanaible AI Preview](visual-explainable-ai-preview.png)
 Grad-CAM Explanation for EfficientNetV2's 'Tabby (Cat)' Classification
 
+## Introduction
+
+Visual Explainable AI was a project developed by Germain Girndt, Katharina Krier and Antonio Metz for making the decision-making processes of AI models transparent and understandable through visual explanations.
+
+The design decisions are documented in the file `2026-03-30 - Projektarbeit – schriftliche Ausarbeitung.pdf` (German only).
+
+
 ## Project Setup
 
 For setting up the project on your machine, execute the following 5 steps:
@@ -48,16 +55,16 @@ For running the App at http://127.0.0.1:8000, we call the fastapi CLI, passing i
 fastapi dev src/app/main.py
 ```
 
-## Other Notes
+## Further Notes
 
 ### In case of Pytorch incompatibilities:
 
 The install command for Pytorch may be different depending on the user machine. If there's any incompatibility, check the following website:
 https://pytorch.org/get-started/locally/
 
-### Rendering the Documentation Diagrams
+### Rendering the Mermaid Documentation Diagrams
 
-To render the documentation diagrams on your browser, use the `https://mermaid.live` website.
+The documentation diagrams are in the `./documentation` folder. To render them on your browser, use the `https://mermaid.live` website.
 
 Alternatively, to render them on VSCode install the following Markdown plugins and opening the diagrams as a Markdown file:
 
